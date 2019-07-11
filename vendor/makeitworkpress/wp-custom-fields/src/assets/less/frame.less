@@ -1,0 +1,138 @@
+// main: wp-custom-fields.less
+
+/**
+ * Framework Layout
+ * ----------------------------------
+ */
+.wp-custom-fields-framework {
+    border: 1px solid @wp-lightborder;
+    margin-top: 20px;
+    .button {
+        margin-right: 5px;
+    }
+    header { 
+        padding: @grid-space @grid-space 0 @grid-space;
+        h2 {
+            margin-bottom: @grid-space;
+        }
+    }
+    a, i {
+        text-decoration: none;
+        transition: all 350ms ease-in-out;
+    }
+    footer {      
+        padding: @grid-space;
+    }
+    input, select, textarea {
+        max-width: 100%;
+        vertical-align: top;
+    }
+    label {
+        clear: both;
+        display: block;
+        margin: 7px 0;
+    }
+    .postbox & {
+        border: none;
+        margin-top: 0;
+        header {
+            padding: @grid-space 0 0 0;    
+        }
+        &.tabs-left .wp-custom-fields-tabs {
+            margin-left: 0;
+            li a.active, li a:hover  {
+                border-left: 1px solid @wp-lightborder;
+            }
+        }
+        .wp-custom-fields-sections {
+            border: 1px solid @wp-lightborder;
+        }
+    }
+    #poststuff & {
+        h2, h3 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 1em 0;
+            padding: 0;
+            &.wp-custom-fields-section-title {
+                margin-top: 0;
+            }
+        }
+    } 
+}
+
+.wp-custom-fields-buttons {
+    clear: both;
+    margin-bottom: @grid-space;
+    text-align: right;
+}
+
+.wp-custom-fields-tabs {
+    margin: 0;
+    .tabs-left & {
+        float: left;
+        margin-left: -24px;
+        li {
+            display: block;
+            a {
+                margin: 0 -1px 0 0;
+                &.active, &:hover {
+                    border: 1px solid @wp-lightborder;
+                    border-left: none;
+                    border-right: none;
+                }
+            }
+        }
+    }
+    li {
+        display: inline-block;
+        margin: 0;
+        a {
+            display: block;
+            font-size: 14px;
+            margin: 0 0 -1px 0;
+            padding: @grid-space * 0.75 @grid-space;
+            transition: @base-transition;
+            i {
+                font-size: 18px;
+                margin-right: 3px;
+                position: relative;
+                top: 3px;
+            }
+            &.active, &:hover {
+                background-color: @white;
+                border: 1px solid @wp-lightborder;
+                border-bottom: none;
+                color: @wp-black;
+            }
+            &:focus {
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+}
+
+.wp-custom-fields-sections {
+    background: #fff;
+    border-bottom: 1px solid @wp-lightborder;
+    border-top: 1px solid @wp-lightborder;
+    overflow: hidden;
+    padding: @grid-space; 
+    .tabs-left & {
+        border: 1px solid @wp-lightborder;
+        border-right: none;
+    }
+}
+
+.wp-custom-fields-section-title {
+    margin-top: 0;
+}
+
+.wp-custom-fields-section {
+    animation: fadeIn 200ms ease-in-out;
+    display: none;
+    &.active {
+        display: block;
+    }
+}

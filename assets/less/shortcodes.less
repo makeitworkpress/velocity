@@ -1,0 +1,126 @@
+// main: style.less
+
+/* 7. Shortcodes 
+-------------------------- */
+
+/**
+ * Columns
+ */
+.half, .half_last {
+	float: left;
+	margin-right: 5%;
+	width: 47.5%;
+}
+.two_third, .two_third_last {
+	float: left;
+	margin-right: 5%;
+	width: 65%;
+}
+.third, .third_last {
+	float: left;
+	margin-right: 5%; 
+	width: 30%;
+}
+.half_last, .third_last, .two_third_last {
+	margin-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+	.third, .third_last, .half, .half_last, .two_third, .two_third_last {
+		margin: 0;
+		width: 100%;
+    }   
+}
+
+/**
+ * Buttons
+ */
+.button {
+    background: @link-color;
+    color: #fff;
+    display: inline-block;
+    font-family: @sans-serif;
+    font-size: @font-normal;
+    margin: @space/2 0 @space/2 0;
+    padding: @space/2 @space;
+    text-align: center;
+    &:hover {
+        color: #fff;
+        opacity: 0.9;
+    }
+    &.left {
+        float: left;
+        margin-right: @space;
+    }
+    &.right {
+        float: right;
+        margin-left: @space;
+    }
+    &.middle {
+        display: block;
+        margin: 0 auto @space/2 auto;
+        max-width: 300px;
+    }
+}
+
+/**
+ * Tag Clouds 
+ */
+.tag-cloud a, .categories a {
+    background: @dark-grey;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 5px;
+    padding: @space/4 @space;
+    transition: all 350ms ease-out;
+    &:hover, &.active {
+        background: @dark-white;
+        color: @dark-grey;        
+    }
+    .comments & {
+        &:hover {
+            background: #fff;
+        }
+    }
+}
+
+.tag-cloud {
+    margin-bottom: @space;
+}
+
+/**
+ * Adverts 
+ */
+.advert {
+    margin: 0 auto @space auto;
+    width: 100%;
+    &.medium-rectangle {
+        width: 300px;
+    }
+    &.large-rectangle {
+        width: 336px;    
+    }
+    &.large-skyscraper {
+        width: 300px;
+    }    
+    &.small-skyscraper {
+        width: 120px;
+    }
+    &.right {
+        margin-left: @space;
+    }
+    &.left {
+        margin-right: @space;
+    }    
+}
+
+.floating-advert {
+    position: fixed;
+    right: @space;
+    top: @space*4;
+    width: 120px;
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
+}
+

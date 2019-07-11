@@ -1,0 +1,45 @@
+// main: ../style.less
+
+/** 
+ * Comments Component
+ */
+.comments-title {
+    margin: @space 0;
+}
+
+.commentlist {
+    .children {
+        margin-left: @space;
+    }    
+}
+
+.comment-body {
+    background: #fff;
+    margin-bottom: @space/2;
+    padding: @space;
+}
+
+.comment-author {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: @sans-serif;
+    margin-bottom: @space/4;
+    .avatar, .fn {
+        margin-right: @space/4;
+    }
+    .avatar {
+        border-radius: 50%;
+    }
+}
+
+.comment-metadata {
+    font-size: @font-small;
+    a {
+        color: @font-color-light;
+    }
+}
+
+.comment-content {
+    margin: @space/2 0;
+}

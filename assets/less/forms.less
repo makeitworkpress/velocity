@@ -1,0 +1,44 @@
+// main:style.less
+
+/* 5. Forms 
+-------------------------------------------------------------- */
+form {
+    p {
+        margin-bottom: @space;
+    }
+}
+
+input, textarea, select {
+    background: #fff;
+	border: 1px solid @border-color;
+    display: block;
+    font-family: @serif;
+    font-size: @font-normal;
+    margin-bottom: @space;
+	padding: @space/2;
+    width: 100%;
+    &:focus {
+        outline: none;
+    }
+}
+
+input[type="submit"] {
+    background: @dark-grey;
+    border: 1px solid transparent;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: @space/2 @space;
+    transition: all 350ms ease-out;
+    width: auto;
+    &:hover {
+        background: @border-color;
+        color: @dark-grey;        
+    }    
+}
+
+label {
+    font-family: @sans-serif;
+    font-size: @font-small;
+    font-weight: 600;
+}

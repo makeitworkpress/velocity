@@ -1,0 +1,158 @@
+// main:style.less
+
+/* 4. Global
+-------------------------------------------------------------- */
+.container {
+	margin: 0 auto;
+    max-width: @container;
+    padding: 0 @space*2;
+	width: 100%;
+    @media screen and (max-width: 480px) {
+        padding: 0 @space;
+    }
+}
+
+.absolute {
+	position: absolute;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.thumbnail {
+	height: 150px;
+	width: 150px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+/* Image styles */
+figure img {
+    display: block;
+}
+
+img, figure {
+    height: auto;
+    max-width: 100%;   
+    &.alignright, {
+        float: right; 
+        margin: 0 0 @space @space;
+    } 
+    &.alignleft {
+        float: left; 
+        margin: 0 @space @space 0;
+    }
+    &.aligncenter {
+        display: block; 
+        margin: 0 auto @space auto;
+    }    
+}
+
+figcaption, .wp-block-image figcaption {
+    color: @font-color-light;
+    font-size: @font-small;
+    margin-top: -@space/2;
+    text-align: center;
+}
+
+/* Video Styles */
+.wp-video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;   
+    video, embed, iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;  
+    }
+}
+
+/* Social Colors */
+.email, .telephone {
+	background-color: @font-color;
+}
+
+.whatsapp {
+	background-color: #25d366;
+}
+
+.twitter {
+    background-color: #32CCFE;
+}
+
+.facebook {
+    background-color: #3B5998;
+}
+
+.linkedin {
+    background-color: #0274B3;
+}
+
+.pinterest {
+    background-color: #CB2028;
+}
+
+.google-plus {
+    background-color: #D44036;
+}
+
+.reddit {
+    background-color: #CEE3F8;
+}
+
+.stumble {
+    background-color: #EB4924;
+}
+
+.pocket {
+    background-color: #EF4056; 
+}
+
+.instagram {
+    background-color: #405de6;
+}
+
+.vimeo {
+    background-color: #1ab7ea;
+}
+
+.youtube {
+    background-color: #ff0000;
+}
+
+.behance {
+    background-color: #1769ff;
+}
+
+.dribble {
+    background-color: #ea4c89;
+}
+
+/* Animations */
+.opacity-frames {
+    from { opacity: 0; } to { opacity: 1; }
+}
+.fadeInDown-frames {
+    0% { opacity: 0; transform: translateY(-20px); } 
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(0); }
+}
+.fontScale {
+    0% { font-size: 1em; } 
+    50% { color: #019875; font-size: 2em; }
+    100% { color: inherit; font-size: 1em; }
+}
+
+@keyframes opacity {.opacity-frames;}
+@keyframes fadeInDown {.fadeInDown-frames;}
+@keyframes fontScale {.fontScale;}

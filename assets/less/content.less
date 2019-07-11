@@ -1,0 +1,170 @@
+// main:style.less
+
+/* 9. General Content
+-------------------------------------------------------------- */
+
+/* Content Wrapper */
+.content {
+	background: #fff;
+	overflow: hidden;
+    padding-top: @space*3; 
+}
+
+// Transparent Header
+.header-transparent ~ .content {
+    padding-top: 0;
+    // For image backgrounds
+    .image-background {
+        min-height: 100vh;
+        &.image-offset {
+            border-top: 28px solid #fff;
+        }
+    }
+    // Portfolio slider images
+    .tns-outer img {
+        max-height: 100vh;      
+    }
+    .image-offset .tns-outer img {
+        max-height:  ~"calc(100vh - 56px)";
+    } 
+    // Video's  
+    .image-full {
+        .entry-video {
+            max-height: 100vh;
+            iframe, video, embed {
+                max-height: 100vh;
+            }
+        }
+        &.image-offset .entry-video {
+            max-height: calc(~"100vh - 56px");
+            iframe, video, embed {
+                display: block;
+                max-height: calc(~"100vh - 56px");
+            }            
+        }
+    }     
+}
+
+/**
+ * Main content 
+ */
+.main-content {
+    background-color: #fff;
+    padding: @space*3 0;
+    position: relative;
+    /* General Typography within the content */
+    .entry-content {
+        ul {
+            list-style: disc;
+            margin: 0 0 @space @space;
+        }
+        ol {
+            list-style: decimal;
+            margin: 0 0 @space @space;
+        }
+        h2, h3 {
+            padding-top: @space;
+        }
+        p, ol, ul, code, pre, img {
+            margin-bottom: @space;
+        }
+        code {
+            overflow-x: scroll;
+        }  
+    }
+    /* Variations */
+    .post-not-found & {
+        text-align: center;
+    }
+    .fullwidth-content & {
+        padding: 0;
+        .container {
+            margin: 0;
+            max-width: 100%;
+            padding: 0; 
+            .entry-content {
+                max-width: 100%;
+            }   
+        }
+    }    
+    .enlarge-paragraph & {
+        .entry-content > p:first-of-type {
+            font-size: @font-intro;
+            line-height: 1.5;
+            max-width: 100%;
+            overflow: hidden;         
+        }
+    } 
+    /* Center the writings */
+    .readable-width & {
+        .entry-content {
+            p, h2, h3, h4, h5, h6, ol, ul, pre, code, ins, mark, cite, em, b, strong, i, table {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: @content;
+            }
+            blockquote p {
+                margin: 0;
+                max-width: 100%; 
+            }                         
+        }
+
+    }    
+}
+
+/* Our Main-Content wrapper has a little less padding if there is an offsetted image before */
+.image-offset ~ .main-content {
+    padding-top: @space*2;
+}
+
+/** 
+ * Content Footer 
+ */
+.main-footer {
+    background: @dark-white;
+    padding: @space*3 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Related Content */
+.related-posts {
+    margin-bottom: @space*2;
+    > h2 {
+        margin-bottom: @space;
+        text-align: center;
+    }  
+}
+
+/**
+ * Single projects 
+ -------------------------------------------------------------- */
+
+/**
+ * Archives Content 
+ -------------------------------------------------------------- */
+.post-type-archive-projects, .archive.tax-type {
+    .main-content {
+        padding: 0;
+        .container {
+            margin: 0;
+            max-width: 100%;
+            padding: 0
+        }
+    }
+}
+
+.categories-list {
+    margin-bottom: @space * 2;
+    overflow: hidden;
+    padding: 0 @space;
+    text-align: center;
+    ul {
+        display: inline-block;
+        margin-top: @space/2;
+    }
+    li {
+        float: left;
+        margin: 0 @space/4 @space/4 0;
+    }    
+}

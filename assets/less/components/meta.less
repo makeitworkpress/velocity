@@ -1,0 +1,31 @@
+// main: ../style.less
+
+/**
+ * Post Meta Data Styling
+ */
+.entry-meta {
+    color: @font-color-light;
+    font-size: @font-small;
+	padding-bottom: @space/2;
+    text-align: center;
+    a {
+        color: @font-color-light;
+        &:hover {
+            color: @link-hover-color;
+        }         
+    }
+    .main-content & {
+        border-bottom: 1px solid @border-color;
+        margin-bottom: @space*2;
+    }
+}
+
+.single-meta {
+    align-items: center;
+    display: inline-flex;
+    margin: @space/4 @space/2 @space/4 0; 
+    vertical-align: middle;   
+    i, figure {
+        margin-right: @space/4;
+    }
+}

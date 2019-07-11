@@ -1,0 +1,71 @@
+// main: ../style.less
+
+/**
+ * Social Sharing Buttons
+ */
+.share-component {
+    align-items: center;
+    display: flex;
+    margin-bottom: @space;
+    h4 {
+        font-size: @font-small;
+        margin-right: @space/2;
+    }
+    a {
+        color: #fff;
+        height: @space*2;
+        line-height: @space*2;
+        margin-right: @space/4;
+        text-align: center;
+        transition: all 350ms ease-out;
+        padding: 3px @space;
+        &:hover {
+            opacity: 0.8;
+        }        
+    }  
+    &.position-default {
+        @media screen and (max-width: 768px) {
+            flex-wrap: wrap;
+            a {
+                margin-bottom: @space/4;
+            }
+        }
+    }  
+    &.position-left, &.position-right {
+        display: block;
+        margin: -140px 0 0 0;
+        position: fixed;
+        top: 50%;
+        z-index: 99;
+        a {
+            display: block;
+            margin: 0;
+            padding: 3px 0;
+            width: @space*2;
+        }        
+        @media screen and (max-width: 768px) {
+            h4 {
+                display: none;
+            }
+            bottom: 0;
+            display: flex;
+            margin: 0;
+            text-align: center;
+            top: inherit;  
+            width: 100%; 
+            a {
+                flex-grow: 1;
+                width: auto;
+                &:hover {
+                    width: auto;
+                }
+            }
+        }        
+    }
+    &.position-left {
+        left: 0;
+    }
+    &.position-right {
+        right: 0;
+    }
+} 

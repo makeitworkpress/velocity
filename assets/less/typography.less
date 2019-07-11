@@ -1,0 +1,121 @@
+// main: style.less
+
+/* 2. Typography 
+-------------------------------------------------------------- */
+body {
+	color: @font-color;
+	font: 400 @font-normal/@line-body @serif;
+	word-break: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    color: @font-color;
+    font-family: @sans-serif;
+    font-weight: 600;
+	line-height: @line-headings;
+	margin-bottom: @space/2;
+    .subtitle & {
+        font-weight: 300;
+    }
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    @media screen and (max-width: 1024px) {
+        font-size: 2.75em;
+    } 
+    @media screen and (max-width: 768px) {
+        font-size: 2.5em;      
+    }  
+    @media screen and (max-width: 480px) {
+        font-size: 2em;
+    }     
+}
+
+h2 {
+	font-size: 1.8em;
+    letter-spacing: -1px;
+    @media screen and (max-width: 768px) {
+        font-size: 1.7em;       
+    }
+    @media screen and (max-width: 480px) {
+        font-size: 1.625em;
+    }    
+}
+
+h3 {
+	font-size: 1.4em;
+    margin-bottom: @space/4;
+    @media screen and (max-width: 480px) {
+        font-size: 1.375em;
+    }        
+}
+
+h4 {
+	font-size: 1.125em;
+    margin-bottom: @space/4;
+}
+
+h5, h6 {
+    font-size: 1em;
+    margin-bottom: @space/4; 
+}
+
+blockquote {
+    border-bottom: 1px solid @border-color;
+    border-top: 1px solid @border-color;
+    line-height: @line-headings;
+    margin: 1em 0;
+    padding: 1.25em 0;  
+    quotes: none;
+    &:before, &:after {
+        content: none;
+    }
+    p {
+        font-size: @line-headings;
+        line-height: @line-headings; 
+        margin-bottom: 0 !important;       
+    }
+}
+
+a {
+	color: @link-color;
+	text-decoration: none;
+	transition: background-color 777ms ease-out, color 777ms ease-out, opacity 777ms ease-out;
+    &:hover {
+	    color: @link-hover-color;
+    }
+}
+
+/* Tables */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;    
+    margin: @space*2 0;
+    width: 100%;
+    th, td {
+        padding: @space/4;
+    }
+    th {
+        border-bottom: 1px solid @border-color;
+        text-align: left;
+        text-transform: uppercase;
+    }
+    tr:nth-child(odd) td {
+        background: @dark-white;
+    }
+}
+
+hr {
+	border: 1px solid @border-color;
+	clear: both;
+    margin: @space 0;
+}
+
+code, pre {
+    background: @dark-white;
+    display: block;
+    padding: @space/2 @space;
+}

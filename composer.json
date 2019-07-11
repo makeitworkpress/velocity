@@ -1,0 +1,47 @@
+{
+    "name": "makeitworkpress/velocity",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-config.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-custom-fields.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-enqueue.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-optimize.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-register.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/makeitworkpress/wp-updater.git"
+        }        
+    ],
+    "require": {
+        "php": ">=5.3",
+        "makeitworkpress/wp-config": "dev-master",
+        "makeitworkpress/wp-custom-fields": "dev-master",
+        "makeitworkpress/wp-enqueue": "dev-master",
+        "makeitworkpress/wp-optimize": "dev-master",
+        "makeitworkpress/wp-register": "dev-master",
+        "makeitworkpress/wp-updater": "dev-master"
+    },
+    "homepage": "https://makeitworkpress/wordpress-themes/velocity/",
+    "authors": [
+        {
+            "name": "Michiel Tramper",
+            "email": "hello@makeitworkpress.com",
+            "homepage": "https://www.makeitworkpress.com"
+
+        } 
+    ]         
+}

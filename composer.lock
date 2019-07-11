@@ -1,0 +1,273 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f6c36c2207a3f49f6513362ff8464335",
+    "packages": [
+        {
+            "name": "makeitworkpress/wp-config",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-config.git",
+                "reference": "0e753244966ca09e908d4b7c9374e7589c46803d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/0e753244966ca09e908d4b7c9374e7589c46803d",
+                "reference": "0e753244966ca09e908d4b7c9374e7589c46803d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakeitWorkPress\\WP_Config\\": "src"
+                }
+            },
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Tramper",
+                    "email": "michiel@makeitworkpress.com",
+                    "homepage": "https://www.makeitworkpress.com"
+                }
+            ],
+            "description": "This class makes it easy to have multidimensional configurations which are editable.",
+            "homepage": "https://github.com/makeitworkpress/wp-config",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-config/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-config/issues"
+            },
+            "time": "2019-03-12T12:52:14+00:00"
+        },
+        {
+            "name": "makeitworkpress/wp-custom-fields",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
+                "reference": "79318f17145c5ed0c4a336bb15c1dd7ecdc5dd70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/79318f17145c5ed0c4a336bb15c1dd7ecdc5dd70",
+                "reference": "79318f17145c5ed0c4a336bb15c1dd7ecdc5dd70",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakeitWorkPress\\WP_Custom_Fields\\": "src"
+                }
+            },
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Tramper",
+                    "email": "michiel@makeitworkpress.com",
+                    "homepage": "https://www.makeitworkpress.com"
+                }
+            ],
+            "description": "WP Custom Fields allows you to add custom fields easily to options pages, post, taxonomy and usermeta and customizer fields.",
+            "homepage": "https://github.com/makeitworkpress/wp-custom-fields",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
+            },
+            "time": "2019-06-24T14:14:37+00:00"
+        },
+        {
+            "name": "makeitworkpress/wp-enqueue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-enqueue.git",
+                "reference": "dc07f35c56162bbfc0ac3df33de622d7a584a94b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/dc07f35c56162bbfc0ac3df33de622d7a584a94b",
+                "reference": "dc07f35c56162bbfc0ac3df33de622d7a584a94b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakeitWorkPress\\WP_Enqueue\\": "src"
+                }
+            },
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Tramper",
+                    "email": "michiel@makeitworkpress.com",
+                    "homepage": "https://www.makeitworkpress.com"
+                }
+            ],
+            "description": "This class is a usefull wrapper for easily enqueing scripts and styles.",
+            "homepage": "https://github.com/makeitworkpress/wp-enqueue",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-enqueue/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-enqueue/issues"
+            },
+            "time": "2019-03-12T12:52:21+00:00"
+        },
+        {
+            "name": "makeitworkpress/wp-optimize",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-optimize.git",
+                "reference": "025a72fecdae49b9ace8aad8a6131ae99681f067"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/025a72fecdae49b9ace8aad8a6131ae99681f067",
+                "reference": "025a72fecdae49b9ace8aad8a6131ae99681f067",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakeitWorkPress\\WP_Optimize\\": "src"
+                }
+            },
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Tramper",
+                    "email": "michiel@makeitworkpress.com",
+                    "homepage": "https://www.makeitworkpress.com"
+                }
+            ],
+            "description": "This class stores some common optimizations which can help clean up your WordPress theme.",
+            "homepage": "https://github.com/makeitworkpress/wp-optimize",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-optimize/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-optimize/issues"
+            },
+            "time": "2019-03-12T12:52:24+00:00"
+        },
+        {
+            "name": "makeitworkpress/wp-register",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-register.git",
+                "reference": "d8bccf4ac52e10c064ee468eac971b4e38243647"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/d8bccf4ac52e10c064ee468eac971b4e38243647",
+                "reference": "d8bccf4ac52e10c064ee468eac971b4e38243647",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakeitWorkPress\\WP_Register\\": "src"
+                }
+            },
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Tramper",
+                    "email": "michiel@makeitworkpress.com",
+                    "homepage": "https://www.makeitworkpress.com"
+                }
+            ],
+            "description": "This class formats common WordPress registration actions in a wrapper, so you can easily register posts, taxonomies, menus, sidebards and widgets.",
+            "homepage": "https://github.com/makeitworkpress/wp-register",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-register/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-register/issues"
+            },
+            "time": "2019-03-12T12:52:26+00:00"
+        },
+        {
+            "name": "makeitworkpress/wp-updater",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/makeitworkpress/wp-updater.git",
+                "reference": "1774b24a9ed346ce4d593c26e105e5eb3194233e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/1774b24a9ed346ce4d593c26e105e5eb3194233e",
+                "reference": "1774b24a9ed346ce4d593c26e105e5eb3194233e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MakeitWorkPress\\WP_Updater\\": "src"
+                }
+            },
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Michiel Tramper",
+                    "email": "michiel@makeitworkpress.com",
+                    "homepage": "https://www.makeitworkpress.com"
+                }
+            ],
+            "description": "Simple class to allow WordPress theme and plugin updates over Github or Gitlab",
+            "homepage": "https://github.com/makeitworkpress/wp-updater",
+            "support": {
+                "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
+                "issues": "https://github.com/makeitworkpress/wp-updater/issues"
+            },
+            "time": "2019-03-12T12:52:28+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "makeitworkpress/wp-config": 20,
+        "makeitworkpress/wp-custom-fields": 20,
+        "makeitworkpress/wp-enqueue": 20,
+        "makeitworkpress/wp-optimize": 20,
+        "makeitworkpress/wp-register": 20,
+        "makeitworkpress/wp-updater": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.3"
+    },
+    "platform-dev": []
+}

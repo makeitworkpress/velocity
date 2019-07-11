@@ -1,0 +1,15 @@
+{
+    "name": "velocity",
+    "version": "1.0.0",
+    "author": "Michiel Tramper",
+    "description": "The package for the Velocity theme",
+    "devDependencies": {
+        "browserify": "latest",
+        "uglifyjs": "latest",
+        "watchify": "latest"
+    },
+    "scripts": {
+        "build": "browserify assets/js/modules.js -o assets/js/velocity.js && uglifyjs assets/js/velocity.js -o assets/js/velocity.min.js -c -m",
+        "watch": "watchify assets/js/modules.js -o assets/js/velocity.js -v"
+    }  
+}

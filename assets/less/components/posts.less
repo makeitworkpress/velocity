@@ -1,0 +1,190 @@
+// main: ../style.less
+
+/**
+ * Post Element Styling
+ */
+.posts-component {
+    width: 100%;
+    /* List */
+    &.list {
+        margin: 0 auto;
+        max-width: @content;
+        .post-item {
+            margin-bottom: @space * 2;
+            overflow: hidden;
+        }
+        .entry-title {
+            padding-top: 0;
+            a {
+                color: @font-color;
+            }
+        }
+        .entry-image {
+            max-height: 432px;
+            img {
+                margin-bottom: @space/2 !important;
+            }
+        } 
+        @media screen and (min-width: 769px) {
+            &.stack-title .has-post-thumbnail {
+                .stackable();                         
+            }            
+        }       
+    }
+    /* Post Grid */
+    &.grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .post-item {
+            margin-bottom: 2%;
+            width: 32%;
+            @media screen and (max-width: 1024px) {
+                width: 49%;
+            }
+            @media screen and (max-width: 600px) {
+                width: 100%;
+            }            
+            &:last-of-type {
+                margin-bottom: @space*2;
+            }
+        }
+        .entry-header {         
+            background: @dark-white;
+            min-height: 320px;
+            position: relative; 
+            transition: all 350ms ease-out;
+            &:hover {
+                opacity: 0.8;
+            }
+            .entry-meta {
+                padding: @space @space*2 0 @space*2;
+                @media screen and (max-width: 768px) {
+                    padding: @space @space 0 @space;    
+                }                
+            }
+            .post-title {
+                bottom: 0;
+                position: absolute;
+            }
+        }
+        .entry-image {
+            height: 320px;
+        }
+        .entry-title {
+            font-weight: 300;
+            padding-top: 0;
+        }
+        .post-title a {
+            display: block;
+            padding: @space/2 @space*2 @space*2 @space*2;  
+            &:hover {
+                color: @link-hover-color;
+            }  
+            @media screen and (max-width: 768px) {
+                padding: @space/2 @space @space @space;    
+            }
+        }
+        &.stack-title .has-post-thumbnail {
+            .stackable();                         
+        }                 
+    }
+    /* Generic Styling */
+    .entry-image {
+        overflow: hidden;  
+        img {
+            display: block;
+            transition: all 700ms ease-in-out;
+            width: 100%;
+        }             
+    }
+    .post-item:hover .entry-image img {
+        transform: matrix(1.03, 0, 0, 1.03, -4, -4);
+    } 
+    .entry-header {
+        .entry-image img {
+            margin-bottom: 0;
+        }
+        .entry-meta {
+            border-bottom: none;
+            margin: 0;
+            padding-bottom: 0;
+            .single-meta {
+                margin-bottom: 0;
+            }
+        }   
+    }     
+    .entry-title {
+        a {
+            color: @font-color;
+        }
+    }   
+    .entry-meta {
+        margin: @space/2 0;
+        text-align: left;
+    }
+    .entry-content {
+        padding: @space/2 0;
+    } 
+    /* Adapted styling for related posts */
+    .related-posts & {  
+        &.grid .entry-header {
+            background: #fff;
+        }
+    }         
+}
+
+/* Mixin for Header Titles that may stack */
+.stackable() {
+    .entry-header {
+        position: relative; 
+        .entry-meta {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0 @space*2;
+            @media screen and (max-width: 768px) {
+                padding: 0 @space;
+            }            
+        }                           
+    }     
+    .post-title {
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); 
+        bottom: 0;  
+        color: #fff;
+        position: absolute;
+        width: 100%;
+        a {               
+            color: #fff;
+            display: block;
+            padding: @space/2 @space*2 @space*2 @space*2;
+            @media screen and (max-width: 768px) {
+                padding: @space/2 @space @space @space;
+            }
+        }
+    } 
+}
+
+.continue-reading {
+    display: block;
+	text-align: right;
+}
+
+
+/* Pagination */
+.pagination {
+    margin: -@space 0 @space 0;
+    text-align: center;
+    width: 100%;
+}
+
+.page-numbers {
+    border-radius: 50%;
+    display: inline-block;
+    height: @space*1.5;      
+    line-height: @space*1.5-2;      
+    text-align: center;
+    width: @space*1.5;
+    &:hover, &.current {
+        background: @font-color;
+        color: #fff;        
+    }
+}

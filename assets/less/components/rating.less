@@ -1,0 +1,44 @@
+// main: ../style.less
+
+/**
+ * Ratings Element
+ */
+.entry-rating {
+    .entry-meta & {
+        display: inline-block;
+    } 
+    a {
+        color: @link-color;
+        &:hover {
+            color: @link-hover-color;
+        }
+    }
+    .icon-thumbs-o-up {
+        transition: all 300ms ease-out;
+        &.rated {
+            animation: fontScale 1000ms ease-out normal;
+        }
+    }
+}
+
+.stars-rating {
+    display: inline-block;
+    font-size: 1.25em;
+    span i {
+        float: left;
+        margin: 0 0 -2px 0;
+        padding-right: 7px; // Makes the clickable area for a star bigger
+    }
+    &:hover {
+        .stars-rate {
+            display: block;
+        }
+        .stars-current-rating {
+            display: none;
+        }        
+    }    
+}
+
+.stars-rate {
+    display: none;
+}

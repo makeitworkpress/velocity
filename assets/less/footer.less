@@ -1,0 +1,36 @@
+// main: style.less
+
+/* 10. Footer
+-------------------------------------------------------------- */
+.footer {
+    align-items: center; 
+    background: #fff;
+    display: flex;
+	font-size: @font-small;
+    padding: @space @space*2;
+    justify-content: space-between;
+    .copyright {
+        flex-grow: 1;
+    }    
+    .navigation {
+        padding-right: @space;
+        li {
+            display: inline-block;
+            margin-left: @space/2;
+            vertical-align: top;
+            a {
+                padding: @space/4;
+            }
+        }
+    }   
+    @media screen and (max-width: 768px) {
+        flex-wrap: wrap;   
+        .copyright, .navigation, .social {
+            margin: 0 0 @space/2 0;
+            width: 100%;
+        }
+    }       
+    @media screen and (max-width: 480px) {
+        padding: @space;    
+    }     
+}

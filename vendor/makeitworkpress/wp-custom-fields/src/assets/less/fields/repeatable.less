@@ -1,0 +1,55 @@
+// main: ../wp-custom-fields.less
+
+/* Repeatable */
+.wp-custom-fields-repeatable-group {
+    background-color: @wp-grey;
+    border: 1px solid @light-grey;
+    border-radius: @base-radius;
+    margin-bottom: 10px; 
+    min-height: @grid-space;
+    position: relative;
+}
+
+.wp-custom-fields-repeatable-buttons {
+    text-align: right;
+    .button {
+        display: inline-block;
+        margin: 0 0 0 5px;
+        min-width: 80px;
+        text-align: center;
+        vertical-align: top;
+    } 
+    i {
+        line-height: 28px;
+    }
+    .dashicons-minus {
+        color: @wp-red;
+    }    
+}
+
+.wp-custom-fields-repeatable-fields {
+    padding: @grid-space;
+}
+
+.wp-custom-fields-repeatable-toggle {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    i {
+        position: relative;
+        top: -2px;
+    }
+}
+
+.wp-custom-fields-repeatable-field {
+    h5 {
+        margin: 0 0 0.25em 0;
+    }
+    p {
+        margin-top: 0;
+    }
+}

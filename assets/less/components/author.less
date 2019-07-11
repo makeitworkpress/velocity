@@ -1,0 +1,50 @@
+// main: ../style.less
+
+/**
+ * Post Author Styling
+ */
+.author-component {
+    display: flex;
+    margin-bottom: @space;
+    @media screen and (max-width: 480px) { 
+        display: block;
+    }
+}
+
+.author-display-biography {
+    padding-top: @space;
+}
+
+.author-display-avatar {
+    float: left;   
+    @media screen and (max-width: 480px) {
+        float: none;    
+    }
+}
+
+.author-avatar {
+    img {
+        border-radius: 50%;
+        margin-bottom: 0 !important;
+        transition: all 350ms ease-out;
+    }
+    .author-component & {
+        margin: 0 @space @space -12px;
+        min-width: 112px;
+        img:hover {
+            transform: scale(1.1);    
+        }
+        @media screen and (max-width: 1024px) {
+            margin: 0 @space @space 0;        
+        }
+        @media screen and (max-width: 480px) { 
+            img {
+                margin: 0 auto;
+            }
+        }          
+    }
+}
+
+.author-biography {
+    color: @font-color-light;
+} 

@@ -1,0 +1,52 @@
+// main: ../style.less
+
+/**
+ * Post Pagination
+ */
+.pagination-component {
+    border-bottom: 1px solid @border-color;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
+    margin-bottom: @space*2;
+    padding-bottom: @space;
+    a {
+        color: @font-color;
+        font-size: 1.4em;
+        width: 50%;
+        @media screen and (max-width: 480px) {
+            font-size: 1.375em;
+        }        
+    }
+    a[rel="prev"] {
+        padding-right: @space/2;
+        text-align: left;
+    }
+    a[rel="next"] {
+        padding-left: @space/2;
+        text-align: right;
+    }
+    a[rel="prev"] ~ a[rel="next"] {
+        border-left: 1px solid @border-color;
+        @media screen and (max-width: 768px) {
+            border-left: none;
+            border-top: 1px solid @border-color;
+            margin-top: @space;
+            padding-top: @space;
+        }         
+    } 
+    a[rel="prev"], a[rel="next"] { 
+        @media screen and (max-width: 768px) {
+            padding: 0;
+            width: 100%;
+        }         
+    }
+    span {
+        color: @link-color;
+        font-size: @font-small;
+        display: block;
+        a:hover & {
+            color: @link-hover-color;
+        }
+    }   
+}

@@ -1,0 +1,27 @@
+// main: ../style.less
+
+/* Social Icons Integration. */
+.social-component {
+	list-style: none;
+	overflow: hidden;
+    li {
+        float: left;
+        margin-right: @space/4;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    a {
+        border-radius: 50%;
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        height: @space*1.5;
+        line-height: 44px;
+        text-align: center;
+        width: @space*1.5;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
