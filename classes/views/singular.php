@@ -139,6 +139,7 @@ class Singular extends Template {
 
                     if( $post->post_type == 'post' ) {
                         $args['categories'] = wp_get_post_categories( $post->ID, ['fields' => 'ids'] ); 
+                        $args['readmore']   = false; 
                         $args['stack']      = true; 
                         $args['style']      = 'grid'; 
                         $args['tags']       = wp_get_post_tags( $post->ID, ['fields' => 'ids'] );

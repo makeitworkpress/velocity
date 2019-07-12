@@ -75,16 +75,26 @@
             font-weight: 300;
             padding-top: 0;
         }
-        .post-title a {
-            display: block;
-            padding: @space/2 @space*2 @space*2 @space*2;  
-            &:hover {
-                color: @link-hover-color;
-            }  
-            @media screen and (max-width: 768px) {
-                padding: @space/2 @space @space @space;    
+        .post-title {
+            a:hover {
+                color: @link-hover-color; 
+            }
+            h3 a {
+                display: block;
+                padding: @space/2 @space*2 @space*2 @space*2; 
+                @media screen and (max-width: 768px) {
+                    padding: @space/2 @space @space @space;    
+                }                                 
             }
         }
+        .has-post-thumbnail {
+            .post-title a {
+                color: #fff;
+            }  
+            .post-title .entry-meta {
+                color: rgba(255, 255, 255, 0.8);
+            } 
+        }     
         &.stack-title .has-post-thumbnail {
             .stackable();                         
         }                 

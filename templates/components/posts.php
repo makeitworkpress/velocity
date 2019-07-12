@@ -46,7 +46,7 @@ if( ! $posts['posts'] ) {
                 </div>
             <?php } ?>
 
-            <?php if( $post['more'] || $post['bottomMeta'] ) { ?>
+            <?php if( $posts['more'] || $post['bottomMeta'] ) { ?>
                 <footer class="entry-footer">
                     <?php if( $post['bottomMeta'] ) { ?>
                         <?php $post['bottomMeta']->render(); ?>  

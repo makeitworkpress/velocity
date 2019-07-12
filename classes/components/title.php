@@ -50,6 +50,8 @@ class Title extends Components {
          */
         if( is_archive() || is_home() ) {
 
+   
+
             global $wp_query;
 
             /**
@@ -86,7 +88,7 @@ class Title extends Components {
                 }   
             } else {
                 $dynamic                        = isset(get_queried_object()->labels->name) ? get_queried_object()->labels->name : __( 'Post Archives', 'velocity' );
-                $this->vars['title']            = $custom[$type . '_archive_title'] ? str_replace('{type}', $dynamic, $custom[$type . '_archive_title']) : $dynamic;
+                $this->vars['title']            = isset($custom[$type . '_archive_title']) && $custom[$type . '_archive_title'] ? str_replace('{type}', $dynamic, $custom[$type . '_archive_title']) : $dynamic;
             }
 
         }
@@ -207,7 +209,7 @@ class Title extends Components {
                         $this->vars['class']       .= ' image-background';
                     }
 
-                    if( $options['optimize']['lazyLoad'] ) {
+                    if( isset($options['optimalizations']['lazyLoad']) && $options['optimize']['lazyLoad'] ) {
                         $this->vars['background']   = 'data-bg="url(' . get_the_post_thumbnail_url($post, '1920') . ')"';
                         $this->vars['class']       .= ' lazy';
 
@@ -220,6 +222,8 @@ class Title extends Components {
                             if( $meta['video'] ) {
                                 return;
                             }
+
+                            $style      = '';
                 
                             foreach(['3840', '2560', '1920', '1600', '1366', '1024', '768', '480', '480-2x', '320', '320-2x'] as $size) {
                                 
@@ -335,7 +339,7 @@ class Title extends Components {
                         $meta['video']          = 'https://player.vimeo.com/video' . parse_url($meta['video'])['path'];
                     } 
                     
-                    $src                        = $options['optimalizations']['lazyLoad'] ? ' class="lazy" data-src="' . $meta['video'] . '"' : ' src="' . $meta['video'] . '"'; 
+                    $src                        = isset($options['optimalizations']['lazyLoad']) && $options['optimalizations']['lazyLoad'] ? ' class="lazy" data-src="' . $meta['video'] . '"' : ' src="' . $meta['video'] . '"'; 
                     $this->vars['video']        = '<div class="wp-video" itemprop="video" itemscope="itemscope" itemtype="http://schema.org/VideoObject"><iframe width="' . $width . '" height="' . $height . '"' . $src . ' frameborder="0" allowfullscreen="true"></iframe></div>';
                 
                 // Regular video's

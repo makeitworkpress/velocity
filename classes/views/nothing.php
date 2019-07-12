@@ -13,9 +13,11 @@ class Nothing extends Template {
      */
     protected function populate() {
 
+        $custom = $this->data['customize'];
+
         // Default title and description for the 404 page
-        $this->properties->title            = $this->data['customize']['404_title'] ? $this->data['customize']['404_title'] : __('404 Error', 'velocity');
-        $this->properties->description      = $this->data['customize']['404_description'] ? $this->data['customize']['404_description'] : __('The page you requested does not exist. Nothing could be shown here.', 'velocity');
+        $this->properties->title            = isset($custom['404_title']) && $custom['404_title'] ? $custom['404_title'] : __('404 Error', 'velocity');
+        $this->properties->description      = isset($custom['404_description']) && $custom['404_description'] ? $custom['404_description'] : __('The page you requested does not exist. Nothing could be shown here.', 'velocity');
 
     }
 

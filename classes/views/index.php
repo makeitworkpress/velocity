@@ -24,15 +24,17 @@ class Index extends Template {
         global $wp_query;
         $postType                               = isset($wp_query->query['post_type']) ? $wp_query->query['post_type'] : 'post';
 
-        // If we query the type taxonoy, we show posts
+        // If we query the type taxonomy, we show projects
         if( isset($wp_query->query['type']) ) {
             $postType = 'projects';
         }
 
 
         // The archive description and categories
-        if( $custom[$postType . '_archive_description'] ) {
+        if( $custom[$postType . '_archive_description'] && isset($custom[$postType . '_archive_description']) ) {
             $this->properties->description      = term_description();
+        } else {
+            $this->properties->description      = false;
         }
 
         // Categories
@@ -40,6 +42,8 @@ class Index extends Template {
             $this->properties->categoriesTitle  = $custom[$postType . '_archive_categories_text'];
             $this->properties->categories       = $postType == 'post' ? get_categories() : get_terms(['taxonomy' => 'type']);
             $this->properties->categoryActive   = isset( get_queried_object()->name ) ? get_queried_object()->name : '';          
+        } else {
+            $this->properties->categories       = false;   
         }         
         
 

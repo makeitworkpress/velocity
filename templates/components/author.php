@@ -10,7 +10,7 @@
         <a class="url fn" href="<?php echo $author['url']; ?>" title="<?php printf( __('View all posts by %s', 'velocity'), $author['name'] ); ?>" rel="author">
             <?php echo $author['avatar'];  ?>
         </a>
-        <meta itemprop="name" content="<?php echo $author; ?>" />                        
+        <meta itemprop="name" content="<?php echo $author['name']; ?>" />                        
     </figure><!-- #author-avatar -->
     <?php if( $author['display'] == 'biography' ) { ?>
         <div class="author-biography"> 

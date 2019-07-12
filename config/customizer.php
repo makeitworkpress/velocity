@@ -534,7 +534,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'id'            => 'projects__archive_description',
+                    'id'            => 'projects_archive_description',
                     'title'         => __('Display Project Type Descriptions', 'velocity'),
                     'type'          => 'checkbox'
                 ],                
