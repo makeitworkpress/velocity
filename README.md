@@ -1,12 +1,9 @@
 # velocity
-Repository for the Velocity WordPress Theme
-
-# velocity
-Velocity is a light-weight WordPress theme created for extreme performance, capable of loading around 200ms. It is crafted for blogging and online portfolios and features pages, posts and projects. 
+Velocity is a light-weight WordPress theme created for extreme performance, capable of loading around 200ms. It is crafted for blogging and online portfolios and features pages, posts and projects. It also has an built-in advertisment manager to dynamically add and place advertisements.
 
 It uses a minimum of dependencies. For example, it does not require jQuery on the front-end. Because Velocity incorporates custom post types, it is unfortunately not available on the public WordPress theme repository.
 
-A live website using the Velocity WordPress theme can be found [here](https://michieltramper.com). This is the theme authors personal blog and portfolio.
+A live website using the Velocity WordPress theme can be found [here](https://michieltramper.com). This is the theme authors personal blog and portfolio. Velocity is maintained by [Make it WorkPress](https://www.makeitworkpress.com/wordpress-themes/velocity/)
 
 ## Installation
 * Download the ZIP file for the latest [release](https://github.com/makeitworkpress/velocity/releases)

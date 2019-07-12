@@ -56,7 +56,7 @@ class Share extends Components {
             'linkedin'      => ['icon' => 'linkedin', 'title' => __('Share on LinkedIn', 'velocity'), 'url' => 'http://www.linkedin.com/shareArticle?mini=true&url=' . $url . '&title=' . $title. '&source=' . $source  ],
             'reddit'        => ['icon' => 'reddit-alien', 'title' => __('Share on Reddit', 'velocity'), 'url' => 'http://www.reddit.com/submit?url=' . $url . '&title=' . $title ],
             'pocket'        => ['icon' => 'get-pocket', 'title' => __('Save to Pocket', 'velocity'), 'url' => 'https://getpocket.com/edit.php?url=' . $url],
-        ] );
+        ], $url, $title );
 
     }
 
