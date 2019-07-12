@@ -24,7 +24,7 @@
         {
             "type": "vcs",
             "url": "https://github.com/makeitworkpress/wp-updater.git"
-        }        
+        }                
     ],
     "require": {
         "php": ">=5.3",

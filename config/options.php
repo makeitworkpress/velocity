@@ -47,8 +47,8 @@ $options = [
         ],
         'optimize'   => [
             'icon'      => 'check_circle',
-            'id'        => 'optimalizations',
-            'title'     => __('Optimalizations', 'velocity'),
+            'id'        => 'optimizations',
+            'title'     => __('Optimizations', 'velocity'),
             'fields'    => [ 
                 [
                     'default'       => '',

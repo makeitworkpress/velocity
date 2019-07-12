@@ -18,7 +18,13 @@ class Velocity {
      * Data object
      * @access private
      */
-    private $data = [];    
+    private $data = [];  
+    
+    /**
+     * Updater object
+     * @access private
+     */
+    private $updater;
 
     /**
      * Determines whether a class has already been instanciated.
@@ -67,6 +73,11 @@ class Velocity {
             'customize' => get_theme_mod('velocity_customizer'),
             'options'   => get_option('velocity_options')
         ];
+
+        /**
+         * Initialize our github updater
+         */
+        $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/velocity'] );
 
         
         /**
