@@ -664,7 +664,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => ['selector' => '.button', 'property' => 'background-color'],
+                    'selector'      => ['selector' => '.button, .tag-cloud a, .categories a', 'property' => 'background-color'],
                     'id'            => 'body_button_background_color',
                     'title'         => __('Button Background Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -672,7 +672,7 @@ $customizer = [
                 ], 
                 [
                     'default'       => '',
-                    'selector'      => '.button, .button:hover',
+                    'selector'      => '.button, .button:hover, .tag-cloud a, .categories a',
                     'id'            => 'body_button_color',
                     'title'         => __('Button Text Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -694,7 +694,7 @@ $customizer = [
                 ],                                  
                 [
                     'default'       => '',
-                    'selector'      => '.header a',
+                    'selector'      => '.header .navigation-menu .menu a',
                     'id'            => 'header_link_color',
                     'title'         => __('Navigation Link Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -702,7 +702,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => '.header a:hover, .header .current-menu-item > a',
+                    'selector'      => '.header .navigation-menu .menu a:hover, .header .navigation-menu .menu .current-menu-item > a',
                     'id'            => 'header_link_hover_color',
                     'title'         => __('Navigation Hover & Active Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -710,7 +710,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => ['selector' => '.header a:hover, .header .current-menu-item > a', 'property' => 'background-color'],
+                    'selector'      => ['selector' => '.header .navigation-menu .menu a:hover, .header .navigation-menu .menu .current-menu-item > a', 'property' => 'background-color'],
                     'id'            => 'header_link_hover_background_color',
                     'title'         => __('Navigation Hover & Active Background Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -718,7 +718,7 @@ $customizer = [
                 ],                
                 [
                     'default'       => '',
-                    'selector'      => '.header-transparent a',
+                    'selector'      => '.header-transparent .navigation-menu .menu  a',
                     'id'            => 'header_transparent_link_color',
                     'title'         => __('Transparent Navigation Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -726,7 +726,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => '.header-transparent a:hover, .header-transparent .current-menu-item > a',
+                    'selector'      => '.header-transparent .navigation-menu .menu a:hover, .header-transparent .navigation-menu .menu .current-menu-item > a',
                     'id'            => 'header_transparent_link_hover_color',
                     'title'         => __('Transparent Navigation Hover & Active Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -734,7 +734,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => ['selector' => '.header-transparent a:hover, .header-transparent .current-menu-item > a', 'property' => 'background-color'],
+                    'selector'      => ['selector' => '.header-transparent .navigation-menu .menu a:hover, .header-transparent .navigation-menu .menu .current-menu-item > a', 'property' => 'background-color'],
                     'id'            => 'header_transparent_link_hover_background_color',
                     'title'         => __('Transparent Navigation Hover & Active Background Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -758,7 +758,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => '.header .sub-menu',
+                    'selector'      => '.header .navigation-menu .menu .sub-menu a',
                     'id'            => 'header_submenu_color',
                     'title'         => __('Navigation Dropdown Menu Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -858,7 +858,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => ['selector' => '.project-component .projects:nth-child(2n) .project-content', 'property' => 'background-color'],
+                    'selector'      => ['selector' => '.projects-component .projects:nth-child(2n) .project-content', 'property' => 'background-color'],
                     'id'            => 'projects_overlay_color_secondary',
                     'title'         => __('Secondary Overlay Background Color', 'velocity'),
                     'description'   => __('The secondary color is the background color that appears for every second project in row.', 'velocity'),
@@ -867,7 +867,7 @@ $customizer = [
                 ], 
                 [
                     'default'       => '',
-                    'selector'      => ['selector' => '.project-component .projects:nth-child(3n) .project-content', 'property' => 'background-color'],
+                    'selector'      => ['selector' => '.projects-component .projects:nth-child(3n) .project-content', 'property' => 'background-color'],
                     'id'            => 'projects_overlay_color_tertiary',
                     'title'         => __('Tertiary Overlay Background Color', 'velocity'),
                     'description'   => __('The tertiary color is the background color that appears for every third project in row.', 'velocity'),
@@ -941,7 +941,7 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => '.header',
+                    'selector'      => '.header, .navigation-menu .menu a',
                     'id'            => 'header_typography',
                     'title'         => __('Header & Navigation Menu Font', 'velocity'),
                     'type'          => 'typography'

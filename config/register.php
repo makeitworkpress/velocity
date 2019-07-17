@@ -54,9 +54,9 @@ $register = [
             'singular'      => __( 'Project Type', 'velocity' ),
             'args'          => [
                 'rewrite'           => ['hierarchical' => true, 'slug' => 'projects-type'],
-                'show_in_rest'      => true,
-                'show_ui'           => true,
-                'public'            => true,
+                // 'show_in_rest'      => true,
+                // 'show_ui'           => true,
+                // 'public'            => true,
                 'show_admin_column' => true
             ]
         ]
