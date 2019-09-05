@@ -15,4 +15,4 @@ A live website using the Velocity WordPress theme can be found [here](https://mi
 Velocity requires WordPress 5.0+  and PHP7 to run.
 
 ## Features
-The velocity theme features extensive customizer settings for easilyy customizing fonts, layouts and colors. It also has built-in optimization options and support for Google Analytics. Needlessly to say, Microdata is baked into the theme.
+The velocity theme features extensive customizer settings for easily customizing fonts, layouts and colors. It also has built-in optimization options and support for Google Analytics. Needlessly to say, Microdata is baked into the theme.
