@@ -51,7 +51,8 @@ class Singular extends Template {
         $this->properties->textSchema   = $post->post_type == 'post' ? 'articleBody' : 'text';
         $this->properties->type         = $post->post_type;
         $this->properties->blogSchema   = [
-            'author'        => get_the_author(),        
+            'author'        => get_the_author_meta('display_name', $post->post_author),  
+            'logo'          => $custom['logo'] ? wp_get_attachment_url( $custom['logo'] ) : '',      
             'name'          => get_bloginfo('name'),        
             'image'         => get_the_post_thumbnail_url( $post->ID, '1920' ),
             'link'          => esc_url( get_permalink($post) ),   

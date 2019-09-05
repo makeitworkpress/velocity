@@ -82,13 +82,17 @@ class Velocity_Shortcodes {
      */
 	public function posts($atts) {
 
+        // Retrieve or customizer logo
+        $customizer = get_theme_mod('velocity_customizer');
+
 		$atts = shortcode_atts( [
             'bottommeta'  => '',                                // Meta components shown below excerpt. Accepts 'author', category', 'date', 'rating' or 'tags'
             'categories'  => '',                                // The categories to query posts from
             'excerpt'     => false,                             // Whether to include the excerpt or not        
             'exclude'     => '',                                // The post ids to exclude
             'include'     => '',                                // The post ids to include    
-            'image'       => true,                              // Whether to include the featured image or not                               
+            'image'       => true,                              // Whether to include the featured image or not           
+            'logo'        => $customizer['logo'] ? wp_get_attachment_url( $customizer['logo'] ) : '',                    
             'nothing'     => __('Oops! Nothing is found here.', 'velocity'),      // The text shown when no posts are found
             'number'      => get_option('posts_per_page'),      // the number of posts to query
             'order'       => 'date',                            // How to order the posts

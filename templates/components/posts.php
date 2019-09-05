@@ -19,7 +19,7 @@ if( ! $posts['posts'] ) {
         <article <?php post_class('post-item', $id); ?> itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
 
             <span class="structured-data hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
-                <meta itemprop="name" content="<?php the_author(); ?>">
+                <meta itemprop="name" content="<?php echo $post['author']; ?>">
             </span>
 
             <span class="structured-data hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
@@ -36,7 +36,11 @@ if( ! $posts['posts'] ) {
 
             <meta itemprop="mainEntityOfPage" content="<?php echo $post['link']; ?>" />
             <meta itemprop="datePublished" content="<?php echo $post['published']; ?>" />
-            <meta itemprop="dateModified" content="<?php echo $post['modified']; ?>" />   
+            <meta itemprop="dateModified" content="<?php echo $post['modified']; ?>" /> 
+            
+            <?php if( $post['image'] ) { ?>
+                <meta itemprop="image" content="<?php echo $post['imageUrl']; ?>" />    
+            <?php } ?>
       
             
             <header class="entry-header">

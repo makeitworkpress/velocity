@@ -56,7 +56,7 @@ class Index extends Template {
                 'query'         => $wp_query,                       
                 'url'           => $custom['projects_archive_url']                                           
             ] );
-        } else {             
+        } else {   
 
             $args = [
                 'excerpt'       => $custom['post_archive_excerpt'],

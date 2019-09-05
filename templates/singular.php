@@ -25,7 +25,7 @@ $header = $singular->header(); ?>
             <span itemprop="logo"itemscope="itemscope" itemtype="http://schema.org/ImageObject">
                 <?php if( strpos($singular->properties->blogSchema['logo'], '.svg') ) { ?>
                     <meta itemprop="contentUrl" content="<?php echo $singular->properties->blogSchema['logo']; ?>" />
-                    <meta itemprop="url" content="<?php bloginfo('url'); ?>" />
+                    <meta itemprop="url" content="<?php echo $singular->properties->blogSchema['url']; ?>" />
                 <?php } else { ?>
                     <meta itemprop="url" content="<?php echo $singular->properties->blogSchema['logo']; ?>" />
                 <?php } ?>
