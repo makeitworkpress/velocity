@@ -205,7 +205,6 @@ $customizer = [
                         ''          => __('Hide Rating', 'velocity'),
                         'title'     => __('Above the Title', 'velocity'),
                         'top'       => __('At the Top of Content', 'velocity'),
-                        'bottom'    => __('At the Bottom of Content', 'velocity'),
                         'both'      => __('At the Top and Bottom', 'velocity'),
                     ],
                     'default'       => 'top',

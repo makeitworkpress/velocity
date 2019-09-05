@@ -60,6 +60,7 @@ class Index extends Template {
 
             $args = [
                 'excerpt'       => $custom['post_archive_excerpt'],
+                'logo'          => $custom['logo'] ? wp_get_attachment_url( $custom['logo'] ) : '',
                 'nothing'       => $custom['post_archive_nothing'],
                 'pagination'    => true,
                 'query'         => $wp_query,

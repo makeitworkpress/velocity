@@ -4,7 +4,7 @@
      */
 
     // The class located in classes/templates/header.php defines all variables below
-    $footer = new Views\Footer(); 
+    $footer = new Views\Footer();
 ?>       
         
         </main><!-- #main -->
@@ -16,9 +16,11 @@
                 </div>       
             <?php } ?>
 
-            <nav class="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-                <?php wp_nav_menu( ['container' => false, 'theme_location' => 'footer'] ); ?>                                                             	
-            </nav><!-- .navigation -->                     
+            <?php if( wp_nav_menu(['theme_location' => 'footer', 'echo' => false]) !== false ) { ?>
+                <nav class="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+                    <?php wp_nav_menu( ['container' => false, 'theme_location' => 'footer'] ); ?>                                                             	
+                </nav><!-- .navigation -->                     
+            <?php } ?>
 
             <?php 
                 /**

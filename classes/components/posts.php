@@ -30,6 +30,7 @@ class Posts extends Components {
             'exclude'     => [],                                // The post ids to exclude
             'include'     => [],                                // The post ids to include    
             'image'       => true,                              // Whether to include the featured image or not                               
+            'logo'        => '',                                // The logo used for microdata                            
             'nothing'     => __('Oops! Nothing is found here.', 'velocity'),      // The text shown when no posts are found
             'number'      => get_option('posts_per_page'),      // the number of posts to query
             'order'       => 'date',                            // How to order the posts
@@ -84,10 +85,13 @@ class Posts extends Components {
 
         // Formats our posts variables
         $this->vars = [
-            'class'     => $this->atts['style'],
-            'more'      => $this->atts['readmore'] ? $this->atts['readmore'] : false, 
-            'nothing'   => $this->atts['nothing'] ? $this->atts['nothing'] : false, 
-            'posts'     => []
+            'blogName'      => get_bloginfo('name'),
+            'blogUrl'       => get_bloginfo('url'),                  
+            'class'         => $this->atts['style'],
+            'logo'          => $this->atts['logo'],
+            'more'          => $this->atts['readmore'] ? $this->atts['readmore'] : false, 
+            'nothing'       => $this->atts['nothing'] ? $this->atts['nothing'] : false, 
+            'posts'         => []
         ];
 
         // Stack the title on top of the image
@@ -101,9 +105,12 @@ class Posts extends Components {
         foreach( $this->query->posts as $post ) {
 
             $this->vars['posts'][$post->ID] = [
-                'bottomMeta'    => $this->atts['bottommeta'] ? new Meta(['data' => $this->atts['bottommeta'], 'post' => $post]) : false ,
+                'author'        => get_the_author_meta('display_name', $post->post_author),          
+                'bottomMeta'    => $this->atts['bottommeta'] ? new Meta(['data' => $this->atts['bottommeta'], 'post' => $post]) : false,
                 'excerpt'       => $this->atts['excerpt'] ? $this->excerpt($post) : false,
                 'image'         => $this->atts['image'] && has_post_thumbnail($post) ? get_the_post_thumbnail( $post, $imageSize, ['itemprop' => 'image'] ) : false, 
+                'modified'      => get_the_modified_date('c', $post->ID ),
+                'published'     => get_the_date('c', $post->ID ),
                 'link'          => esc_url( get_permalink($post) ),   
                 'title'         => esc_html( get_the_title($post) ), 
                 'titleMeta'     => $this->atts['titlemeta'] ? new Meta(['data' => $this->atts['titlemeta'], 'post' => $post]) : false,

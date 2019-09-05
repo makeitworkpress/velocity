@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6c36c2207a3f49f6513362ff8464335",
+    "content-hash": "ce5fb363f38472de30781d47df375adc",
     "packages": [
         {
             "name": "makeitworkpress/wp-config",
@@ -53,12 +53,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "79318f17145c5ed0c4a336bb15c1dd7ecdc5dd70"
+                "reference": "5905cc1368327df695ecd0f14160a2205c81c510"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/79318f17145c5ed0c4a336bb15c1dd7ecdc5dd70",
-                "reference": "79318f17145c5ed0c4a336bb15c1dd7ecdc5dd70",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/5905cc1368327df695ecd0f14160a2205c81c510",
+                "reference": "5905cc1368327df695ecd0f14160a2205c81c510",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2019-06-24T14:14:37+00:00"
+            "time": "2019-09-05T13:59:37+00:00"
         },
         {
             "name": "makeitworkpress/wp-enqueue",

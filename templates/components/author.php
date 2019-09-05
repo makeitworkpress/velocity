@@ -17,7 +17,7 @@
             <h4 class="author-name" itemprop="name">
                 <?php echo $author['name']; ?>
             </h4> 
-            <p class="author-biography" itemprop="text">
+            <p class="author-biography" itemprop="knowsAbout">
                 <?php echo $author['description']; ?>        
             </p>   
         </div>        

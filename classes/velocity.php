@@ -197,22 +197,30 @@ class Velocity {
         $data = $this->data;
 
         // Loads our configurations (after the language is loaded)
-        require_once( get_template_directory() . '/config/customizer.php' );
         require_once( get_template_directory() . '/config/enqueue.php' );
-        require_once( get_template_directory() . '/config/meta.php' );
-        require_once( get_template_directory() . '/config/options.php' );
         require_once( get_template_directory() . '/config/register.php' );
 
         $configurations = [
             'enqueue'   => $enqueue,
             'register'  => $register,
-            'settings'  => [
+            'settings'  => []
+        ];        
+
+        // These configurations are only required on the back-end
+        if( is_admin() || is_customize_preview() ) {
+
+            require_once( get_template_directory() . '/config/customizer.php' );
+            require_once( get_template_directory() . '/config/meta.php' );
+            require_once( get_template_directory() . '/config/options.php' );            
+
+            $configurations['settings'] = [
                 'customizer'    => $customizer,
                 'meta'          => $meta,
                 'options'       => $options,
                 'projects'      => $projects
-            ]
-        ];
+            ];
+
+        }
 
         $configurations = apply_filters( 'velocity_configurations', $configurations );
 
@@ -252,9 +260,14 @@ class Velocity {
                 // Initialize our settings framework
                 $framework = MakeitWorkPress\WP_Custom_Fields\Framework::instance();
 
-                foreach( $this->config->configurations['settings'] as $frame => $options ) {
-                    $frame = $frame == 'projects' ? 'meta' : $frame; // Exception for projects meta
-                    $framework->add( $frame, $options );    
+                // These options are only available from the back-end
+                if( is_admin() || is_customize_preview() ) {
+
+                    foreach( $this->config->configurations['settings'] as $frame => $options ) {
+                        $frame = $frame == 'projects' ? 'meta' : $frame; // Exception for projects meta
+                        $framework->add( $frame, $options );    
+                    }
+
                 }
 
             // Other modules are just plain modules

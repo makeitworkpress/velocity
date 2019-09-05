@@ -35,7 +35,7 @@ class Author extends Components {
             'avatar'        => get_avatar($post->post_author, apply_filters('velocity_post_avatar_size', 112)),
             'description'   => get_the_author_meta( 'description', $post->post_author ),
             'display'       => $this->atts['display'],
-            'name'          => sprintf( __('By %s', 'velocity'), get_the_author_meta('display_name', $post->post_author) ),
+            'name'          => get_the_author_meta('display_name', $post->post_author),
             'url'           => esc_url( get_author_posts_url($post->post_author) )
         ];
 

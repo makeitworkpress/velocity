@@ -47,13 +47,24 @@ class Singular extends Template {
         $this->properties->classes     .= $post->post_type == 'post' || $post->post_type == 'projects' ? ' readable-width' : '';
 
         // Microschemes
-        $this->properties->scheme       = $post->post_type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
-        $this->properties->textScheme   = $post->post_type == 'post' ? 'articleBody' : 'text';
+        $this->properties->schema       = $post->post_type == 'post' ? 'itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"' : 'itemscope="itemscope" itemtype="http://schema.org/CreativeWork"';
+        $this->properties->textSchema   = $post->post_type == 'post' ? 'articleBody' : 'text';
+        $this->properties->type         = $post->post_type;
+        $this->properties->blogSchema   = [
+            'author'        => get_the_author(),        
+            'name'          => get_bloginfo('name'),        
+            'image'         => get_the_post_thumbnail_url( $post->ID, '1920' ),
+            'link'          => esc_url( get_permalink($post) ),   
+            'modified'      => get_the_modified_date('c', $post->ID ),
+            'published'     => get_the_date('c', $post->ID ),
+            'url'           => get_bloginfo('url')
+                  
+        ];
 
         // Adverts
-        $this->properties->headerAdvert = $meta['advert_top'] ? $this->getAdvert($meta['advert_top']) : false;
-        $this->properties->floatingAdvert = $meta['advert_right'] ? $this->getAdvert($meta['advert_right']) : false;
-        $this->properties->footerAdvert = $meta['advert_bottom'] ? $this->getAdvert($meta['advert_bottom']) : false;
+        $this->properties->headerAdvert     = $meta['advert_top'] ? $this->getAdvert($meta['advert_top']) : false;
+        $this->properties->floatingAdvert   = $meta['advert_right'] ? $this->getAdvert($meta['advert_right']) : false;
+        $this->properties->footerAdvert     = $meta['advert_bottom'] ? $this->getAdvert($meta['advert_bottom']) : false;
 
         // Social Sharing
         $this->properties->topShare     = $post->post_type == 'post' && ($custom['post_share_position'] == 'top' || $custom['post_share_position'] == 'both') ? new Components\Share(['title' => $custom['post_share_title']]) : false;

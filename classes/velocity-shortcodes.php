@@ -94,7 +94,7 @@ class Velocity_Shortcodes {
             'order'       => 'date',                            // How to order the posts
             'orderby'     => 'DESC',                            // How to order the posts
             'paged'       => get_query_var('paged') ? get_query_var('paged') : 1,
-            'pagination'  => false,                              // Whether to show pagination or not
+            'pagination'  => false,                             // Whether to show pagination or not
             'readmore'    => __('Read more &rsaquo;', 'velocity'),          // Whether to include a read more link or not. If set to a string, uses that text
             'titlemeta'   => '',                                // Meta components shown above title. Accepts 'author', category', 'date', 'rating' or 'tags' 
             'topmeta'     => '',                                // Meta components shown above excerpt.  Accepts 'author', category', 'date', 'rating' or 'tags'

@@ -4,16 +4,40 @@
  */ 
 $singular = new Views\Singular();
 
-$singular->header(); ?>
+$header = $singular->header(); ?>
 
 	
-<article id="post-<?php echo $singular->properties->id; ?>" <?php post_class($singular->properties->classes, $singular->properties->id); ?> <?php echo $singular->properties->scheme; ?>>
+<article id="post-<?php echo $singular->properties->id; ?>" <?php post_class($singular->properties->classes, $singular->properties->id); ?> <?php echo $singular->properties->schema; ?>>
             
     <?php  if ( has_post_thumbnail($singular->properties->id) ) { ?>
 
-        <meta itemprop="image" content="<?php echo get_the_post_thumbnail_url( $singular->properties->id, '1920' ); ?>" />
+        <meta itemprop="image" content="<?php echo $singular->properties->blogSchema['image']; ?>" />
 
     <?php } ?> 
+
+    <?php if($singular->properties->type == 'post') { ?>
+
+        <span class="structured-data hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <meta itemprop="name" content="<?php echo $singular->properties->blogSchema['author']; ?>">
+        </span>
+
+        <span class="structured-data hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
+            <span itemprop="logo"itemscope="itemscope" itemtype="http://schema.org/ImageObject">
+                <?php if( strpos($singular->properties->blogSchema['logo'], '.svg') ) { ?>
+                    <meta itemprop="contentUrl" content="<?php echo $singular->properties->blogSchema['logo']; ?>" />
+                    <meta itemprop="url" content="<?php bloginfo('url'); ?>" />
+                <?php } else { ?>
+                    <meta itemprop="url" content="<?php echo $singular->properties->blogSchema['logo']; ?>" />
+                <?php } ?>
+            </span>
+            <meta itemprop="name" content="<?php echo $singular->properties->blogSchema['name']; ?>" />
+        </span>                    
+
+        <meta itemprop="mainEntityOfPage" content="<?php echo $singular->properties->blogSchema['url']; ?>" />
+        <meta itemprop="datePublished" content="<?php echo $singular->properties->blogSchema['published']; ?>" />
+        <meta itemprop="dateModified" content="<?php echo $singular->properties->blogSchema['modified']; ?>" />   
+
+    <?php } ?>
 
     <?php if($singular->properties->title) {
         $singular->properties->title->render(); 
@@ -47,7 +71,7 @@ $singular->header(); ?>
 
             <?php do_action('velocity_before_content'); ?>
             
-            <div class="entry-content" itemprop="<?php echo $singular->properties->textScheme; ?>">
+            <div class="entry-content" itemprop="<?php echo $singular->properties->textSchema; ?>">
                 <?php echo $singular->properties->content; ?>    
             </div>
 

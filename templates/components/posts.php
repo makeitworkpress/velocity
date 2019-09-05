@@ -17,6 +17,27 @@ if( ! $posts['posts'] ) {
 
     <?php foreach( $posts['posts'] as $id => $post ) { ?>
         <article <?php post_class('post-item', $id); ?> itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+
+            <span class="structured-data hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <meta itemprop="name" content="<?php the_author(); ?>">
+            </span>
+
+            <span class="structured-data hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
+                <span itemprop="logo"itemscope="itemscope" itemtype="http://schema.org/ImageObject">
+                    <?php if( strpos($posts['logo'], '.svg') ) { ?>
+                        <meta itemprop="contentUrl" content="<?php echo $posts['logo']; ?>" />
+                        <meta itemprop="url" content="<?php echo $posts['blogUrl']; ?>" />
+                    <?php } else { ?>
+                        <meta itemprop="url" content="<?php echo $posts['logo']; ?>" />
+                    <?php } ?>
+                </span>
+                <meta itemprop="name" content="<?php echo $posts['blogName']; ?>" />
+            </span>                    
+
+            <meta itemprop="mainEntityOfPage" content="<?php echo $post['link']; ?>" />
+            <meta itemprop="datePublished" content="<?php echo $post['published']; ?>" />
+            <meta itemprop="dateModified" content="<?php echo $post['modified']; ?>" />   
+      
             
             <header class="entry-header">
                 <?php if( $post['image'] ) { ?>

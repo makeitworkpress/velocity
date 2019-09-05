@@ -72,14 +72,18 @@ abstract class Template {
      * Retrieves the template default header
      */
     public function header() {
+
         get_template_part('templates/header');
+
     } 
     
     /**
      * Retrieves the template default footer
      */
     public function footer() {
+        
         get_template_part('templates/footer');
+
     }     
 
     /**
