@@ -33,7 +33,7 @@ $header = $singular->header(); ?>
             <meta itemprop="name" content="<?php echo $singular->properties->blogSchema['name']; ?>" />
         </span>                    
 
-        <meta itemprop="mainEntityOfPage" content="<?php echo $singular->properties->blogSchema['url']; ?>" />
+        <meta itemprop="mainEntityOfPage" content="<?php echo $singular->properties->blogSchema['link']; ?>" />
         <meta itemprop="datePublished" content="<?php echo $singular->properties->blogSchema['published']; ?>" />
         <meta itemprop="dateModified" content="<?php echo $singular->properties->blogSchema['modified']; ?>" />   
 

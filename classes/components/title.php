@@ -311,7 +311,7 @@ class Title extends Components {
              */
 
             // The video counts for all post types and resets our existing images
-            if( $meta['video'] ) {
+            if( isset($meta['video']) && $meta['video'] ) {
                 $this->vars['background']   = '';
                 $this->vars['image']        = false;
                 $this->vars['slides']       = [];
@@ -350,7 +350,7 @@ class Title extends Components {
             }
 
             // If we have an overlay color, we add extra styling to the head
-            if( $meta['overlay_color'] ) {
+            if( isset($meta['overlay_color']) && $meta['overlay_color'] ) {
                 add_filter( 'wp_custom_fields_css_properties', function($properties, $field) {
                     if( $field['id'] == 'overlay_color' ) {
                         $properties .= 'content:"";';
@@ -365,7 +365,7 @@ class Title extends Components {
             }
             
             // Subtitle
-            if( $meta['subtitle'] ) {
+            if( isset($meta['subtitle']) && $meta['subtitle'] ) {
                 $this->vars['subtitle']     = wpautop(do_shortcode($meta['subtitle']) );
             }
 

@@ -23,7 +23,7 @@ class Singular extends Template {
          * Title
          */
         $this->properties->id           = $post->ID;
-        $this->properties->title        = ! $meta['disable_title'] ? new Components\Title(['data' => $this->data]) : false;
+        $this->properties->title        = isset($meta['disable_title']) && $meta['disable_title'] ? false : new Components\Title(['data' => $this->data]);
 
         /**
          * Main Content
@@ -41,7 +41,7 @@ class Singular extends Template {
         $this->properties->classes      = $post->post_type == 'post' && $custom['post_introduction'] ? 'enlarge-paragraph' : '';
 
         // Fullwidth template
-        $this->properties->classes     .= $meta['fullwidth_content'] ? ' fullwidth-content' : '';
+        $this->properties->classes     .= isset($meta['fullwidth_content']) && $meta['fullwidth_content'] ? ' fullwidth-content' : '';
 
         // Readable content width (768px) for posts and projects
         $this->properties->classes     .= $post->post_type == 'post' || $post->post_type == 'projects' ? ' readable-width' : '';
@@ -63,9 +63,9 @@ class Singular extends Template {
         ];
 
         // Adverts
-        $this->properties->headerAdvert     = $meta['advert_top'] ? $this->getAdvert($meta['advert_top']) : false;
-        $this->properties->floatingAdvert   = $meta['advert_right'] ? $this->getAdvert($meta['advert_right']) : false;
-        $this->properties->footerAdvert     = $meta['advert_bottom'] ? $this->getAdvert($meta['advert_bottom']) : false;
+        $this->properties->headerAdvert     = isset($meta['advert_top']) && $meta['advert_top'] ? $this->getAdvert($meta['advert_top']) : false;
+        $this->properties->floatingAdvert   = isset($meta['advert_right']) && $meta['advert_right'] ? $this->getAdvert($meta['advert_right']) : false;
+        $this->properties->footerAdvert     = isset($meta['advert_bottom']) && $meta['advert_bottom'] ? $this->getAdvert($meta['advert_bottom']) : false;
 
         // Social Sharing
         $this->properties->topShare     = $post->post_type == 'post' && ($custom['post_share_position'] == 'top' || $custom['post_share_position'] == 'both') ? new Components\Share(['title' => $custom['post_share_title']]) : false;
@@ -73,7 +73,11 @@ class Singular extends Template {
         $this->properties->floatShare   = $post->post_type == 'post' && ($custom['post_share_position'] == 'left' || $custom['post_share_position'] == 'right') ? new Components\Share(['position' => $custom['post_share_position']]) : false;
 
         // Entry Meta
-        if( ! $meta['disable_meta'] ) {
+        if( isset($meta['disable_meta']) && $meta['disable_meta'] ) {
+
+            $this->properties->meta = false;
+
+        } else {
 
             $this->properties->meta = true;
 
@@ -102,10 +106,8 @@ class Singular extends Template {
             }
 
             $this->properties->topMeta = isset($topMeta) ? new Components\Meta(['data' => $topMeta]) : false;
-            $this->properties->bottomMeta = isset($bottomMeta) ? new Components\Meta(['data' => $bottomMeta]) : false;
-
-        } else {
-            $this->properties->meta = false;
+            $this->properties->bottomMeta = isset($bottomMeta) ? new Components\Meta(['data' => $bottomMeta]) : false;            
+            
         }
 
         /**
@@ -115,7 +117,9 @@ class Singular extends Template {
         // The footer is disabled by default, unless we have content
         $this->properties->footer = false; 
 
-        if( ! $meta['disable_footer'] ) {
+        if( isset($meta['disable_footer']) && $meta['disable_footer'] ) {
+            return;
+        } else {
 
             // Post Pagination
             if( in_array($post->post_type, ['post', 'projects']) && $custom[$post->post_type . '_pagination'] ) {

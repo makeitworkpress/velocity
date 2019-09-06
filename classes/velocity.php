@@ -207,18 +207,24 @@ class Velocity {
         ];        
 
         // These configurations are only required on the back-end
-        if( is_admin() || is_customize_preview() ) {
+        if( is_admin() ) {
 
-            require_once( get_template_directory() . '/config/customizer.php' );
             require_once( get_template_directory() . '/config/meta.php' );
             require_once( get_template_directory() . '/config/options.php' );            
 
             $configurations['settings'] = [
-                'customizer'    => $customizer,
                 'meta'          => $meta,
                 'options'       => $options,
                 'projects'      => $projects
             ];
+
+        }
+
+        // Customizer configurations
+        if( is_customize_preview() ) {
+
+            require_once( get_template_directory() . '/config/customizer.php' );
+            $configurations['settings']['customizer'] = $customizer; 
 
         }
 
