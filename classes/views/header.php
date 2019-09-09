@@ -19,11 +19,11 @@ class Header extends Template {
         // Header classes
         $this->properties->classes          = '';
 
-        if( $custom['header_fixed'] ) {
+        if( isset($custom['header_fixed']) && $custom['header_fixed'] ) {
             $this->properties->classes     .= 'header-fixed header-top';
         }
 
-        if( $custom['header_headroom'] ) {
+        if( isset($custom['header_headroom'] ) && $custom['header_headroom'] ) {
             $this->properties->classes     .= ' header-headroom';
         }
 
@@ -40,12 +40,12 @@ class Header extends Template {
         }        
     
         // Social icons
-        $this->properties->social           = $custom['social_position'] == 'header' || $custom['social_position'] == 'both' ? new Components\Social(['custom' => $custom]) : false;
+        $this->properties->social           = isset($custom['social_position']) && ($custom['social_position'] == 'header' || $custom['social_position'] == 'both') ? new Components\Social(['custom' => $custom]) : false;
 
         // The logo
         $this->properties->logoScheme       = $this->data['options']['scheme'];
-        $this->properties->logo             = $custom['logo'] ? wp_get_attachment_image( $custom['logo'], 'full', false, ['class' => 'standard-logo', 'itemprop' => 'image'] ) : '';
-        $this->properties->transparentLogo  = $custom['logo_transparent'] ? wp_get_attachment_image( $custom['logo_transparent'], 'full', false, ['class' => 'alternative-logo'] ) : '';
+        $this->properties->logo             = isset($custom['logo']) && $custom['logo'] ? wp_get_attachment_image( $custom['logo'], 'full', false, ['class' => 'standard-logo', 'itemprop' => 'image'] ) : '';
+        $this->properties->transparentLogo  = isset($custom['logo_transparent']) && $custom['logo_transparent'] ? wp_get_attachment_image( $custom['logo_transparent'], 'full', false, ['class' => 'alternative-logo'] ) : '';
  
         $this->properties->title            = esc_attr( get_bloginfo('name') );
         $this->properties->url              = esc_url( get_bloginfo('url') );       

@@ -17,8 +17,8 @@ class Footer extends Template {
         $custom                         = $this->data['customize'];
 
         // Footer Contents
-        $this->properties->copyright    = str_replace('{date}', date('Y'), $custom['footer_copyright']);
-        $this->properties->social       = $custom['social_position'] == 'footer' || $custom['social_position'] == 'both' ? new Components\Social(['custom' => $custom]) : false;
+        $this->properties->copyright    = isset($custom['footer_copyright']) && $custom['footer_copyright'] ? str_replace('{date}', date('Y'), $custom['footer_copyright']) : sprintf( __('Copyright %d %s', 'velocity'), date('Y'), get_bloginfo('name') );
+        $this->properties->social       = isset($custom['social_position']) && ($custom['social_position'] == 'footer' || $custom['social_position'] == 'both') ? new Components\Social(['custom' => $custom]) : false;
 
     }
 

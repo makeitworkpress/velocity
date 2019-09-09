@@ -34,7 +34,7 @@ $customizer = [
         ],
         [
             'id'            => 'velocity_layout',
-            'title'         => __('Theme Layout', 'velocity'),
+            'title'         => __('Layout', 'velocity'),
             'fields'    => [
                 [
                     'default'       => '',
@@ -186,6 +186,20 @@ $customizer = [
                     'description'   => __('Where do you want to display your post category?', 'velocity'),
                     'type'          => 'select',
                 ],
+                [
+                    'choices'       => [
+                        ''          => __('Hide Comments', 'velocity'),
+                        'title'     => __('Above the Title', 'velocity'),
+                        'top'       => __('At the Top of Content', 'velocity'),
+                        'bottom'    => __('At the Bottom of Content', 'velocity'),
+                        'both'      => __('At the Top and Bottom', 'velocity'),
+                    ],
+                    'default'       => '',
+                    'id'            => 'post_comments_position',
+                    'title'         => __('Display Post Comments', 'velocity'),
+                    'description'   => __('Where do you want to display your post comments indicator?', 'velocity'),
+                    'type'          => 'select',
+                ],                
                 [
                     'choices'       => [
                         ''          => __('Hide Tags', 'velocity'),
@@ -383,6 +397,19 @@ $customizer = [
                     'description'   => __('Where do you want to display your post category?', 'velocity'),
                     'type'          => 'select',
                 ],
+                [
+                    'choices'       => [
+                        ''          => __('Hide Comments', 'velocity'),
+                        'title'     => __('Above the Title', 'velocity'),
+                        'top'       => __('Above the Excerpt', 'velocity'),
+                        'bottom'    => __('Below the Excerpt', 'velocity')
+                    ],
+                    'default'       => '',
+                    'id'            => 'post_archive_comments_position',
+                    'title'         => __('Display Post Comments in Post Archive', 'velocity'),
+                    'description'   => __('Where do you want to display your post comments indicator?', 'velocity'),
+                    'type'          => 'select',
+                ],                
                 [
                     'choices'       => [
                         ''          => __('Hide Tags', 'velocity'),
@@ -621,7 +648,7 @@ $customizer = [
         ],         
         [
             'id'            => 'velocity_colors',
-            'title'         => __('Theme Colors', 'velocity'),
+            'title'         => __('Colors', 'velocity'),
             'fields'    => [ 
                 [
                     'default'       => '',
@@ -663,7 +690,10 @@ $customizer = [
                 ],
                 [
                     'default'       => '',
-                    'selector'      => ['selector' => '.button, .tag-cloud a, .categories a', 'property' => 'background-color'],
+                    'selector'      => [
+                        'selector' => '.button, .tag-cloud a, .categories a, .wp-block-file .wp-block-file__button, .wp-block-button__link', 
+                        'property' => 'background-color'
+                    ],
                     'id'            => 'body_button_background_color',
                     'title'         => __('Button Background Color', 'velocity'),
                     'transport'     => 'postMessage',
@@ -671,7 +701,7 @@ $customizer = [
                 ], 
                 [
                     'default'       => '',
-                    'selector'      => '.button, .button:hover, .tag-cloud a, .categories a',
+                    'selector'      => '.button, .button:hover, .tag-cloud a, .categories a, .wp-block-file .wp-block-file__button, .wp-block-button__link',
                     'id'            => 'body_button_color',
                     'title'         => __('Button Text Color', 'velocity'),
                     'transport'     => 'postMessage',

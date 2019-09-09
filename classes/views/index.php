@@ -31,14 +31,14 @@ class Index extends Template {
 
 
         // The archive description and categories
-        if( $custom[$postType . '_archive_description'] && isset($custom[$postType . '_archive_description']) ) {
+        if( isset($custom[$postType . '_archive_description']) && $custom[$postType . '_archive_description'] ) {
             $this->properties->description      = term_description();
         } else {
             $this->properties->description      = false;
         }
 
         // Categories
-        if( $custom[$postType . '_archive_categories'] ) {
+        if( isset($custom[$postType . '_archive_categories']) && $custom[$postType . '_archive_categories'] ) {
             $this->properties->categoriesTitle  = $custom[$postType . '_archive_categories_text'];
             $this->properties->categories       = $postType == 'post' ? get_categories() : get_terms(['taxonomy' => 'type']);
             $this->properties->categoryActive   = isset( get_queried_object()->name ) ? get_queried_object()->name : '';          
@@ -49,33 +49,33 @@ class Index extends Template {
 
         if( $postType == 'projects' ) {
             $this->properties->posts        = new Components\Projects( [
-                'details'       => $custom['projects_archive_details'],                                                        
-                'nothing'       => $custom['projects_archive_nothing'], 
-                'preview'       => $custom['projects_archive_preview'], 
-                'summary'       => $custom['projects_archive_summary'],                             
+                'details'       => isset($custom['projects_archive_details']) && $custom['projects_archive_details'] ? $custom['projects_archive_details'] : '',                                                        
+                'nothing'       => isset($custom['projects_archive_details']) && $custom['projects_archive_details'] ? $custom['projects_archive_nothing'] : __('No Projects Found!', 'velocity'), 
+                'preview'       => isset($custom['projects_archive_details']) && $custom['projects_archive_details'] ? $custom['projects_archive_preview'] : '', 
+                'summary'       => isset($custom['projects_archive_summary']) && $custom['projects_archive_summary'] ? true : false,                             
                 'query'         => $wp_query,                       
-                'url'           => $custom['projects_archive_url']                                           
+                'url'           => isset($custom['projects_archive_url']) && $custom['projects_archive_url'] ? true : false                                          
             ] );
         } else {   
 
             $args = [
-                'excerpt'       => $custom['post_archive_excerpt'],
-                'logo'          => $custom['logo'] ? wp_get_attachment_url( $custom['logo'] ) : '',
-                'nothing'       => $custom['post_archive_nothing'],
+                'excerpt'       => isset($custom['post_archive_excerpt']) && $custom['post_archive_excerpt'] ? $custom['post_archive_excerpt'] : false,
+                'logo'          => isset($custom['logo']) && $custom['logo'] ? wp_get_attachment_url( $custom['logo'] ) : '',
+                'nothing'       => isset($custom['post_archive_nothing']) && $custom['post_archive_nothing'] ? $custom['post_archive_nothing'] : __('Oops! Nothing is found here.', 'velocity'),
                 'pagination'    => true,
                 'query'         => $wp_query,
-                'readmore'      => $custom['post_archive_read_more'],
-                'stack'         => $custom['post_archive_title_image'],
-                'style'         => $custom['post_archive_style']
+                'readmore'      => isset($custom['post_archive_read_more']) && $custom['post_archive_read_more'] ? $custom['post_archive_read_more'] : false,
+                'stack'         => isset($custom['post_archive_title_image']) && $custom['post_archive_title_image'] ? true : false,
+                'style'         => isset($custom['post_archive_style']) && $custom['post_archive_style'] ? $custom['post_archive_style'] : 'list'
             ];
 
             // Add our meta data
-            foreach( ['author', 'date', 'category', 'tags', 'rating'] as $meta ) {
-                if( $custom['post_archive_' . $meta . '_position'] == 'title' ) {
+            foreach( ['author', 'date', 'category', 'tags', 'comments', 'rating'] as $meta ) {
+                if( isset($custom['post_archive_' . $meta . '_position']) && $custom['post_archive_' . $meta . '_position'] == 'title' ) {
                     $args['titlemeta'][]    = $meta;
-                } elseif( $custom['post_archive_' . $meta . '_position'] == 'top' ) {
+                } elseif( isset($custom['post_archive_' . $meta . '_position']) && $custom['post_archive_' . $meta . '_position'] == 'top' ) {
                     $args['topmeta'][]      = $meta;
-                } elseif( $custom['post_archive_' . $meta . '_position'] == 'bottom' ) {
+                } elseif( isset($custom['post_archive_' . $meta . '_position']) && $custom['post_archive_' . $meta . '_position'] == 'bottom' ) {
                     $args['bottommeta'][]   = $meta;
                 }
             }

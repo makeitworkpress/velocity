@@ -48,7 +48,16 @@
             <i class="icon-chain"></i>
             <?php echo $meta['urlText'] ; ?>
         </a>
-    <?php } ?>        
+    <?php } ?>  
+    
+    <?php if( $meta['comments'] ) { ?>
+        <div class="single-meta entry-comments">
+            <a href="<?php echo $meta['comments']['link']; ?>" title="<?php echo $meta['comments']['title']; ?>">
+                <i class="icon-comment-o"></i>
+                <?php echo $meta['comments']['number']; ?>
+            </a>
+        </div>
+    <?php } ?>    
 
     <?php if ( $meta['rating'] ) { 
         $meta['rating']->render(); 

@@ -24,6 +24,7 @@ class Meta extends Components {
             'author'    => false,
             'avatar'    => false,
             'category'  => false,
+            'comments'  => false,
             'date'      => false,
             'rating'    => false,
             'tags'      => false,
@@ -63,6 +64,16 @@ class Meta extends Components {
         if( $this->vars['category'] ) {
             $this->vars['category'] = get_the_term_list( $post->ID, 'category', '', ', ', '' ); // Retrieves categories seperated by comma    
         }
+
+        if( $this->vars['comments'] && comments_open( $post->ID ) ) {
+            $this->vars['comments'] = [
+                'link'      => get_comments_link($post->ID), 
+                'number'    => get_comments_number($post->ID), 
+                'title'     => __('Leave a comment', 'velocity') 
+            ];   
+        } else {
+            $this->vars['comments'] = false;    
+        }       
         
         if( $this->vars['date'] ) {
             $this->vars['dateTime'] = get_the_date('c', $post->ID );

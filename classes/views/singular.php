@@ -30,15 +30,15 @@ class Singular extends Template {
          */
 
         // Author information
-        $this->properties->authorAvatar = $post->post_type == 'post' && ($custom['post_author_information'] == 'avatar' || $custom['post_author_information'] == 'both') ? new Components\Author(['display' => 'avatar']) : false;
-        $this->properties->author       = $post->post_type == 'post' && ($custom['post_author_information'] == 'biography' || $custom['post_author_information'] == 'both') ? new Components\Author() : false;
+        $this->properties->authorAvatar = $post->post_type == 'post' && isset($custom['post_author_information']) && ($custom['post_author_information'] == 'avatar' || $custom['post_author_information'] == 'both') ? new Components\Author(['display' => 'avatar']) : false;
+        $this->properties->author       = $post->post_type == 'post' && isset($custom['post_author_information']) && ($custom['post_author_information'] == 'biography' || $custom['post_author_information'] == 'both') ? new Components\Author() : false;
 
 
         // The post content
         $this->properties->content      = apply_filters( 'the_content', $post->post_content );
 
         // Enlarge first paragraph
-        $this->properties->classes      = $post->post_type == 'post' && $custom['post_introduction'] ? 'enlarge-paragraph' : '';
+        $this->properties->classes      = $post->post_type == 'post' && isset($custom['post_introduction']) && $custom['post_introduction'] ? 'enlarge-paragraph' : '';
 
         // Fullwidth template
         $this->properties->classes     .= isset($meta['fullwidth_content']) && $meta['fullwidth_content'] ? ' fullwidth-content' : '';
@@ -52,7 +52,7 @@ class Singular extends Template {
         $this->properties->type         = $post->post_type;
         $this->properties->blogSchema   = [
             'author'        => get_the_author_meta('display_name', $post->post_author),  
-            'logo'          => $custom['logo'] ? wp_get_attachment_url( $custom['logo'] ) : '',      
+            'logo'          => isset($custom['logo']) && $custom['logo'] ? wp_get_attachment_url( $custom['logo'] ) : '',      
             'name'          => get_bloginfo('name'),        
             'image'         => get_the_post_thumbnail_url( $post->ID, '1920' ),
             'link'          => esc_url( get_permalink($post) ),   
@@ -68,9 +68,9 @@ class Singular extends Template {
         $this->properties->footerAdvert     = isset($meta['advert_bottom']) && $meta['advert_bottom'] ? $this->getAdvert($meta['advert_bottom']) : false;
 
         // Social Sharing
-        $this->properties->topShare     = $post->post_type == 'post' && ($custom['post_share_position'] == 'top' || $custom['post_share_position'] == 'both') ? new Components\Share(['title' => $custom['post_share_title']]) : false;
-        $this->properties->bottomShare  = $post->post_type == 'post' && ($custom['post_share_position'] == 'bottom' || $custom['post_share_position'] == 'both')  ? new Components\Share(['title' => $custom['post_share_title']]) : false;
-        $this->properties->floatShare   = $post->post_type == 'post' && ($custom['post_share_position'] == 'left' || $custom['post_share_position'] == 'right') ? new Components\Share(['position' => $custom['post_share_position']]) : false;
+        $this->properties->topShare     = $post->post_type == 'post' && isset($custom['post_share_position']) && ($custom['post_share_position'] == 'top' || $custom['post_share_position'] == 'both') ? new Components\Share(['title' => $custom['post_share_title']]) : false;
+        $this->properties->bottomShare  = $post->post_type == 'post' && isset($custom['post_share_position']) && ($custom['post_share_position'] == 'bottom' || $custom['post_share_position'] == 'both')  ? new Components\Share(['title' => $custom['post_share_title']]) : false;
+        $this->properties->floatShare   = $post->post_type == 'post' && isset($custom['post_share_position']) && ($custom['post_share_position'] == 'left' || $custom['post_share_position'] == 'right') ? new Components\Share(['position' => $custom['post_share_position']]) : false;
 
         // Entry Meta
         if( isset($meta['disable_meta']) && $meta['disable_meta'] ) {
@@ -82,12 +82,12 @@ class Singular extends Template {
             $this->properties->meta = true;
 
             if( $post->post_type == 'post' ) {
-                foreach( ['author', 'date', 'category', 'tags', 'rating'] as $type ) {
-                    if( $custom['post_' . $type . '_position'] == 'top' || $custom['post_' . $type . '_position'] == 'both' ) {
+                foreach( ['author', 'date', 'category', 'tags', 'comments', 'rating'] as $type ) {
+                    if( isset($custom['post_' . $type . '_position']) &&  ($custom['post_' . $type . '_position'] == 'top' || $custom['post_' . $type . '_position'] == 'both') ) {
                         $topMeta[] = $type;
                     } 
 
-                    if( $custom['post_' . $type . '_position'] == 'bottom' || $custom['post_' . $type . '_position'] == 'both' ) {
+                    if( isset($custom['post_' . $type . '_position']) &&  ($custom['post_' . $type . '_position'] == 'bottom' || $custom['post_' . $type . '_position'] == 'both') ) {
                         $bottomMeta[] = $type;    
                     } 
 
@@ -97,10 +97,10 @@ class Singular extends Template {
             // Entry Meta for projects
             if( $post->post_type == 'projects' ) {
                 $topMeta[] = 'url';               
-                if($custom['projects_author']) {
+                if( isset($custom['projects_author']) && $custom['projects_author'] ) {
                     $topMeta[] = 'author';   
                 } 
-                if($custom['projects_category']) {
+                if( isset($custom['projects_category']) && $custom['projects_category'] ) {
                     $topMeta[] = 'type';
                 }                                   
             }
@@ -122,7 +122,7 @@ class Singular extends Template {
         } else {
 
             // Post Pagination
-            if( in_array($post->post_type, ['post', 'projects']) && $custom[$post->post_type . '_pagination'] ) {
+            if( isset($custom[$post->post_type . '_pagination']) && in_array($post->post_type, ['post', 'projects']) && $custom[$post->post_type . '_pagination'] ) {
                 $this->properties->footer       = true;
                 $this->properties->pagination   = new Components\Pagination([
                     'next' => $custom[$post->post_type . '_pagination_next'], 
@@ -133,7 +133,7 @@ class Singular extends Template {
             }
 
             // Related posts
-            if( in_array($post->post_type, ['post', 'projects']) && $custom[$post->post_type . '_related'] ) {
+            if( isset($custom[$post->post_type . '_related']) && in_array($post->post_type, ['post', 'projects']) && $custom[$post->post_type . '_related'] ) {
 
                 $args = [
                     'exclude'   => [$post->ID],

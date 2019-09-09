@@ -117,6 +117,48 @@
     }    
 }
 
+
+/* Styling for Gutenberg modifications 
+--------------------------------------*/
+.wp-block-gallery {
+    margin-bottom: 1.5em;
+    .main-content .entry-content & {
+        margin: 0 0 1.5em 0;
+        padding: 0;
+        img {
+            margin-bottom: 0;
+        }        
+    }
+}
+
+.wp-block-file {
+    .wp-block-file__button {
+        font-size: inherit;
+    }
+}
+
+.wp-block-image, .content .wp-block-image {
+    margin-bottom: 1.5em;
+    img {
+        margin-bottom: 0;
+    }   
+}
+
+.wp-block-embed {
+    &.wp-embed-aspect-16-9 .wp-block-embed__wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0; 
+        video, iframe, embed {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }       
+    }
+}
+
 /* Our Main-Content wrapper has a little less padding if there is an offsetted image before */
 .image-offset ~ .main-content {
     padding-top: @space*2;

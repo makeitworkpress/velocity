@@ -133,7 +133,7 @@ class Title extends Components {
 
                 // Our title entry-meta
                 foreach( ['author', 'date', 'category', 'tags', 'rating'] as $type ) {
-                    if($custom['post_' . $type . '_position'] == 'title') {
+                    if( isset($custom['post_' . $type . '_position']) && $custom['post_' . $type . '_position'] == 'title') {
                         $enabled[] = $type;
                     }
                 } 
@@ -155,7 +155,7 @@ class Title extends Components {
                 if( $project['images'] ) {
 
                     $images = array_filter(explode(',', $project['images']));
-                    $size   = $custom['projects_images'] == 'full' ? '1920' : '1024';
+                    $size   = isset($custom['projects_images']) && $custom['projects_images'] == 'full' ? '1920' : '1024';
 
                     foreach( $images as $image ) {
                         $this->vars['slides'][] = wp_get_attachment_image( intval($image), $size, false, ['itemprop' => 'image'] );    
@@ -171,10 +171,10 @@ class Title extends Components {
                 }
 
                 // This class determines the correct display of our project images according to the width settings (either full or container)
-                $this->vars['class'] .= 'image-' . $custom['projects_images'];
+                $this->vars['class'] .= isset($custom['projects_images']) ? 'image-' . $custom['projects_images'] : 'image-container';
 
                 // Allows the display of a summary
-                if( $custom['projects_summary'] ) {
+                if( isset($custom['projects_summary']) && $custom['projects_summary'] ) {
                     $this->vars['summary'] = $project['summary'];
                 }
 
@@ -187,22 +187,22 @@ class Title extends Components {
             if( in_array($post->post_type, ['post', 'page']) ) {
 
                 // Parallax effect
-                if( $custom[$post->post_type . '_featured_parallax'] ) {
+                if( isset($custom[$post->post_type . '_featured_parallax']) && $custom[$post->post_type . '_featured_parallax'] ) {
                     $this->vars['class'] .= 'image-parallax';
                 }                
 
                 // Scrolling button
-                if( $custom[$post->post_type . '_featured_scroll'] ) {
+                if( isset($custom[$post->post_type . '_featured_scroll']) && $custom[$post->post_type . '_featured_scroll'] ) {
                     $this->vars['scroll'] = true;
                 }
 
                 // Default Image
-                if( $custom[$post->post_type . '_featured_image'] == 'title' && has_post_thumbnail($post) ) {
+                if( isset($custom[$post->post_type . '_featured_image']) && $custom[$post->post_type . '_featured_image'] == 'title' && has_post_thumbnail($post) ) {
                     $this->vars['image'] = get_the_post_thumbnail( $post, '1024', ['itemprop' => 'image'] );
                 }  
                 
                 // Background Image
-                if( $custom[$post->post_type . '_featured_image'] == 'background' && has_post_thumbnail($post) ) {
+                if( isset($custom[$post->post_type . '_featured_image']) && $custom[$post->post_type . '_featured_image'] == 'background' && has_post_thumbnail($post) ) {
 
                     // Background images are styled differently (providing we don't have a video)
                     if( ! $meta['video'] ) {
