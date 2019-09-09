@@ -86,7 +86,7 @@ class Velocity_Shortcodes {
         $customizer = get_theme_mod('velocity_customizer');
 
 		$atts = shortcode_atts( [
-            'bottommeta'  => '',                                // Meta components shown below excerpt. Accepts 'author', category', 'date', 'rating' or 'tags'
+            'bottommeta'  => '',                                // Meta components shown below excerpt. Accepts 'author', category', 'date', 'rating', 'comments', or 'tags'
             'categories'  => '',                                // The categories to query posts from
             'excerpt'     => false,                             // Whether to include the excerpt or not        
             'exclude'     => '',                                // The post ids to exclude
@@ -100,8 +100,8 @@ class Velocity_Shortcodes {
             'paged'       => get_query_var('paged') ? get_query_var('paged') : 1,
             'pagination'  => false,                             // Whether to show pagination or not
             'readmore'    => __('Read more &rsaquo;', 'velocity'),          // Whether to include a read more link or not. If set to a string, uses that text
-            'titlemeta'   => '',                                // Meta components shown above title. Accepts 'author', category', 'date', 'rating' or 'tags' 
-            'topmeta'     => '',                                // Meta components shown above excerpt.  Accepts 'author', category', 'date', 'rating' or 'tags'
+            'titlemeta'   => '',                                // Meta components shown above title. Accepts 'author', category', 'date', 'rating', 'comments', or 'tags' 
+            'topmeta'     => '',                                // Meta components shown above excerpt.  Accepts 'author', category', 'date', 'rating', 'comments', or 'tags'
             'stack'       => false,                             // Whether the title should stack on the featured image or not
             'style'       => 'list',                            // The style, either list or grid
             'tags'        => '',                                // The tags to query the posts from
