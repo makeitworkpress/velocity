@@ -47,7 +47,7 @@ $options = [
                     'description'   => __('If set-up, adds a viglink script to the footer of this website.', 'velocity'),
                     'id'            => 'viglink',
                     'title'         => __('Viglink Key', 'velocity'),
-                    'input'         => 'input'
+                    'type'          => 'input'
                 ]                                                                 
             ]      
         ],
