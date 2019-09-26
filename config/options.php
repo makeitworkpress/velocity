@@ -28,8 +28,7 @@ $options = [
                     'description'   => __('Add the tracking identifier for Google Analytics here. It looks like this: UA-12345678-1. By default, it anonymizes visitor IPs.', 'velocity'),
                     'id'            => 'tracking',
                     'title'         => __('Google Analytics Tracking ID', 'velocity'),
-                    'type'          => 'input',
-                    'subtype'       => 'password'
+                    'type'          => 'input'
                 ],
                 [
                     'columns'       => 'half',
@@ -42,7 +41,14 @@ $options = [
                     ],
                     'title'         => __('Microscheme for Website Representation', 'velocity'),
                     'type'          => 'select'
-                ]                                                
+                ],
+                [
+                    'default'       => '',
+                    'description'   => __('If set-up, adds a viglink script to the footer of this website.', 'velocity'),
+                    'id'            => 'viglink',
+                    'title'         => __('Viglink Key', 'velocity'),
+                    'input'         => 'input'
+                ]                                                                 
             ]      
         ],
         'optimize'   => [

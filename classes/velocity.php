@@ -135,6 +135,25 @@ class Velocity {
             } );
         }
 
+        // Adds viglink code
+        if( isset($this->data['options']['viglink']) && $this->data['options']['viglink'] ) {
+            $viglink = $this->data['options']['viglink'];
+            add_action('wp_footer', function() use($viglink) {
+                echo '<!-- Vig Links Code-->
+                    <script type="text/javascript">
+                    var vglnk = {key: "' . $viglink . '"};
+                    (function(d, t) {
+                        var s = d.createElement(t);
+                            s.type = "text/javascript";
+                            s.async = true;
+                            s.src = "//cdn.viglink.com/api/vglnk.js";
+                        var r = d.getElementsByTagName(t)[0];
+                            r.parentNode.insertBefore(s, r);
+                    }(document, "script"));
+                </script>';
+            } );
+        }        
+
         // Removes Empty P in content
         add_filter('the_content', function($content) {
             $content = force_balance_tags( $content );
