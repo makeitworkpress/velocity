@@ -212,6 +212,6 @@ class Velocity_Shortcodes {
         
         return $output;
 
-    }
+    }   
     
 }
