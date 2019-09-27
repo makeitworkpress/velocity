@@ -351,12 +351,9 @@ class Title extends Components {
 
             // If we have an overlay color, we add extra styling to the head
             if( isset($meta['overlay_color']) && $meta['overlay_color'] ) {
-                add_filter( 'wp_custom_fields_css_properties', function($properties, $field) {
-                    if( $field['id'] == 'overlay_color' ) {
-                        $properties .= 'content:"";';
-                    }
-                    return $properties;
-                }, 10, 2 );
+                add_action( 'wp_head', function() {
+                    echo '<style type="text/css">.main-header:after { content: ""; }</style>';
+                } );
             }
 
             // Add our offset class
