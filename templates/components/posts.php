@@ -28,7 +28,7 @@ if( ! $posts['posts'] ) {
                         <meta itemprop="contentUrl" content="<?php echo $posts['logo']; ?>" />
                         <meta itemprop="url" content="<?php echo $posts['blogUrl']; ?>" />
                     <?php } else { ?>
-                        <meta itemprop="url" content="<?php echo $posts['logo']; ?>" />
+                        <meta itemprop="url" content="<?php echo $posts['blogUrl']; ?>" />
                     <?php } ?>
                 </span>
                 <meta itemprop="name" content="<?php echo $posts['blogName']; ?>" />
