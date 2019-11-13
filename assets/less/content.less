@@ -68,7 +68,7 @@
             margin: 0 0 @space @space;
         }
         h2, h3 {
-            padding-top: @space;
+            padding-top: 1em;
         }
         p, ol, ul, code, pre, img {
             margin-bottom: @space;
@@ -96,7 +96,6 @@
         .entry-content > p:first-of-type {
             font-size: @font-intro;
             line-height: 1.5;
-            max-width: 100%;
             overflow: hidden;         
         }
     } 
@@ -123,6 +122,10 @@
 
 /* Styling for Gutenberg modifications 
 --------------------------------------*/
+.wp-block-button {
+    margin-bottom: @space;
+}
+
 .wp-block-gallery {
     margin-bottom: 1.5em;
     .main-content .entry-content & {
