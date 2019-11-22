@@ -11,7 +11,6 @@ class Theme_Updater extends Updater {
     
     /**
      * Contains the information regarding the theme
-     *
      * @access protected
      */
     protected $theme;
@@ -24,10 +23,10 @@ class Theme_Updater extends Updater {
     protected function initialize() {
         
         $this->theme    = wp_get_theme( basename(get_template_directory()) );
-        $this->slug     = $this->theme->stylesheet;
+        $this->slug     = sanitize_title($this->theme->stylesheet);
         $this->version  = $this->theme->version;
         
-        add_filter( 'pre_set_site_transient_update_themes', array($this, 'checkUpdate') );
+        add_filter( 'site_transient_update_themes', array($this, 'checkUpdate') );
         
     }
     
