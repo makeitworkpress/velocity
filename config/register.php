@@ -40,7 +40,7 @@ $register = [
             'args'      => [
                 'menu_icon'     => 'dashicons-images-alt', 
                 'has_archive'   => true, 
-                'show_in_rest'  => true, 
+                'show_in_rest'  => true,
                 'supports'      => ['author', 'editor', 'thumbnail', 'title']
             ],
             'slug'      => 'projects'
@@ -48,15 +48,14 @@ $register = [
     ],
     'taxonomies' => [
         [
-            'name'          => 'type',
+            'name'          => 'project_type',
             'object'        => 'projects',
             'plural'        => __( 'Project Types', 'velocity' ),
             'singular'      => __( 'Project Type', 'velocity' ),
             'args'          => [
                 'rewrite'           => ['hierarchical' => true, 'slug' => 'projects-type'],
                 'show_in_rest'      => true,
-                // 'show_ui'           => true,
-                // 'public'            => true,
+                'show_ui'           => true,
                 'show_admin_column' => true
             ]
         ]
