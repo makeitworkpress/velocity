@@ -40,7 +40,7 @@ class Index extends Template {
         // Categories
         if( isset($custom[$postType . '_archive_categories']) && $custom[$postType . '_archive_categories'] ) {
             $this->properties->categoriesTitle  = $custom[$postType . '_archive_categories_text'];
-            $this->properties->categories       = $postType == 'post' ? get_categories() : get_terms(['taxonomy' => 'type']);
+            $this->properties->categories       = $postType == 'post' ? get_categories() : get_terms(['taxonomy' => 'project_type']);
             $this->properties->categoryActive   = isset( get_queried_object()->name ) ? get_queried_object()->name : '';          
         } else {
             $this->properties->categories       = false;   

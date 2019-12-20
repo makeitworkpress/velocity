@@ -77,7 +77,7 @@ class Posts extends Components {
 
             // Custom tax query for projects
             if( $this->atts['type'] == 'projects' && $this->atts['categories'] ) {
-                $args['tax_query'] = [['taxonomy' => 'type', 'terms'=> $this->atts['categories']]];
+                $args['tax_query'] = [['taxonomy' => 'project_type', 'terms'=> $this->atts['categories']]];
             }
 
             $this->query = new WP_Query( $args );

@@ -71,7 +71,7 @@ class Projects extends Components {
             // Load certain categories
             if( $this->atts['categories'] ) {
                 $args['tax_query']  = [
-                    ['taxonomy' => 'type', 'terms' => $this->atts['categories']]
+                    ['taxonomy' => 'project_type', 'terms' => $this->atts['categories']]
                 ];          
             }
 
