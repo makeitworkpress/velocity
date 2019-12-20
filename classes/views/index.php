@@ -25,7 +25,7 @@ class Index extends Template {
         $postType                               = isset($wp_query->query['post_type']) ? $wp_query->query['post_type'] : 'post';
 
         // If we query the type taxonomy, we show projects
-        if( isset($wp_query->query['type']) ) {
+        if( isset($wp_query->query['project_type']) ) {
             $postType = 'projects';
         }
 
