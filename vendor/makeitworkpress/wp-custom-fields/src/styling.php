@@ -39,8 +39,8 @@ class Styling extends Base {
     protected function registerHooks() {  
 
         $this->actions = [
-            ['updated_option', 'saveFields', 20, 1],
             ['save_post', 'saveFields', 20, 1],
+            ['updated_option', 'saveFields', 20, 1],
             ['customize_save_after', 'saveFields', 20, 1],
             ['wp_head', 'retrieveFields'],                  // Retrieve the fields
             ['wp_head', 'outputCSS', 20],                   // Render the output
@@ -52,45 +52,44 @@ class Styling extends Base {
 
     /**
      * Retrieves all frames, converts them into fields with css properties and saves this array within the database
-     * @param mixed     $key    A certain key, id or hooked argument, based upon the hook
+     * @param mixed     $key    A certain key, id (which can be an option page id) or hooked argument, based upon the hook
      * @param string    $hook   A hook string, to manually trigger a certain save action from outside the hooks
      */
     public function saveFields( $key, $hook = '' ) {
 
         // If we're saving fields, look what hook we're in
-        $hook   = $hook ? $hook : current_filter();
+        $hook       = $hook ? $hook : current_filter();
+        $option_ids = [];
+
+        // We're updating a theme mod via the updated_option hook. That needs to be ignored.
+        if( ! is_object($key) && strpos($key, 'theme_mods') !== false ) {
+            return;
+        }
 
         /**
-         * For the option hook, we only want to save our css fields if we're targeting the ID of an option page added by WPCF.
-         * Because this hook is widely employed, we want to add this safety measure
+         * We're updating an option that's not in our set of option frames. Skip it!
          */
         if( $hook == 'updated_option' ) {
 
-            $update = false;
-
-            // Retrieve all our options frames, so we can filter for the given hook
+            // First, get the option pages from our settings
             $optionFrames = Framework::instance()->get('options');
 
             if( is_array($optionFrames) ) {
-
                 foreach( $optionFrames as $page ) {
-                    
-                    if( isset($page['id']) && $key == $page['id'] ) {
-                        $update = true;
-                    }
-
+                    $option_ids[] = $page['id'];
                 }
-
-                // Check if we may update our option
-                if( ! $update ) {
-                    return;   
-                }  
+            }
             
+            // Then, if our option is not in the array, we return!
+            if( ! in_array($key, $option_ids) ) {
+                return;
             }
 
         }
 
-        // Generates the fields with the correct css properties from all configurations
+        /**
+         * Generates the fields with the correct css properties from all configurations
+         */
         $this->setFields( $hook, $key );
 
         // Do we have fields any fields at all?
@@ -104,9 +103,9 @@ class Styling extends Base {
                 // Check our user capabilities
                 if( ! current_user_can('manage_options', $key) ) {
                     return;
-                }              
+                }
 
-                update_option('wpcf_options_css_fields', $this->fields, 'no');            
+                update_option('wpcf_options_css_fields_' . $key, $this->fields, 'no');
                 break;
             case 'customize_save_after':
                 // Check our user capabilities before doing something
@@ -139,6 +138,14 @@ class Styling extends Base {
         if( ! $hook ) {
             return;
         }
+
+        // Sanitize our key
+        $id    = is_object($id) ? '' : $id;
+
+        // We're updating a theme mod via updated option, ignore that
+        if( strpos($id, 'theme_mods') !== false ) {
+            return;
+        }
         
         // Retrieve the array of groups with fields
         switch( $hook ) {
@@ -150,7 +157,8 @@ class Styling extends Base {
                 break; 
             case 'save_post':
                 $this->frame = Framework::instance()->get('meta');
-                break;                               
+                break;
+
         }
         
         // We don't have any frames or properly formatted frames
@@ -532,9 +540,15 @@ class Styling extends Base {
         /**
          * Loads our option page fields
          */
-        $optionValues   = maybe_unserialize( get_option('wpcf_options_css_fields') );
-        $optionFields   = is_array($optionValues) ? $optionValues: [];
-        $this->fields   = $this->fields + $optionFields;       
+        $optionFrames = Framework::instance()->get('options');
+
+        if( is_array($optionFrames) ) {
+            foreach( $optionFrames as $page ) {
+                $optionValues   = maybe_unserialize( get_option('wpcf_options_css_fields_' . $page['id']) );
+                $optionFields   = is_array($optionValues) ? $optionValues: [];
+                $this->fields   = $optionFields + $this->fields; // Customizerfields precede over optionFields
+            }
+        }         
 
         /**
          * Loads the fields for singular templates
@@ -543,13 +557,8 @@ class Styling extends Base {
             global $post;
             $metaValues     = get_post_meta( $post->ID, 'wpcf_singular_css_fields', true );
             $metaFields     = is_array($metaValues) ? $metaValues : [];
-            $this->fields   = $this->fields + $metaFields;
+            $this->fields   = $metaFields + $this->fields;
         }
-
-        // No fields? Do nothing!
-        if( ! $this->fields ) {
-            return;            
-        }   
 
     }    
     
@@ -718,7 +727,7 @@ class Styling extends Base {
         // Are we in the customizer preview?
         if( ! is_customize_preview() ) {
             return; 
-        }
+        }   
         
         add_action('wp_footer', function() {
             
@@ -753,13 +762,37 @@ class Styling extends Base {
                         $target = 'css("' . array_keys($field['properties'])[0] . '", newValue)';
                     }
 
-                    $bind  .= 'value.bind( function( newValue ) {
-                        $("' . $selector . '").' . $target . ';
-                    } );';
+                    // console.log( wp.customize( "' . $field['group'] . '[' . $id . '][unit]") );
+
+
+                    switch( $field['type'] ) {
+                        case 'dimension':                       
+                            $script .= 'wp.customize( "' . $field['group'] . '[' . $id . '][unit]", function( value ) {
+                                value.bind( function( newValue ) {
+                                    newValue = wp.customize( "' . $field['group'] . '[' . $id . '][amount]" )._value + newValue;
+                                    $("' . $selector . '").' . $target . ';
+                                } );
+                            } );';
+                            $script .= 'wp.customize( "' . $field['group'] . '[' . $id . '][amount]", function( value ) {
+                                value.bind( function( newValue ) {
+                                    newValue = newValue + wp.customize( "' . $field['group'] . '[' . $id . '][unit]" )._value;
+                                    $("' . $selector . '").' . $target . ';
+                                } );
+                            } );';                             
+                            break;
+                        default:
+                            $script .= 'wp.customize( "' . $field['group'] . '[' . $id . ']", function( value ) {
+                                value.bind( function( newValue ) {
+                                    $("' . $selector . '").' . $target . ';
+                                } );
+                            } );';                      
+                    }
+
+                    if( $field['type'] == 'dimension' ) {
+
+                    } 
                     
-                    $script .= 'wp.customize( "' . $field['group'] . '[' . $id . ']' . '", function( value ) {
-                        ' . $bind . '
-                    } );';   
+
 
                 }
 

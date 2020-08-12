@@ -21,12 +21,7 @@ var Projects = {
         // Return to base
         if( this.projects == null ) {
             return;
-        }
-
-        // Load all our images at once
-        if( typeof wpOptimizeLazyLoad !== 'undefined' ) {
-            wpOptimizeLazyLoad.loadAll();
-        }         
+        }      
 
         // Only projects with infinite scroll load infinite
         if( ! this.projects.classList.contains('projects-load-infinite') ) {
@@ -62,11 +57,6 @@ var Projects = {
 
                         for( var i = 0; i < loadedProjects.length; i++ ) {
                             Projects.projects.appendChild(loadedProjects[i]);
-                        }
-
-                        // Reinitialize our lazyload
-                        if( typeof wpOptimizeLazyLoad !== 'undefined' ) {
-                            wpOptimizeLazyLoad.update();
                         }
                         
                         // Reinitialize our click handlers

@@ -4,6 +4,7 @@
  * This acts as the main controller for passing data to a template.
  */
 namespace MakeitWorkPress\WP_Custom_Fields;
+use MakeitWorkPress\WP_Custom_Fields\Framework as Framework;
 use stdClass as stdClass;
 
 // Bail if accessed directly
@@ -29,14 +30,15 @@ class Frame {
         $this->values   = $values;
         
         // Default public variables
+        $this->action           = 'options.php'; // Used within option pages, adapted by options.php
         $this->class            = isset($frame['class']) ? esc_attr($frame['class']) : '';
-        $this->errors           = ''; // Used within option pages
+        $this->errors           = ''; // Used within option pages, set by options.php
         $this->id               = esc_attr($frame['id']);
-        $this->resetButton      = ''; // Used within option pages
-        $this->restoreButton    = ''; // Used within option pages
-        $this->saveButton       = ''; // Used within option pages
+        $this->resetButton      = ''; // Used within option pages, set by options.php
+        $this->restoreButton    = ''; // Used within option pages, set by options.php
+        $this->saveButton       = ''; // Used within option pages, set by options.php
         $this->sections         = [];
-        $this->settingFields    = ''; // Used within option pages
+        $this->settingFields    = ''; // Used within option pages, set by options.php
         $this->title            = esc_html($frame['title']);
         $this->type             = '';
 
@@ -111,10 +113,12 @@ class Frame {
         
         // Populate our variables
         $field                  = $field;
-        $field['column']        = isset( $field['columns'] )            ?  'wcf-' . esc_attr($field['columns']) : 'wcf-full';
+        $field['classes']       = isset( $field['columns'] )            ?  'wpcf-' . esc_attr($field['columns']) : 'wpcf-full';
         $field['description']   = isset( $field['description'] )        ?  esc_textarea($field['description'])      : '';
+        $field['dependency']    = isset( $field['dependency'] ) && $field['dependency'] ?  $field['dependency'] : [];
         $field['form']          = '<div class="error notice"><p>' . sprintf( __('The given field class does not exist for the field with id: %s', 'wp-custom-fields'), $field['id']) . '</p></div>';
-        
+        $field['type']          = isset($field['type']) ? esc_attr($field['type']) : 'unknown';
+
         // Make sure our IDs do not contain brackets
         $field['id']            = str_replace( '[', '_', esc_attr($field['id']) ); 
         $field['id']            = str_replace( ']', '', esc_attr($field['id']) ); 
@@ -123,11 +127,19 @@ class Frame {
         $field['placeholder']   = isset( $field['placeholder'] )        ? esc_attr($field['placeholder'])   : '';
         $field['title']         = isset( $field['title'] )              ? esc_html($field['title'])         : '';
         $field['titleTag']      = isset( $field['type'] ) && $field['type'] == 'heading'           ? 'h3'                              : 'h4';
+        $field['titleClass']    = isset( $field['type'] ) && isset( $field['collapse'] ) && $field['type'] == 'heading' ? ' wpcf-heading-collapsible' : '';
+        $field['titleSections'] = isset( $field['type'] ) && isset( $field['collapse'] ) && $field['type'] == 'heading' ? implode(',', $field['collapse']) : '';
+
+        // Set-up additional classes and settings
+        if( $field['dependency'] ) {
+            $field['classes']  .= ' wpcf-dependent-field' . Framework::returnDependencyClass($field['dependency'], $this->sections, $this->values);
+        }
+
+        $field['classes']       .= ' field-' . $field['type'] . ' field-id-' . $field['id'];
 
         // We should have a field type
-        if( ! isset($field['type']) ) {
+        if( $field['type'] == 'unknown' ) {
             $field['form']      = '<div class="error notice"><p>' . sprintf( __('The type is not defined for the field with id: %s', 'wp-custom-fields'), $field['id']) . '</p></div>';
-            $field['type']      = 'unknown';
             return $field;
         }
 

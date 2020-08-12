@@ -1,17 +1,17 @@
 // main: ../wp-custom-fields.less
 
 /* Uploader */
-.wp-custom-fields-upload-wrapper {
+.wpcf-upload-wrapper {
     clear: both;
     overflow: hidden;
 }
 
 // Hide the add field if we have some data
-.wp-custom-fields-upload-wrapper[data-multiple=""] .wp-custom-fields-single-media + .wp-custom-fields-single-media {
-    display: none;
+.wpcf-upload-wrapper[data-multiple=""] .wpcf-single-media + .wpcf-single-media {
+    display: none !important;
 }
 
-.wp-custom-fields-single-media {
+.wpcf-single-media {
     box-sizing: border-box;
     border-radius: @wp-btnradius;
     border: 1px solid @wp-btnborder;    
@@ -30,7 +30,7 @@
         height: auto;
         max-width: 100%;
     }
-    .wp-custom-fields-upload-remove {
+    .wpcf-upload-remove {
         background: #fff;
         border: 1px solid @wp-btnborder;
         border-radius: 50%;
@@ -46,7 +46,7 @@
             color: @wp-blue;
         }
     }
-    .wp-custom-fields-upload-add {
+    .wpcf-upload-add {
         box-sizing: border-box;
         font-size: 16px;
         font-weight: 700;
@@ -56,6 +56,11 @@
         position: absolute;
         top: 50%;
         width: 120px;
+        &:focus, &:active {
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
         i {
             left: -6px;
             position: relative;
@@ -74,7 +79,18 @@
     }
 }
 
-.wp-custom-fields-media-url {
+// Our input for sortable 
+.wpcf-media-highlight {
+    box-sizing: border-box;
+    border-radius: @wp-btnradius;
+    border: 1px dashed @wp-btnborder;    
+    float: left;  
+    height: 150px;
+    margin: 0 7px 7px 0;  
+    width: 150px;
+}
+
+.wpcf-media-url {
     box-sizing: border-box;
     bottom: 0;
     left: 0;
@@ -106,8 +122,8 @@
     }
 }
 
-.wp-custom-fields-background-attributes {
-    .wp-custom-fields-select, .select2-container {
+.wpcf-background-attributes {
+    .wpcf-select, .select2-container {
         display: block;
         min-width: 190px;
     }

@@ -209,98 +209,89 @@ class Title extends Components {
                         $this->vars['class']       .= ' image-background';
                     }
 
-                    if( isset($options['optimalizations']['lazyLoad']) && $options['optimize']['lazyLoad'] ) {
-                        $this->vars['background']   = 'data-bg="url(' . get_the_post_thumbnail_url($post, '1920') . ')"';
-                        $this->vars['class']       .= ' lazy';
+                    add_action('wp_head', function() use($post, $meta) {
 
-                    // If we don't use lazy load, we add custom CSS defining our image at WP_Head. Hence, we load the appropriate image for each resolution
-                    } else {
+                        // Background Images are ignored when a video is shown
+                        if( $meta['video'] ) {
+                            return;
+                        }
 
-                        add_action('wp_head', function() use($post, $meta) {
-
-                            // Background Images are ignored when a video is shown
-                            if( $meta['video'] ) {
-                                return;
-                            }
-
-                            $style      = '';
-                
-                            foreach(['3840', '2560', '1920', '1600', '1366', '1024', '768', '480', '480-2x', '320', '320-2x'] as $size) {
-                                
-                                $image[$size] = get_the_post_thumbnail_url( $post, $size );
-                                
-                                // Add normal queries
-                                if( ! strpos($size, '-2x') && $image[$size]  ) {
-                                    $style .= '@media screen and (max-width: ' . $size . 'px) {
-                                        .main-header {
-                                            background-image: url("' . $image[$size] . '");
-                                        }
-                                    }';
-                                }
-
-                            }
-                
-                            /**
-                             * Retina images
-                             */
-
-                            // Retina images: 4K
-                            if( $image['3840'] ) {
-                                $style .= '@media screen and (max-width: 1920px) and (-webkit-min-device-pixel-ratio: 1.5) { 
+                        $style      = '';
+            
+                        foreach(['3840', '2560', '1920', '1600', '1366', '1024', '768', '480', '480-2x', '320', '320-2x'] as $size) {
+                            
+                            $image[$size] = get_the_post_thumbnail_url( $post, $size );
+                            
+                            // Add normal queries
+                            if( ! strpos($size, '-2x') && $image[$size]  ) {
+                                $style .= '@media screen and (max-width: ' . $size . 'px) {
                                     .main-header {
-                                        background-image: url("' . $image['3840'] . '");
-                                    }
-                                }
-                                @media screen and (max-width: 1600px) and (-webkit-min-device-pixel-ratio: 1.5) { 
-                                    .main-header {
-                                        background-image: url("' . $image['3840'] . '");
+                                        background-image: url("' . $image[$size] . '");
                                     }
                                 }';
                             }
-                
-                            // Retina images: WQHD
-                            if( $image['2560'] ) {
-                                $style .= ' @media screen and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
-                                    .main-header {
-                                        background-image: url("' . $image['2560'] . '");
-                                    }
-                                }';                    
-                            }                
-                            
-                            // Retina images: FHD
-                            if( $image['1920'] ) {
-                                $style .= '@media screen and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
-                                    .main-header {
-                                        background-image: url("' . $image['1920'] . '");
-                                    }
-                                }';                    
-                            }
-                                        
-                            // Retina images: rest
-                            $style .= '@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1.5) {
+
+                        }
+            
+                        /**
+                         * Retina images
+                         */
+
+                        // Retina images: 4K
+                        if( $image['3840'] ) {
+                            $style .= '@media screen and (max-width: 1920px) and (-webkit-min-device-pixel-ratio: 1.5) { 
                                 .main-header {
-                                    background-image: url("' . $image['1600'] . '");
+                                    background-image: url("' . $image['3840'] . '");
                                 }
                             }
-                            @media screen and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5) {
+                            @media screen and (max-width: 1600px) and (-webkit-min-device-pixel-ratio: 1.5) { 
                                 .main-header {
-                                    background-image: url("' . $image['480-2x'] . '");
+                                    background-image: url("' . $image['3840'] . '");
                                 }
+                            }';
+                        }
+            
+                        // Retina images: WQHD
+                        if( $image['2560'] ) {
+                            $style .= ' @media screen and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+                                .main-header {
+                                    background-image: url("' . $image['2560'] . '");
+                                }
+                            }';                    
+                        }                
+                        
+                        // Retina images: FHD
+                        if( $image['1920'] ) {
+                            $style .= '@media screen and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+                                .main-header {
+                                    background-image: url("' . $image['1920'] . '");
+                                }
+                            }';                    
+                        }
+                                    
+                        // Retina images: rest
+                        $style .= '@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1.5) {
+                            .main-header {
+                                background-image: url("' . $image['1600'] . '");
                             }
-                            @media screen and (max-width: 320px) and (-webkit-min-device-pixel-ratio: 1.5) {
-                                .main-header {
-                                    background-image: url("' . $image['320-2x'] . '");
-                                }
-                            }'; 
+                        }
+                        @media screen and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5) {
+                            .main-header {
+                                background-image: url("' . $image['480-2x'] . '");
+                            }
+                        }
+                        @media screen and (max-width: 320px) and (-webkit-min-device-pixel-ratio: 1.5) {
+                            .main-header {
+                                background-image: url("' . $image['320-2x'] . '");
+                            }
+                        }'; 
 
-                            // Output our styles
-                            if($style) {
-                                echo '<style type="text/css">' . $style . '</style>';
-                            };
+                        // Output our styles
+                        if($style) {
+                            echo '<style type="text/css">' . $style . '</style>';
+                        };
 
-                        } );
-
-                    }
+                    } );
 
                 }
 
@@ -339,7 +330,7 @@ class Title extends Components {
                         $meta['video']          = 'https://player.vimeo.com/video' . parse_url($meta['video'])['path'];
                     } 
                     
-                    $src                        = isset($options['optimalizations']['lazyLoad']) && $options['optimalizations']['lazyLoad'] ? ' class="lazy" data-src="' . $meta['video'] . '"' : ' src="' . $meta['video'] . '"'; 
+                    $src                        = ' src="' . $meta['video'] . '"'; 
                     $this->vars['video']        = '<div class="wp-video" itemprop="video" itemscope="itemscope" itemtype="http://schema.org/VideoObject"><iframe width="' . $width . '" height="' . $height . '"' . $src . ' frameborder="0" allowfullscreen="true"></iframe></div>';
                 
                 // Regular video's

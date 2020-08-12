@@ -22,24 +22,32 @@ class Icons implements Field {
     public static function render( $field = [] ) {
         
         $configurations = self::configurations();
+        $exclude        = isset($field['exclude']) ? $field['exclude'] : [];
         $iconsets       = $configurations['properties']['icons'];
         $type           = isset($field['multiple']) && $field['multiple'] == true ? 'checkbox' : 'radio'; ?>
         
-            <div class="wp-custom-fields-icons">
+            <div class="wpcf-icons">
 
                 <?php foreach( $iconsets as $set => $icons ) { ?>
-                    <p class="wp-custom-fields-icons-title"><?php esc_html_e($set); ?></p>
-                    <ul class="wp-custom-fields-icon-list">
+
+                    <?php if( in_array($set, $exclude) ) { 
+                        continue; 
+                    } ?>
+
+                    <p class="wpcf-icons-title"><?php esc_html_e($set); ?></p>
+                    <ul class="wpcf-icon-list">
             
                         <?php 
-                            foreach( $icons as $icon ) { 
+                            foreach( $icons as $key => $icon ) { 
 
                                 if( $set == 'dashicons' ) {
-                                    $display_icon = '<i class="dashicons ' . esc_attr($icon) . '"></i>';
-                                } elseif( $set == 'fontawesome' ) {
-                                    $display_icon = '<i class="fa ' . esc_attr($icon) . '"></i>';
+                                    $icon           = $key;
+                                    $display_icon = '<i class="dashicons dashicons-before ' . esc_attr($icon) . '"></i>';
+                                } elseif( $set == 'font-awesome' ) {
+                                    $icon           = $key;
+                                    $display_icon   = '<i class="fa ' . esc_attr($icon) . '"></i>';
                                 } elseif( $set == 'material' ) {
-                                    $display_icon = '<i class="material-icons">' . esc_html($icon) . '</i>';
+                                    $display_icon   = '<i class="material-icons">' . esc_html($icon) . '</i>';
                                 }                
                                 
                                 $display_icon   = apply_filters('wp_custom_fields_displayed_icon', $display_icon, $icon, $set);

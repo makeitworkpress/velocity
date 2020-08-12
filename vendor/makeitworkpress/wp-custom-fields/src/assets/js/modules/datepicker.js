@@ -13,14 +13,14 @@ module.exports.init = function(framework) {
                 time_24hr: true,
                 wrap: true
             },
-            datePicker = jQuery(framework).find('.wp-custom-fields-datepicker'),
+            datePicker = jQuery(framework).find('.wpcf-datepicker'),
             propertyName,
             propertyValue;
 
         // Grab our custom properties. For a description of these properties, see the datepicker.php file in the fields folder.
-        ['enable-time', 'alt-format', 'date-format', 'locale', 'max-date', 'min-date', 'mode', 'no-calendar', 'week-numbers'].forEach( function(value) {
+        ['enable-time', 'alt-format', 'date-format', 'locale', 'max-date', 'min-date', 'mode', 'no-calendar', 'week-numbers'].forEach( function(attribute) {
 
-            propertyValue = jQuery(datePicker).data(value);
+            propertyValue = jQuery(datePicker).data(attribute);
 
             if( propertyValue ) {
                 propertyName = value.replace( /-([a-z])/g, function (g) { return g[1].toUpperCase(); } );

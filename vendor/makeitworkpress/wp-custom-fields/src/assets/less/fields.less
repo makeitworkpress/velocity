@@ -9,6 +9,7 @@
 @import 'fields/colorpicker.less';
 @import 'fields/datepicker.less';
 @import 'fields/dimensions.less';
+@import 'fields/heading.less';
 @import 'fields/icons.less';
 @import 'fields/media.less';
 @import 'fields/radio.less';
@@ -21,13 +22,13 @@
 /**
  * General Field sTyling
  */
-.wp-custom-fields-field-left {
+.wpcf-field-left {
     display: inline-block;
     margin-right: @grid-space;
     vertical-align: top;
 }
 
-.wp-custom-fields-option-field {
+.wpcf-field {
     box-sizing: border-box;
     padding: 20px 0;
     &.field-divider, &.field-heading {
@@ -36,7 +37,17 @@
     }
 }
 
-.wp-custom-fields-field-title {
+.wpcf-dependent-field {
+    display: none;
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+    &.active {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.wpcf-field-title {
     border-bottom: 1px solid @light-grey;
     h4 {
         font-size: 1.1em;
@@ -44,7 +55,7 @@
     }
 }
 
-.wp-custom-fields-field-description {
+.wpcf-field-description {
     p {
         color: @wp-description;
         font-size: 14px;
@@ -52,7 +63,7 @@
     }
 }
 
-.wp-custom-fields-field-input {
+.wpcf-field-input {
     margin: 20px 0 10px 0;
     .error {
         border: 1px solid @wp-red;
@@ -83,7 +94,7 @@
     }   
 }
 
-.wp-custom-fields-icon-list {
+.wpcf-icon-list {
     overflow: hidden;
     margin: 1px 1px @grid-space/2 1px;
     li {
@@ -122,14 +133,4 @@
  */
 .input-button-clear {
     color: @wp-red;
-}
-
-/**
- * Heading field within the customizer
- */
-.customize-control-heading .customize-control-title {
-    border-bottom: 1px solid @wp-border;
-    font-size: 21px;
-    margin-top: 18px;
-    padding-bottom: 5px;
 }
