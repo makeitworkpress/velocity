@@ -53,12 +53,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "c74f1aad98e892d9bc93d1f3e65641c3d959f273"
+                "reference": "d6453463600124e14c4268095a1ae5ad84495ff5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/c74f1aad98e892d9bc93d1f3e65641c3d959f273",
-                "reference": "c74f1aad98e892d9bc93d1f3e65641c3d959f273",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/d6453463600124e14c4268095a1ae5ad84495ff5",
+                "reference": "d6453463600124e14c4268095a1ae5ad84495ff5",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2020-07-21T15:13:20+00:00"
+            "time": "2020-10-05T14:25:49+00:00"
         },
         {
             "name": "makeitworkpress/wp-enqueue",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-register.git",
-                "reference": "3ad85498b6be6a2742e68821f77c0d2a1f6dc9fe"
+                "reference": "d56d09ce56d8ee288d32d45c5e9ebaf7a73b3522"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/3ad85498b6be6a2742e68821f77c0d2a1f6dc9fe",
-                "reference": "3ad85498b6be6a2742e68821f77c0d2a1f6dc9fe",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-register/zipball/d56d09ce56d8ee288d32d45c5e9ebaf7a73b3522",
+                "reference": "d56d09ce56d8ee288d32d45c5e9ebaf7a73b3522",
                 "shasum": ""
             },
             "require": {
@@ -209,7 +209,7 @@
                 "source": "https://github.com/makeitworkpress/wp-register/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-register/issues"
             },
-            "time": "2020-03-18T13:34:05+00:00"
+            "time": "2020-08-28T13:58:10+00:00"
         },
         {
             "name": "makeitworkpress/wp-updater",
