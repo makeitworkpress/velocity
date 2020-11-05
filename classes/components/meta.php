@@ -92,7 +92,7 @@ class Meta extends Components {
         
         // Displaying project types
         if( $this->vars['type'] ) {
-            $this->vars['type']     = get_the_term_list( $post->ID, 'type', '', ', ', '' );         // Retrieves the project types seperated by comma    
+            $this->vars['type']     = get_the_term_list( $post->ID, 'project_type', '', ', ', '' );         // Retrieves the project types seperated by comma    
         }
         
         // Displaying project urls

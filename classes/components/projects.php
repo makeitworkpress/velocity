@@ -24,6 +24,7 @@ class Projects extends Components {
         
         // Our attributes
         $this->defaults = [
+            'categories'    => [],
             'details'       => __('Details', 'velocity'),         // Show a details link     
             'exclude'       => [],                                // The post ids to exclude
             'include'       => [],                                // The post ids to include  
@@ -90,7 +91,7 @@ class Projects extends Components {
 
             // Adds preview data
             if( $this->atts['preview'] ) {
-                if($meta['post']['video']) {
+                if(isset($meta['post']['video']) && $meta['post']['video']) {
                     $preview .= "video:{src:" . $meta['post']['video'] . "}";
                 } elseif($meta['project']['images']) {
                     $images     = array_filter(explode(',', $meta['project']['images']));
