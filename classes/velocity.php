@@ -22,9 +22,9 @@ class Velocity {
     
     /**
      * Updater object
-     * @access private
+     * @access public
      */
-    private $updater;
+    public $updater;
 
     /**
      * Determines whether a class has already been instanciated.
@@ -77,7 +77,8 @@ class Velocity {
         /**
          * Initialize our github updater
          */
-        $this->updater = new MakeitWorkPress\WP_Updater\Boot( ['source' => 'https://github.com/makeitworkpress/velocity'] );
+        $this->updater = MakeitWorkPress\WP_Updater\Boot::instance();
+        $this->updater->add(['source' => 'https://github.com/makeitworkpress/velocity', 'type' => 'theme']);
 
         
         /**

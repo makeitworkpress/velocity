@@ -176,8 +176,8 @@ module.exports.init = function(framework) {
             propertyValue = jQuery(datePicker).data(attribute);
 
             if( propertyValue ) {
-                propertyName = value.replace( /-([a-z])/g, function (g) { return g[1].toUpperCase(); } );
-                config[propertyName] = propertyValue;
+                propertyName            = attribute.replace( /-([a-z])/g, function (g) { return g[1].toUpperCase(); } );
+                config[propertyName]    = propertyValue;
             }
 
         });
@@ -319,8 +319,10 @@ module.exports.init = function(framework) {
             latitude = jQuery('.latitude', this),
             longitude = jQuery('.longitude', this),
             city = jQuery('.city', this),
+            country = jQuery('.country', this),
             zip = jQuery('.postal_code', this),
             street = jQuery('.street', this),
+            state = jQuery('.state', this),
             number = jQuery('.number', this),
             latLng = new google.maps.LatLng(52.2129918, 5.2793703),
             zoom = 7;            
@@ -356,8 +358,9 @@ module.exports.init = function(framework) {
         autocomplete.bindTo('bounds', map);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            var place = autocomplete.getPlace(),
-                components = place.address_components;
+
+            var place   	= autocomplete.getPlace(),
+                components  = place.address_components;
 
             if (place.geometry.viewport) {
                 map.fitBounds(place.geometry.viewport);
@@ -370,6 +373,7 @@ module.exports.init = function(framework) {
             latitude.val(place.geometry.location.lat());
             longitude.val(place.geometry.location.lng());
 
+            // Fill in our components
             if (components) {
                 for (var i = 0; i < components.length; i++) {
                     var component = components[i],
@@ -383,6 +387,10 @@ module.exports.init = function(framework) {
                         city.val(component.long_name);
                     } else if (types.indexOf('postal_code') != -1) {
                         zip.val(component.long_name);
+                    } else if (types.indexOf('administrative_area_level_1') != -1) {
+                        state.val(component.long_name);
+                    } else if (types.indexOf('country') != -1) {
+                        country.val(component.long_name);
                     }
                 }
             }
@@ -390,7 +398,7 @@ module.exports.init = function(framework) {
         }); 
 
     });  
-}
+};
 },{}],10:[function(require,module,exports){
 /**
  * Our jquery UI slider
@@ -459,7 +467,7 @@ module.exports.init = function(framework) {
                     attachment_ids += attachment.id + ',';
 
                     if( attachment.type === 'image') {
-                        src = attachment.sizes.thumbnail.url;
+                        src = typeof(attachment.sizes.thumbnail) !== 'undefined' ? attachment.sizes.thumbnail.url : attachment.sizes.full.url;
                     } else {
                         src = attachment.icon;
                     }

@@ -23,6 +23,7 @@
             "require": {
                 "php": ">=5.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -53,17 +54,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "7ed1f72a521e4b23db0769ff79d3a093e77ca68c"
+                "reference": "7067e292bc10ba4e52ab13c9651706296fb8f989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/7ed1f72a521e4b23db0769ff79d3a093e77ca68c",
-                "reference": "7ed1f72a521e4b23db0769ff79d3a093e77ca68c",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/7067e292bc10ba4e52ab13c9651706296fb8f989",
+                "reference": "7067e292bc10ba4e52ab13c9651706296fb8f989",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -86,7 +88,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2021-01-22T16:58:08+00:00"
+            "time": "2021-05-10T08:38:13+00:00"
         },
         {
             "name": "makeitworkpress/wp-enqueue",
@@ -105,6 +107,7 @@
             "require": {
                 "php": ">=5.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -146,6 +149,7 @@
             "require": {
                 "php": ">=5.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -187,6 +191,7 @@
             "require": {
                 "php": ">=5.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -217,17 +222,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-updater.git",
-                "reference": "5507f6fad1a24311a28e661adb445c061b8aba45"
+                "reference": "ba578b4953036a41134734d86407a0d993bb8727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/5507f6fad1a24311a28e661adb445c061b8aba45",
-                "reference": "5507f6fad1a24311a28e661adb445c061b8aba45",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/ba578b4953036a41134734d86407a0d993bb8727",
+                "reference": "ba578b4953036a41134734d86407a0d993bb8727",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -250,7 +256,7 @@
                 "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-updater/issues"
             },
-            "time": "2019-11-20T12:56:13+00:00"
+            "time": "2021-05-05T15:27:03+00:00"
         }
     ],
     "packages-dev": [],
@@ -269,5 +275,6 @@
     "platform": {
         "php": ">=5.3"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
