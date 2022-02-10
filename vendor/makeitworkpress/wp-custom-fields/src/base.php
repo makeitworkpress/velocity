@@ -17,22 +17,33 @@ abstract class Base {
     
     /**
      * Determines whether a class has already been instanciated.
+     * 
+     * @var Base
      * @access protected
      */
     protected static $instance = null;
     
     /**
      * Holds the filters registered in a class
+     * 
+     * @var array
+     * @access protected
      */
     protected $filters;
     
     /**
      * Holds the actions registered in a class
+     * 
+     * @var array
+     * @access protected
      */
     protected $actions;
     
     /**
      * Holds the additional parameters as added by a child class
+     * 
+     * @var array
+     * @access protected
      */
     protected $params;      
     
@@ -46,15 +57,15 @@ abstract class Base {
      *
      * @param array $params Obtional parameters which can be passed to the class
      */
-    public static function instance( Array $params = [] ) {
+    public static function instance( array $params = [] ): Base {
         
         $c = get_called_class();
         if ( ! isset( self::$instance[$c] ) ) {
             self::$instance[$c] = new $c();
             self::$instance[$c]->params = $params;
             self::$instance[$c]->initialize();
-            self::$instance[$c]->registerHooks();
-            self::$instance[$c]->addHooks();
+            self::$instance[$c]->register_hooks();
+            self::$instance[$c]->add_hooks();
         }
 
         return self::$instance[$c];
@@ -63,7 +74,7 @@ abstract class Base {
     /**
      * Adds registered hooks
      */
-    private function addHooks() {
+    private function add_hooks(): void {
         
         // Filters
         if( isset($this->filters) && is_array($this->filters) )  {
@@ -91,7 +102,7 @@ abstract class Base {
      *
      * @param array $params Optional parameters whichare passed to the class     
      */
-    abstract protected function initialize();
+    abstract protected function initialize(): void;
     
     /**
      * Holds the function for registering custom action and filter hooks.
@@ -101,6 +112,6 @@ abstract class Base {
      *      ['string filter_or_action_name', 'string method_or_function', 'int priority', 'int number_of_arguments']
      * ]
      */
-    abstract protected function registerHooks();    
+    abstract protected function register_hooks(): void;    
 
 }

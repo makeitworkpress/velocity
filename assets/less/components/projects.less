@@ -7,16 +7,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0 @space/2;
+    padding: 0 @space*0.5;
     .project-item {
         animation: opacity 777ms ease-in-out normal;
-        border: @space/2 solid transparent;
+        border: @space*0.5 solid transparent;
         overflow: hidden;
         position: relative;
         width: 20%;
         .entry-title {
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-            padding-bottom: @space/4;
+            padding-bottom: @space*0.25;
         }
         .entry-image {
             img {
@@ -99,9 +99,9 @@
         }        
         a {
             font-size: @font-small;
-            margin-right: @space/2;
+            margin-right: @space*0.5;
             i {
-                margin-right: @space/4;
+                margin-right: @space*0.25;
             }
         } 
     }
@@ -135,7 +135,7 @@
 .modal-close {
     color: #fff;
     font-size: 2em;
-    right: @space/2;
+    right: @space*0.5;
     position:absolute;
     top: 0;
 }

@@ -20,7 +20,7 @@ class Repeatable implements Field {
      * @param   array $field The array with field attributes data-alpha
      * @return  void
      */        
-    public static function render( $field = [] ) {
+    public static function render( array $field = [] ): void {
 
         $configurations     = self::configurations();
         $add                = isset($field['labels']['add'])      ? esc_html($field['labels']['add'])     : $configurations['labels']['add'];
@@ -82,7 +82,7 @@ class Repeatable implements Field {
 
                                         // Additional classes
                                         if( $subfield['dependency'] ) {
-                                            $subfield['classes']   .= ' wpcf-dependent-field' . Framework::returnDependencyClass($subfield['dependency'], [['fields' => $fields]], $field['values'][$key]);   
+                                            $subfield['classes']   .= ' wpcf-dependent-field' . Framework::return_dependency_class($subfield['dependency'], [['fields' => $fields]], $field['values'][$key]);   
                                         }
 
                                         // If our dependency is fullfilled, the active class should be added
@@ -127,16 +127,16 @@ class Repeatable implements Field {
      *
      * @return array $configurations The configurations
      */   
-    public static function configurations() {
+    public static function configurations(): array {
                 
         $configurations = [
             'type'          => 'repeatable',
             'defaults'      => [],
             'labels'        => [
                 'add'           => '<i class="dashicons dashicons-plus"></i>',
-                'add_title'     => __('Add', 'wp-custom-fields'),
+                'add_title'     => __('Add', 'wpcf'),
                 'remove'        => '<i class="dashicons dashicons-minus"></i>',
-                'remove_title'  => __('Remove', 'wp-custom-fields')
+                'remove_title'  => __('Remove', 'wpcf')
             ],            
         ];
             

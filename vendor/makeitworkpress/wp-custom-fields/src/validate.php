@@ -18,26 +18,36 @@ trait Validate {
     /**
      * Displays an settings error message depending on the context, using the add_settings_error functionality
      * Use the get_settings_errors and settings_errors function to display given errors
+     * 
+     * @param array     $frame_options  The options for the frame to format
+     * @param bool   $type           The type of error to add
      */
-    public static function addErrorMessage( $id = '', $type = 'update' ) {
+    public static function add_error_message( array $frame_options = [], string $type = 'update' ): void {
         
         // An setting ID is required (the id of the option page)
-        if( ! $id ) {
+        if( ! $frame_options['id'] ) {
             return;
         }
 
+        $messages = [
+            'reset'     => isset($frame_options['messages']['reset']) ? $frame_options['messages']['reset'] : __('All settings are reset.', 'wpcf'),    
+            'restore'   => isset($frame_options['messages']['restore']) ? $frame_options['messages']['restore'] : __('Settings restored for this section.', 'wpcf'),    
+            'update'    => isset($frame_options['messages']['update']) ? $frame_options['messages']['update'] : __('Settings saved!', 'wpcf'),    
+            'import'    => isset($frame_options['messages']['import']) ? $frame_options['messages']['import'] : __('Settings Imported!', 'wpcf')  
+        ];
+
         switch( $type ) {
             case 'reset':
-                add_settings_error( $id, 'wp-custom-fields-notification', __('All settings are reset.', 'wp-custom-fields'), 'info' );
+                add_settings_error( $frame_options['id'], 'wp-custom-fields-notification', $messages['reset'], 'info' );
                 break;
             case 'restore':
-                add_settings_error( $id, 'wp-custom-fields-notification', __('Settings restored for this section.', 'wp-custom-fields'), 'info' );
+                add_settings_error( $frame_options['id'], 'wp-custom-fields-notification', $messages['restore'], 'info' );
                 break;  
             case 'update':
-                add_settings_error( $id, 'wp-custom-fields-notification', __('Settings saved!', 'wp-custom-fields'), 'success' );
+                add_settings_error( $frame_options['id'], 'wp-custom-fields-notification', $messages['update'], 'success' );
                 break;                               
             case 'import':  
-                add_settings_error( $id, 'wp-custom-fields-notification', __('Settings Imported!', 'wp-custom-fields'), 'info' );
+                add_settings_error( $frame_options['id'], 'wp-custom-fields-notification', $messages['import'], 'info' );
                 break;  
         }
 
@@ -46,17 +56,17 @@ trait Validate {
     /**
      * Formats the output by sanitizing and validating
      *
-     * @param array $frame   The frame to format
-     * @param array $input   The $_POST $input generated
-     * @param array $type    The type to format for, either options, user, post or term
+     * @param array $frame_options  The options for the frame to format
+     * @param array $input          The $_POST $input generated
+     * @param string $type           The type to format for, either options, user, post or term
      * 
      * @return array $output The validated and sanitized fields
      */
-    public static function format( $frame, $input, $type = '' ) {
+    public static function format( array $frame_options, array $input, string $type = '' ): array {
 
         // Validate our users before formating any data
         if( ! is_user_logged_in() ) {
-            return;
+            return [];
         }
 
         if( $type == 'options' && ! current_user_can('manage_options') ) {
@@ -76,23 +86,23 @@ trait Validate {
         }         
         
         // Checks in which tab we are
-        $currentTab = strip_tags( $input['wp_custom_fields_section_' . $frame['id']] );
+        $currentTab = strip_tags( $input['wp_custom_fields_section_' . $frame_options['id']] );
         
         // Sets the transient for the current section
-        set_transient('wp_custom_fields_current_section_' . $frame['id'], $currentTab, 10); 
+        set_transient('wp_custom_fields_current_section_' . $frame_options['id'], $currentTab, 10); 
         
         /**
          * Restore the fields for a current section
          */
-        if( isset($input[$frame['id'] . '_restore']) ) {
+        if( isset($input[$frame_options['id'] . '_restore']) ) {
                                           
-            foreach( $frame['sections'] as $section ) { 
+            foreach( $frame_options['sections'] as $section ) { 
                 
                 // Fields are just saved if the are not restored
                 if( $section['id'] !== $currentTab ) {
                     
                     foreach($section['fields'] as $field) {
-                        $output[$field['id']] = self::sanitizeFields( $input[$field['id']], $field );
+                        $output[$field['id']] = self::sanitize_fields( $input[$field['id']], $field );
                     } 
                     
                     continue;
@@ -110,7 +120,7 @@ trait Validate {
             
             // Add a notification for option pages
             if( $type == 'options' ) {
-                self::addErrorMessage( $frame['id'], 'restore' );
+                self::add_error_message( $frame_options, 'restore' );
             }
             
             return $output;
@@ -120,9 +130,9 @@ trait Validate {
         /**
          * Restore the complete section
          */
-        if( isset($input[$frame['id'] . '_reset']) ) {
+        if( isset($input[$frame_options['id'] . '_reset']) ) {
             
-            foreach($frame['sections'] as $section) {
+            foreach($frame_options['sections'] as $section) {
                 
                 foreach($section['fields'] as $field) {                
                     
@@ -134,7 +144,7 @@ trait Validate {
             }
             
             if( $type == 'options' ) {
-                self::addErrorMessage( $frame['id'], 'reset' );
+                self::add_error_message( $frame_options['id'], 'reset' );
             }
             
             return $output;
@@ -149,7 +159,7 @@ trait Validate {
             $output = unserialize( base64_decode($input['import_value']) );
             
             if( $type == 'options' ) {
-                self::addErrorMessage( $frame['id'], 'import' );
+                self::add_error_message( $frame_options, 'import' );
             }
             
             return $output;
@@ -159,7 +169,7 @@ trait Validate {
         /**
          * Default formatting of data
          */
-        foreach( $frame['sections'] as $section ) {
+        foreach( $frame_options['sections'] as $section ) {
 
             foreach( $section['fields'] as $key => $field ) { 
 
@@ -167,7 +177,7 @@ trait Validate {
                     $input[$field['id']] = '';
                 }
                 
-                $output[$field['id']] = self::sanitizeFields($input[$field['id']], $field);
+                $output[$field['id']] = self::sanitize_fields($input[$field['id']], $field);
 
             }
             
@@ -175,7 +185,7 @@ trait Validate {
         
         // Add settings errors for option page (the update notification)
         if( $type == 'options' ) {
-            self::addErrorMessage( $frame['id'], 'update' );
+            self::add_error_message( $frame_options, 'update' );
         }
         
         return $output;
@@ -185,22 +195,24 @@ trait Validate {
     /**
      * Sanitizes our fields and looks if we have a repeatable field
      *
-     * @param array     $input The input data for the field
-     * @param string    $field The field array     
+     * @param mixed    $input The input data for the field
+     * @param array    $field The field array    
+     * 
+     * @param mixed    The sanitized output for all inputs and matching fields 
      */
-    private static function sanitizeFields( $input, $field ) {
+    private static function sanitize_fields( $input, array $field ) {
         
         if( $field['type'] == 'repeatable' ) {
             
-            foreach( $input as $key => $groupValues ) {
+            foreach( $input as $key => $group_values ) {
             
                 foreach( $field['fields'] as $subfield ) {
-                    $return[$key][$subfield['id']] = self::sanitizeField( $groupValues[$subfield['id']], $subfield );
+                    $return[$key][$subfield['id']] = self::sanitize_field( $group_values[$subfield['id']], $subfield );
                 }
                 
             }
         } else {
-            $return = self::sanitizeField( $input, $field );
+            $return = self::sanitize_field( $input, $field );
         }
         
         return $return;
@@ -209,12 +221,11 @@ trait Validate {
     /**
      * Sanitizes input
      *
-     * @param array     $input The input data for the field
-     * @param string    $field The field array
-     *
-     * @todo Improve sanitization for borders and special types
+     * @param   mixed   $input  The input data for the field
+     * @param   array   $field  The field array
+     * @return  mixed   The sanized field
      */
-    private static function sanitizeField( $input, $field ) {
+    private static function sanitize_field( $input, array $field ) {
             
         $field_type     = $field['type'];
         $field_subtype  = isset($field['subtype']) ? $field['subtype'] : '';
@@ -435,10 +446,10 @@ trait Validate {
     /**
      * Returns the correct sanitization for any customizer fields
      * 
-     * @param   array $field        The field type;
-     * @return string $function     The built-in WordPress sanitization function
+     * @param   string $type        The field type;
+     * @return  string $function    The built-in WordPress sanitization function
      */
-    public static function sanitizeCustomizerField( $type = '' ) { 
+    public static function sanitize_customizer_field( string $type = '' ): string { 
         
         switch( $type ) {
             case 'hidden':
@@ -507,13 +518,13 @@ trait Validate {
      * @param array $required   The array with required configuration keys
      * @return WP_Error|true    True if we pass the test, a WP_Error if we fail
      */
-    public static function configurations( $options = [], $required = [] ) {
+    public static function configurations( array $options = [], array $required = [] ) {
 
         foreach( $required as $requirement ) {
             if( ! isset($options[$requirement]) ) {
                 return new WP_Error( 
                     'wrong', 
-                    sprintf( __('The configurations for one of your custom options are missing a required attribute: %s.', 'wp-custom-fields'), $requirement )
+                    sprintf( __('The configurations for one of your custom options are missing a required attribute: %s.', 'wpcf'), $requirement )
                 );    
             }
         }

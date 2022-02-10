@@ -40,7 +40,11 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_header',
                     'title'         => __('Header', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'header_fixed', 
+                        'header_headroom'
+                    ]                    
                 ],              
                 [
                     'default'       => '',
@@ -59,7 +63,13 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_pages',
                     'title'         => __('Pages', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'page_featured_image', 
+                        'page_featured_parallax',
+                        'page_featured_offset',
+                        'page_featured_scroll'
+                    ]                      
                 ],
                 [
                     'choices'       => [
@@ -97,7 +107,28 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_posts',
                     'title'         => __('Posts', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'post_featured_image', 
+                        'post_featured_parallax',
+                        'post_featured_offset',
+                        'post_featured_scroll',
+                        'post_author_position',
+                        'post_author_information',
+                        'post_date_position',
+                        'post_category_position',
+                        'post_comments_position',
+                        'post_tags_position',
+                        'post_rating_position',
+                        'post_introduction',
+                        'post_share_position',
+                        'post_share_title',
+                        'post_pagination',
+                        'post_pagination_previous',
+                        'post_pagination_next',
+                        'post_related',
+                        'post_related_title'
+                    ]    
                 ],
                 [
                     'choices'       => [
@@ -292,8 +323,30 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_post_archive',
                     'title'         => __('Post Archives', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'post_archive_title', 
+                        'post_archive_dynamic_title',
+                        'post_archive_author_title',
+                        'post_archive_search_title',
+                        'post_archive_description',
+                        'post_archive_categories',
+                        'post_archive_categories_text',
+                        'post_archive_style',
+                        'post_archive_title_image',
+                        'post_archive_author_position',
+                        'post_archive_date_position',
+                        'post_archive_category_position',
+                        'post_archive_comments_position',
+                        'post_archive_tags_position',
+                        'post_archive_rating_position',
+                        'post_archive_excerpt',
+                        'excerpt_length',
+                        'post_archive_read_more',
+                        'post_archive_nothing'
+                    ] 
                 ],
+                
                 [
                     'default'       => '',
                     'id'            => 'post_archive_title',
@@ -468,7 +521,19 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_projects',
                     'title'         => __('Projects', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'projects_images', 
+                        'projects_featured_offset',
+                        'projects_category',
+                        'projects_author',
+                        'projects_summary',
+                        'projects_pagination',
+                        'projects_pagination_previous',
+                        'projects_pagination_next',
+                        'projects_related',
+                        'projects_related_title'
+                    ]
                 ],
                 [
                     'choices'       => [
@@ -542,7 +607,19 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_projects_archive',
                     'title'         => __('Projects Archives', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'projects_archive_title', 
+                        'projects_archive_dynamic_title',
+                        'projects_archive_description',
+                        'projects_archive_categories',
+                        'projects_archive_categories_text',
+                        'projects_archive_details',
+                        'projects_archive_preview',
+                        'projects_archive_summary',
+                        'projects_archive_nothing',
+                        'projects_archive_url'
+                    ]
                 ],
                 [
                     'default'       => '',
@@ -613,7 +690,11 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_404',
                     'title'         => __('404 Page', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        '404_title', 
+                        '404_description'
+                    ]
                 ],
                 [
                     'default'       => __('404 Error', 'velocity'),
@@ -633,7 +714,10 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'layout_footer',
                     'title'         => __('Footer', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'footer_copyright'
+                    ]
                 ], 
                 [
                     'default'       => '©{date}',
@@ -654,7 +738,15 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'general_colors_heading',
                     'title'         => __('General Colors', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'body_font_color', 
+                        'body_heading_color',
+                        'body_link_color',
+                        'body_link_hover_color',
+                        'body_button_background_color',
+                        'body_button_color'
+                    ]
                 ], 
                 [
                     'default'       => '',
@@ -711,7 +803,19 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'header_colors_heading',
                     'title'         => __('Header Colors', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'header_background_color', 
+                        'header_link_color', 
+                        'header_link_hover_color', 
+                        'header_link_hover_background_color', 
+                        'header_transparent_link_color', 
+                        'header_transparent_link_hover_color', 
+                        'header_transparent_link_hover_background_color', 
+                        'header_hamburger_color', 
+                        'header_transparent_hamburger_color', 
+                        'header_submenu_color'
+                    ]
                 ],
                 [
                     'default'       => '',
@@ -797,7 +901,14 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'content_colors_heading',
                     'title'         => __('Content Colors', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'content_title_background_color', 
+                        'content_main_background_color', 
+                        'content_blockquotes_color', 
+                        'content_meta_color', 
+                        'content_footer_background_color'
+                    ]
                 ],
                 [
                     'default'       => '',
@@ -843,7 +954,11 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'project_colors_heading',
                     'title'         => __('Single Project Colors', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'project_slider_color', 
+                        'project_slider_button_color'
+                    ]
                 ],
                 [
                     'default'       => '',
@@ -865,7 +980,13 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'projects_colors_heading',
                     'title'         => __('Projects Grid Colors', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'projects_overlay_color', 
+                        'projects_overlay_text_color', 
+                        'projects_overlay_color_secondary', 
+                        'projects_overlay_color_tertiary'
+                    ]
                 ],
                 [
                     'default'       => '',
@@ -907,12 +1028,18 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'footer_colors_heading',
                     'title'         => __('Footer Colors', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'footer_background_color_unique', 
+                        'footer_font_color',
+                        'footer_link_color',
+                        'footer_link_hover_color'
+                    ]
                 ],
                 [
                     'default'       => '',
                     'selector'      => ['selector' => '.footer', 'property' => 'background-color'],
-                    'id'            => 'footer_background_color',
+                    'id'            => 'footer_background_color_unique',
                     'title'         => __('Footer Background Color', 'velocity'),
                     'transport'     => 'postMessage',
                     'type'          => 'colorpicker'
@@ -951,7 +1078,13 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'general_typography_heading',
                     'title'         => __('General Typography', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'body_typography', 
+                        'heading_typography', 
+                        'header_typography', 
+                        'footer_typography'
+                    ]
                 ],                
                 [
                     'default'       => '',
@@ -986,7 +1119,14 @@ $customizer = [
                     'default'       => '',
                     'id'            => 'content_typography_heading',
                     'title'         => __('Content Typography', 'velocity'),
-                    'type'          => 'heading'
+                    'type'          => 'heading',
+                    'choices'       => [
+                        'content_title_typography', 
+                        'content_subtitle_typography', 
+                        'content_main_typography', 
+                        'conent_meta_typography', 
+                        'content_blockquotes_typography'
+                    ]
                 ],
                 [
                     'default'       => '',

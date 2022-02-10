@@ -3,7 +3,7 @@
  * Converts setting values with a style attribute to inline styling on the frontend
  *
  * @todo Too much responsibility. Split up classes according to their responsibilities in the WP Customizer and normal front-end.
- * @todo Might merge $value and $properties into one variable in the formatField method
+ * @todo Might merge $value and $properties into one variable in the format_field method
  */
 namespace MakeitWorkPress\WP_Custom_Fields;
 
@@ -15,47 +15,57 @@ class Styling extends Base {
     
     /**
      * Contains our fields that have CSS selectors
+     * 
+     * @var array
+     * @access private
      */
     private $fields;
     
     /**
      * Contains an option frame, whether it is a customizer, options page or meta box frame
+     * 
+     * @var array
+     * @access private
      */
     private $frame;   
     
     /**
      * Contains our custom fonts
+     * 
+     * @var array
+     * @access private
      */
     private $fonts;        
     
     /**
      * Constructor
      */
-    public function initialize() {}
+    public function initialize(): void {}
     
     /**
      * Adds functions to WordPress hooks - is automatically performed at a new instance
      */
-    protected function registerHooks() {  
+    protected function register_hooks(): void {  
 
         $this->actions = [
-            ['save_post', 'saveFields', 20, 1],
-            ['updated_option', 'saveFields', 20, 1],
-            ['customize_save_after', 'saveFields', 20, 1],
-            ['wp_head', 'retrieveFields'],                  // Retrieve the fields
-            ['wp_head', 'outputCSS', 20],                   // Render the output
-            ['wp_enqueue_scripts', 'customFonts'],          // Enqueue fonts, if necessary
-            ['customize_preview_init', 'customizerJS']      // Enqueue JS for customizer, if necessary
+            ['save_post', 'save_fields', 20, 1],
+            ['updated_option', 'save_fields', 20, 1],
+            ['customize_save_after', 'save_fields', 20, 1],
+            ['wp_head', 'retrieve_fields'],                  // Retrieve the fields
+            ['wp_head', 'output_CSS', 20],                   // Render the output
+            ['wp_enqueue_scripts', 'custom_fonts'],          // Enqueue fonts, if necessary
+            ['customize_preview_init', 'customizer_JS']      // Enqueue JS for customizer, if necessary
         ];
 
     }
 
     /**
      * Retrieves all frames, converts them into fields with css properties and saves this array within the database
+     * 
      * @param mixed     $key    A certain key, id (which can be an option page id) or hooked argument, based upon the hook
      * @param string    $hook   A hook string, to manually trigger a certain save action from outside the hooks
      */
-    public function saveFields( $key, $hook = '' ) {
+    public function save_fields( $key, string $hook = '' ): void {
 
         // If we're saving fields, look what hook we're in
         $hook       = $hook ? $hook : current_filter();
@@ -90,7 +100,7 @@ class Styling extends Base {
         /**
          * Generates the fields with the correct css properties from all configurations
          */
-        $this->setFields( $hook, $key );
+        $this->set_fields( $hook, $key );
 
         // Do we have fields any fields at all?
         if( ! isset($this->fields) ) {
@@ -130,9 +140,9 @@ class Styling extends Base {
     /**
      * Examines the frames for CSS related suggestions and sets the correct fields
      * @param string    $hook   The hook by which the parent function was triggered. Accepts 'customize_save_after', 'updated_option' or 'save_post'
-     * @param mixed     $key    Possible post id, option key or WP Customizer object
+     * @param mixed     $id    Possible post id, option key or WP Customizer object
      */
-    private function setFields( $hook = '', $id = '' ) {
+    private function set_fields( string $hook = '', $id = '' ): void {
 
         // A hook is mandatory
         if( ! $hook ) {
@@ -187,14 +197,14 @@ class Styling extends Base {
                     }
 
                     // Save the id per group so we can retrieve the values later.
-                    $cssFields[$field['id']] = [
+                    $css_fields[$field['id']] = [
                         'selector'  => $field['selector'],
                         'type'      => $field['type']
                     ];
 
                     if( $hook == 'customize_save_after' ) {
-                        $cssFields[$field['id']]['group']       = $group['id'];
-                        $cssFields[$field['id']]['transport']   = isset($field['transport']) ? true : false;
+                        $css_fields[$field['id']]['group']       = $group['id'];
+                        $css_fields[$field['id']]['transport']   = isset($field['transport']) ? true : false;
                     }
 
                 }
@@ -204,7 +214,7 @@ class Styling extends Base {
             /**
              * Now, retrieve our values from the database, but ony if we have fieldswith a selector specified
              */
-            if( ! isset($cssFields) ) {
+            if( ! isset($css_fields) ) {
                 continue;
             }
 
@@ -256,18 +266,18 @@ class Styling extends Base {
              * Loop again through our fields and see if we have values. 
              * If similar field ids exist in the same frame, only the first one can be used.
              */
-            foreach( $cssFields as $fieldID => $field ) {
+            foreach( $css_fields as $field_ID => $field ) {
 
-                if( isset( $values[$fieldID] ) && $values[$fieldID] ) {
-                    $field['values'] = $values[$fieldID];
+                if( isset( $values[$field_ID] ) && $values[$field_ID] ) {
+                    $field['values'] = $values[$field_ID];
                 }
                 
                 // Because we loop through all our frames looking for values, we might add the same field twice. 
-                if( isset($this->fields[$fieldID]) ) {
+                if( isset($this->fields[$field_ID]) ) {
                     continue;
                 }
 
-                $this->fields[$fieldID] = $field;
+                $this->fields[$field_ID] = $field;
 
             }                 
             
@@ -279,9 +289,9 @@ class Styling extends Base {
         }
         
         // Formats the fields, an also strips unnecessary keys (at the given point)
-        foreach( $this->fields as $fieldID => $field ) {     
+        foreach( $this->fields as $field_ID => $field ) {     
             
-            $this->formatField($field, $fieldID);
+            $this->format_field($field, $field_ID);
 
         }        
  
@@ -292,9 +302,9 @@ class Styling extends Base {
      * Formats the css based upon a fields type values
      *
      * @param array    $field   The field type, including its values
-     * @param string   $fieldID The string for the field id
+     * @param string   $field_ID The string for the field id
      */
-    private function formatField( $field, $fieldID ) {
+    private function format_field( $field, $field_ID ): void {
         
         // Default values;
         $uniques            = [];
@@ -543,15 +553,15 @@ class Styling extends Base {
         }
 
         // Save the final properties to the fields array. This is then later processed to output css.
-        $this->fields[$fieldID]['properties'] = $uniques;
+        $this->fields[$field_ID]['properties'] = $uniques;
         
     }    
 
     /**
      * Retrieves our css fields and properties from the database.
-     * Also used in later functions (customFonts and customizerJS) to load specific assets.
+     * Also used in later functions (custom_fonts and customizer_JS) to load specific assets.
      */
-    public function retrieveFields() {
+    public function retrieve_fields(): void {
 
         /**
          * Load our customizer fields manually if we're previewing. 
@@ -561,7 +571,7 @@ class Styling extends Base {
          * Otherwise, we just load the values from the database
          */
         if( is_customize_preview() ) {
-            $this->setFields('customize_save_after');
+            $this->set_fields('customize_save_after');
             $this->fields       = isset($this->fields) && is_array($this->fields) ? $this->fields : [];
         } else {
             $customizerValues   = maybe_unserialize( get_option('wpcf_customizer_css_fields') );
@@ -596,7 +606,7 @@ class Styling extends Base {
     /**
      * Retrieve values if we have css fields for them.
      */
-    public function outputCSS() {
+    public function output_CSS(): void {
 
         // We should have fields with styles
         if( ! isset($this->fields) || ! $this->fields ) {
@@ -662,7 +672,7 @@ class Styling extends Base {
     /**
      * Determine the enqueueing of our custom fonts
      */
-    public function customFonts() {
+    public function custom_fonts(): void {
         
         // We should have fields with styles
         if( ! isset($this->fields) || ! $this->fields ) {
@@ -753,7 +763,7 @@ class Styling extends Base {
     /**
      * Custom Javascript for Transported fields. For now, only works for fields with single values. But is quite awesome nevertheless. 
      */
-    public function customizerJS() {
+    public function customizer_JS(): void {
         
         // Are we in the customizer preview?
         if( ! is_customize_preview() ) {

@@ -19,7 +19,7 @@ class Typography implements Field {
      * @param   array $field The array with field attributes
      * @return  void
      */   
-    public static function render( $field = [] ) {
+    public static function render( array $field = [] ): void {
         
         // Load the select2 script, but only if not yet enqueued
         if( apply_filters('wp_custom_fields_select_field_js', true) && ! wp_script_is('select2-js', 'enqueued') )
@@ -148,7 +148,7 @@ class Typography implements Field {
      *
      * @return array $configurations The configurations
      */      
-    public static function configurations() {
+    public static function configurations(): array {
 
         $configurations = [
             'type'          => 'typography',
@@ -158,16 +158,16 @@ class Typography implements Field {
             ],  
             // The default labels for the typography field          
             'labels'        => [
-                'normal'    => __('Load all normal font-weights for this font.', 'wp-custom-fields'),
-                'italic'    => __('Load all italic font-weights for this font.', 'wp-custom-fields'),
-                'select'    => __('Select a font', 'wp-custom-fields'),
-                'weights'   => __('Font-Weight', 'wp-custom-fields')
+                'normal'    => __('Load all normal font-weights for this font.', 'wpcf'),
+                'italic'    => __('Load all italic font-weights for this font.', 'wpcf'),
+                'select'    => __('Select a font', 'wpcf'),
+                'weights'   => __('Font-Weight', 'wpcf')
             ],
             // The default properties for the typography field
             'properties'    => [
                 'dimensions'    => [
-                    'size'          => __('Font-Size', 'wp-custom-fields'), 
-                    'line_spacing'  => __('Line-Height', 'wp-custom-fields'), 
+                    'size'          => __('Font-Size', 'wpcf'), 
+                    'line_spacing'  => __('Line-Height', 'wpcf'), 
                 ],
                 'fonts'         => Framework::$fonts,
                 'styles'        => [
@@ -185,15 +185,15 @@ class Typography implements Field {
                     ],
                 ],
                 'weights'       => [ 
-                    100 => __('100 (Thin)', 'wp-custom-fields'), 
-                    200 => __('200 (Extra Light)', 'wp-custom-fields'), 
-                    300 => __('300 (Light)', 'wp-custom-fields'), 
-                    400 => __('400 (Normal)', 'wp-custom-fields'), 
-                    500 => __('500 (Medium)', 'wp-custom-fields'), 
-                    600 => __('600 (Semi Bold)', 'wp-custom-fields'), 
-                    700 => __('700 (Bold)', 'wp-custom-fields'), 
-                    800 => __('800 (Extra Bold)', 'wp-custom-fields'), 
-                    900 => __('900 (Black)', 'wp-custom-fields') 
+                    100 => __('100 (Thin)', 'wpcf'), 
+                    200 => __('200 (Extra Light)', 'wpcf'), 
+                    300 => __('300 (Light)', 'wpcf'), 
+                    400 => __('400 (Normal)', 'wpcf'), 
+                    500 => __('500 (Medium)', 'wpcf'), 
+                    600 => __('600 (Semi Bold)', 'wpcf'), 
+                    700 => __('700 (Bold)', 'wpcf'), 
+                    800 => __('800 (Extra Bold)', 'wpcf'), 
+                    900 => __('900 (Black)', 'wpcf') 
                 ]
             ],
             // Setting keys, which are used within the customizer setup to create settings

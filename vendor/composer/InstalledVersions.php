@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a3ee71f3e4d65acc3ea1e1f411c6011f9ca59499',
+    'reference' => 'fa3ec9c78875c94b653ad0801fa9f2dccd248c05',
     'name' => 'makeitworkpress/velocity',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a3ee71f3e4d65acc3ea1e1f411c6011f9ca59499',
+      'reference' => 'fa3ec9c78875c94b653ad0801fa9f2dccd248c05',
     ),
     'makeitworkpress/wp-config' => 
     array (
@@ -54,7 +54,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '378243f8819d67afa21e3c068932f1e4836ec8e7',
+      'reference' => '336aa79a7db39ee4b000cdd0f585540431408b21',
     ),
     'makeitworkpress/wp-custom-fields' => 
     array (
@@ -64,7 +64,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '7067e292bc10ba4e52ab13c9651706296fb8f989',
+      'reference' => '3305e30338014cfc3d5007e665753d83094febc9',
     ),
     'makeitworkpress/wp-enqueue' => 
     array (
@@ -74,7 +74,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '0492b6a2646fd2c1aa004d6327f1912b6a3bd33c',
+      'reference' => '950df7dee5dde04b15fbb8a0fb4ecc6cc193a801',
     ),
     'makeitworkpress/wp-optimize' => 
     array (
@@ -84,7 +84,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '4e2a2c191208885e205af714a8956bfe9a932106',
+      'reference' => 'c998ffc6240adf1f3b8309babd7cfb345bd3e677',
     ),
     'makeitworkpress/wp-register' => 
     array (
@@ -94,7 +94,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'd56d09ce56d8ee288d32d45c5e9ebaf7a73b3522',
+      'reference' => '800fe6744f63587089f939e55ba1000e5d4785b2',
     ),
     'makeitworkpress/wp-updater' => 
     array (
@@ -104,7 +104,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'ba578b4953036a41134734d86407a0d993bb8727',
+      'reference' => 'eafa352d1e90ccd85035ab0476d2720354ca8a5c',
     ),
   ),
 );
