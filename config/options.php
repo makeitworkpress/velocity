@@ -81,8 +81,8 @@ $options = [
                         'disable_WP_version'        => ['label' => __('Remove the WordPress Version from Front-end', 'velocity')],            
                         'disable_XMLRPC'            => ['label' => __('Disable XMLRPC', 'velocity')],
                         'limit_comments_JS'         => ['label' => __('Enqueue Comment JavaScript only on Comments', 'velocity')],
+                        'remove_comments_style'     => ['label' => __('Remove Additional Styling for Comments', 'velocity')],
                         'limit_revisions'           => ['label' => __('Limit Post Revisions to 5', 'velocity')],
-                        'remove_comments_style'     => ['label' => __('Remove Additional Styling for Comments', 'velocity')]
                     ],
                     'title'         => __('Theme Optimalizations', 'velocity'),
                     'type'          => 'checkbox'
