@@ -23,7 +23,7 @@ var init = function() {
 
 // Boot WP_Custom_Fields on Document Ready
 jQuery(document).ready(init);
-},{"./fields":2,"./modules/repeatable":11,"./modules/tabs":14,"./options":15}],2:[function(require,module,exports){
+},{"./fields":2,"./modules/repeatable":12,"./modules/tabs":15,"./options":16}],2:[function(require,module,exports){
 /**
  * Executes Field modules
  * @todo Convert in a loop
@@ -33,6 +33,7 @@ var code = require('./modules/code');
 var colorpicker = require('./modules/colorpicker');
 var datepicker = require('./modules/datepicker');
 var heading = require('./modules/heading');
+var icons = require('./modules/icons');
 var location = require('./modules/location');
 var media = require('./modules/media');
 var select = require('./modules/select');
@@ -48,6 +49,7 @@ module.exports.init = function(framework) {
     code.init(framework);
     datepicker.init(framework);
     heading.init(framework);
+    icons.init(framework);
     location.init(framework);
     media.init(framework);
     select.init(framework);   
@@ -57,7 +59,7 @@ module.exports.init = function(framework) {
     dependency.init(framework); 
     
 };
-},{"./modules/button":3,"./modules/code":4,"./modules/colorpicker":5,"./modules/datepicker":6,"./modules/dependency":7,"./modules/heading":8,"./modules/location":9,"./modules/media":10,"./modules/select":12,"./modules/slider":13}],3:[function(require,module,exports){
+},{"./modules/button":3,"./modules/code":4,"./modules/colorpicker":5,"./modules/datepicker":6,"./modules/dependency":7,"./modules/heading":8,"./modules/icons":9,"./modules/location":10,"./modules/media":11,"./modules/select":13,"./modules/slider":14}],3:[function(require,module,exports){
 /**
  * Our button module, accepting custom ajax actions
  */
@@ -176,8 +178,8 @@ module.exports.init = function(framework) {
             propertyValue = jQuery(datePicker).data(attribute);
 
             if( propertyValue ) {
-                propertyName = value.replace( /-([a-z])/g, function (g) { return g[1].toUpperCase(); } );
-                config[propertyName] = propertyValue;
+                propertyName            = attribute.replace( /-([a-z])/g, function (g) { return g[1].toUpperCase(); } );
+                config[propertyName]    = propertyValue;
             }
 
         });
@@ -187,7 +189,7 @@ module.exports.init = function(framework) {
 
     }
 
-}
+};
 },{}],7:[function(require,module,exports){
 /**
  * Our button module, accepting custom ajax actions
@@ -274,7 +276,6 @@ module.exports = {
  */
 module.exports.init = function(framework) {
 
-
     jQuery('.wpcf-heading-collapsible').each( function() {
 
         var collapsibleSections = jQuery(this).data('sections');
@@ -309,6 +310,41 @@ module.exports.init = function(framework) {
 }
 },{}],9:[function(require,module,exports){
 /**
+ * Our heading module, supporting collapsible sections within the customizer
+ */
+module.exports.init = function(framework) {
+
+    var searchFields = jQuery(framework).find('.wpcf-icons-search');
+    var iconNodes = {};
+
+    jQuery(searchFields).on('input', function(event) {
+
+        var fieldId = event.currentTarget.closest('.wpcf-field').dataset.id;
+        var search = event.currentTarget.value;
+
+        if( typeof iconNodes[fieldId] === 'undefined' ) {
+            iconNodes[fieldId] = jQuery(event.currentTarget).closest('.wpcf-field-input').find('.wpcf-icon-list li');
+        }
+
+        for( var icon of iconNodes[fieldId] ) {
+            // Reset visibility
+            if( ! search ) {
+                icon.classList.remove('hidden');
+                continue;
+            }
+
+            // Hide non matching icons
+            if( icon.dataset.icon.includes(search) ) {
+                icon.classList.remove('hidden');
+            } else {
+                icon.classList.add('hidden');
+            }
+        }
+    });
+    
+}
+},{}],10:[function(require,module,exports){
+/**
  * Our location field
  */
 module.exports.init = function(framework) {
@@ -319,8 +355,10 @@ module.exports.init = function(framework) {
             latitude = jQuery('.latitude', this),
             longitude = jQuery('.longitude', this),
             city = jQuery('.city', this),
+            country = jQuery('.country', this),
             zip = jQuery('.postal_code', this),
             street = jQuery('.street', this),
+            state = jQuery('.state', this),
             number = jQuery('.number', this),
             latLng = new google.maps.LatLng(52.2129918, 5.2793703),
             zoom = 7;            
@@ -356,8 +394,9 @@ module.exports.init = function(framework) {
         autocomplete.bindTo('bounds', map);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            var place = autocomplete.getPlace(),
-                components = place.address_components;
+
+            var place   	= autocomplete.getPlace(),
+                components  = place.address_components;
 
             if (place.geometry.viewport) {
                 map.fitBounds(place.geometry.viewport);
@@ -370,6 +409,7 @@ module.exports.init = function(framework) {
             latitude.val(place.geometry.location.lat());
             longitude.val(place.geometry.location.lng());
 
+            // Fill in our components
             if (components) {
                 for (var i = 0; i < components.length; i++) {
                     var component = components[i],
@@ -383,6 +423,10 @@ module.exports.init = function(framework) {
                         city.val(component.long_name);
                     } else if (types.indexOf('postal_code') != -1) {
                         zip.val(component.long_name);
+                    } else if (types.indexOf('administrative_area_level_1') != -1) {
+                        state.val(component.long_name);
+                    } else if (types.indexOf('country') != -1) {
+                        country.val(component.long_name);
                     }
                 }
             }
@@ -390,8 +434,8 @@ module.exports.init = function(framework) {
         }); 
 
     });  
-}
-},{}],10:[function(require,module,exports){
+};
+},{}],11:[function(require,module,exports){
 /**
  * Our jquery UI slider
  */
@@ -459,7 +503,7 @@ module.exports.init = function(framework) {
                     attachment_ids += attachment.id + ',';
 
                     if( attachment.type === 'image') {
-                        src = attachment.sizes.thumbnail.url;
+                        src = typeof(attachment.sizes.thumbnail) !== 'undefined' ? attachment.sizes.thumbnail.url : attachment.sizes.full.url;
                     } else {
                         src = attachment.icon;
                     }
@@ -527,12 +571,13 @@ module.exports.init = function(framework) {
     });
     
 };
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * Our repeatable fields module
  * @todo Rewrite this in a more efficient manner.
  */
 var fields = require('./../fields');
+var datepicker = require('./datepicker');
 
 module.exports.init = function(framework) {
 
@@ -543,9 +588,9 @@ module.exports.init = function(framework) {
         placeholder: 'wpcf-highlight',
         update: function( event, ui ) { 
             jQuery(this).find('.wpcf-repeatable-group').each( function(index, node) {
-                jQuery(node).html( function(n, node) {
-                    return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
-                });
+                // jQuery(node).html( function(n, node) {
+                //     return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
+                // });
             });
         }
     });
@@ -561,8 +606,8 @@ module.exports.init = function(framework) {
             
         // Destroy our select2 instances, if it is defined of course
         if( typeof jQuery.fn.select2 !== 'undefined' && jQuery.fn.select2 ) {
-            jQuery('.wpcf-select').select2('destroy');
-        }
+            jQuery(group).find('.wpcf-select-advanced').select2('destroy');
+        }     
 
         // Destroy current codemirror instances
         jQuery(framework).find('.wpcf-code-editor-value').each(function (index, node) {
@@ -573,7 +618,21 @@ module.exports.init = function(framework) {
                 codeNodes.push(node);
             }
 
-        });       
+        });
+        
+        // Destroy our datepicker instances before re-adding
+        var datepickers = jQuery(group).find('.wpcf-datepicker');
+
+        if( datepickers.length > 0 ) {
+
+            jQuery(datepickers).each( function() {
+                if( typeof this._flatpickr !== 'undefined' ) {
+                    this._flatpickr.destroy();    
+                }
+            });
+
+        }
+       
 
         // Build our newgroup
         var newGroup = group.clone(true, true);
@@ -581,19 +640,24 @@ module.exports.init = function(framework) {
         // Clone the current group and replace the current keys by new ones. The length is always one bigger as the current array, so it matches the key for the new group.
         newGroup.html(function (i, oldGroup) {
             return oldGroup.replace(/\[\d+\]/g, '[' + length + ']').replace(/\_\d+\_/g, '_' + length + '_');
-        }); 
+        });             
 
         // Empty inputs in our  new group
         newGroup.find('input').val('');
         newGroup.find('textarea').val('');
         newGroup.find('option').attr('selected', false); 
-        newGroup.find('.wpcf-single-media').not('.empty').remove(); // Removes the media from the cloned group   
+        newGroup.find('.wpcf-single-media').not('.empty').remove(); // Removes the media from the cloned group            
                 
         // Finally, insert the newGroup after the current group
-        group.after(newGroup);
+        group.after(newGroup);         
 
-        // Redraw the fields within the group
+        // Redraw all the fields within the group
         fields.init(newGroup);  
+
+        // Reinit old datepicker groups
+        if( datepickers.length > 0 ) {
+            datepicker.init(group);
+        }
         
         // Reinitialize old codemirror groups
         codeNodes.forEach( function(node) {
@@ -624,11 +688,8 @@ module.exports.init = function(framework) {
 
     /**
      * Remove the current group
-     * @todo Make this dry - a lot of overlap with some earlier functions
      */
     jQuery(document).on('click', '.wpcf-repeatable-remove-group', function(e) {
-
-        console.log(e);
 
         e.preventDefault();
         var groupLength = jQuery(this).closest('.wpcf-repeatable-container').find('.wpcf-repeatable-group').length,
@@ -645,14 +706,6 @@ module.exports.init = function(framework) {
 
         setTimeout( function() {
             group.remove();
-
-            // Update the numbering of items
-            groupContainer.find('.wpcf-repeatable-group').each( function(index, node) {
-                jQuery(node).html( function(n, node) {
-                    return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
-                });
-            });
-
         }, 500);
 
     });    
@@ -670,7 +723,7 @@ module.exports.init = function(framework) {
     });
     
 };
-},{"./../fields":2}],12:[function(require,module,exports){
+},{"./../fields":2,"./datepicker":6}],13:[function(require,module,exports){
 /**
  * Our colorpicker module
  */
@@ -680,7 +733,7 @@ module.exports.init = function(framework) {
     if( typeof jQuery.fn.select2 !== 'undefined' && jQuery.fn.select2 ) {
        
         // Regular selects
-        jQuery('.wpcf-select').select2({});
+        jQuery('.wpcf-select-advanced').select2({});
         
         // Typography selects
         jQuery('.wpcf-typography-fonts').select2({
@@ -707,7 +760,7 @@ var formatState = function(state) {
     return newState; 
     
 };
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * Our jquery UI slider
  */
@@ -736,7 +789,7 @@ module.exports.init = function(framework) {
     });
     
 };
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports.init = function() {
     
     // Click handler for our tabs
@@ -762,7 +815,7 @@ module.exports.init = function() {
     });
  
 }
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * Functions for option pages
  */

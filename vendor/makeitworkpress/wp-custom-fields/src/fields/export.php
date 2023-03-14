@@ -18,7 +18,7 @@ class Export implements Field {
      * @param   array $field The array with field attributes data-alpha
      * @return  void
      */      
-    public static function render( $field = [] ) {
+    public static function render( array $field = [] ): void {
         
         // Check before proceeding
         if( ! isset($field['key']) || ! isset($field['context']) || ! is_user_logged_in() ) {
@@ -91,14 +91,14 @@ class Export implements Field {
      *
      * @return array $configurations The configurations
      */     
-    public static function configurations() {
+    public static function configurations(): array {
 
         $configurations = [
             'type'      => 'export',
             'defaults'  => '',
             'labels'    => [
-                'button'    => __('Import', 'wp-custom-fields'),
-                'label'     => __('The Current Settings. Replace these with a different encoded string to import new settings.', 'wp-custom-fields')
+                'button'    => __('Import', 'wpcf'),
+                'label'     => __('The Current Settings. Replace these with a different encoded string to import new settings.', 'wpcf')
             ]
         ];
             

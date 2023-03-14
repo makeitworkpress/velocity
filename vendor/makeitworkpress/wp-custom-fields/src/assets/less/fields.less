@@ -11,6 +11,7 @@
 @import 'fields/dimensions.less';
 @import 'fields/heading.less';
 @import 'fields/icons.less';
+@import 'fields/location.less';
 @import 'fields/media.less';
 @import 'fields/radio.less';
 @import 'fields/repeatable.less';
@@ -30,7 +31,7 @@
 
 .wpcf-field {
     box-sizing: border-box;
-    padding: 20px 0;
+    padding-bottom: @grid-space*0.75;
     &.field-divider, &.field-heading {
         border: none;
         padding: 0;
@@ -99,7 +100,7 @@
 
 .wpcf-icon-list {
     overflow: hidden;
-    margin: 1px 1px @grid-space/2 1px;
+    margin: 1px 1px @grid-space*0.5 1px;
     li {
         border: 1px solid @wp-btnborder;
         border-radius: @wp-btnradius;

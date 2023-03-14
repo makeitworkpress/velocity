@@ -1,31 +1,56 @@
-<?php
-/**
- * Contains the major functions for this theme
- */
-defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
-
+<?php 
 /**
  * Registers the autoloading for theme classes
  */
-spl_autoload_register( function($classname) {
-
+spl_autoload_register( function($class_name) {
     
-    $class      = str_replace( '\\', DIRECTORY_SEPARATOR, str_replace( '_', '-', strtolower($classname) ) );
-    $classes    = dirname(__FILE__) .  DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR .  $class . '.php';
+    $called_class       = str_replace( '\\', '/', str_replace( '_', '-', $class_name ) );
+    $theme_dir          = get_template_directory() . '/';
     
-    $vendor     = str_replace( 'makeitworkpress' . DIRECTORY_SEPARATOR, '', $class );
-    $vendor     = 'makeitworkpress' . DIRECTORY_SEPARATOR . preg_replace( '/\//', '/src/', $vendor, 1 ); // Replace the first slash for the src folder
-    $vendors    = dirname(__FILE__) .  DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . $vendor . '.php';
+    // Require main parent classes
+    $class_names        = explode('/', $called_class);
+    $final_class        = array_pop($class_names);
+    $class_rel_path     = $class_names ? implode('/', $class_names) . '/class-' . $final_class : 'class-' . $final_class;
+    $theme_class_file   = $theme_dir . 'classes/' . strtolower( $class_rel_path ) . '.php';
 
-    if( file_exists($classes) ) {
-        require_once( $classes );
-    } elseif( file_exists($vendors) ) {
-        require_once( $vendors );    
+    if( file_exists( $theme_class_file ) ) {
+        require_once( $theme_class_file );
+        return;
+    } 
+
+    // Child themes with WordPress class naming
+    $child_class_file   = get_stylesheet_directory() . '/classes/' . strtolower($class_rel_path) . '.php';
+    
+    if( file_exists($child_class_file) ) {
+        require_once( $child_class_file );
+        return;
+    } 
+    
+    // Child themes not using the WordPress class naming ( using a simple class- replace; namespaces in child themes should not have Class_ )
+    $child_class_file   = get_stylesheet_directory() . '/classes/' . strtolower( str_replace('class-', '', $class_rel_path) ) . '.php';
+    
+    if( file_exists($child_class_file) ) {
+        require_once( $child_class_file );
+        return;
+    }  
+        
+    // Require Vendor (composer) classes
+    if( ! isset($class_names[0]) || $class_names[0] !== 'MakeitWorkPress' || ! isset($class_names[1]) ) {
+        return;
+    }
+
+    array_splice($class_names, 2, 0, 'src');
+    $class_names[0] = strtolower($class_names[0]);
+    $class_names[1] = strtolower($class_names[1]);
+    $vendor_class_file  = $theme_dir . 'vendor/' . implode('/', $class_names) . '/' . $final_class . '.php';
+
+    if( file_exists($vendor_class_file) ) {
+        require_once( $vendor_class_file );    
     }
    
 } );
 
 /**
- * Boot our theme
+ * Boot our theme.
  */
 $theme = Velocity::instance();

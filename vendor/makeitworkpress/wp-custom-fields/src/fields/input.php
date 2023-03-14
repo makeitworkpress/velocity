@@ -18,10 +18,10 @@ class Input implements Field {
      * @param   array $field The array with field attributes data-alpha
      * @return  void
      */       
-    public static function render( $field = [] ) {
+    public static function render( array $field = [] ): void {
         
         $attributes     = '';
-        $class          = isset($field['class']) && $field['class'] ? esc_attr($field['class']) : 'regular-text';
+        $class          = isset($field['style']) && $field['style'] ? esc_attr($field['style']) : 'regular-text';
         $id             = esc_attr($field['id']);
         $name           = esc_attr($field['name']);     
         $placeholder    = isset($field['placeholder']) && $field['placeholder'] ? ' placeholder="' . esc_attr($field['placeholder']) . '"' : '';
@@ -35,7 +35,7 @@ class Input implements Field {
         }
 
         // Our definite field class
-        $class = $type == 'number' && ! isset($field['class']) ? 'small-text' : $class; ?>
+        $class = $type == 'number' && ! isset($field['style']) ? 'small-text' : $class; ?>
 
             <input class="<?php echo $class; ?>" id="<?php echo $id; ?>" name="<?php echo $name; ?>" type="<?php echo $type; ?>" value="<?php echo $value; ?>" <?php echo $placeholder . $attributes; ?> />    
         
@@ -47,7 +47,7 @@ class Input implements Field {
      *
      * @return array $configurations The configurations
      */      
-    public static function configurations() {
+    public static function configurations(): array {
         
         $configurations = [
             'type'      => 'input',

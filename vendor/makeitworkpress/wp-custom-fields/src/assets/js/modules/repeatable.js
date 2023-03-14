@@ -3,6 +3,7 @@
  * @todo Rewrite this in a more efficient manner.
  */
 var fields = require('./../fields');
+var datepicker = require('./datepicker');
 
 module.exports.init = function(framework) {
 
@@ -13,9 +14,9 @@ module.exports.init = function(framework) {
         placeholder: 'wpcf-highlight',
         update: function( event, ui ) { 
             jQuery(this).find('.wpcf-repeatable-group').each( function(index, node) {
-                jQuery(node).html( function(n, node) {
-                    return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
-                });
+                // jQuery(node).html( function(n, node) {
+                //     return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
+                // });
             });
         }
     });
@@ -31,8 +32,8 @@ module.exports.init = function(framework) {
             
         // Destroy our select2 instances, if it is defined of course
         if( typeof jQuery.fn.select2 !== 'undefined' && jQuery.fn.select2 ) {
-            jQuery('.wpcf-select').select2('destroy');
-        }
+            jQuery(group).find('.wpcf-select-advanced').select2('destroy');
+        }     
 
         // Destroy current codemirror instances
         jQuery(framework).find('.wpcf-code-editor-value').each(function (index, node) {
@@ -43,7 +44,21 @@ module.exports.init = function(framework) {
                 codeNodes.push(node);
             }
 
-        });       
+        });
+        
+        // Destroy our datepicker instances before re-adding
+        var datepickers = jQuery(group).find('.wpcf-datepicker');
+
+        if( datepickers.length > 0 ) {
+
+            jQuery(datepickers).each( function() {
+                if( typeof this._flatpickr !== 'undefined' ) {
+                    this._flatpickr.destroy();    
+                }
+            });
+
+        }
+       
 
         // Build our newgroup
         var newGroup = group.clone(true, true);
@@ -51,19 +66,24 @@ module.exports.init = function(framework) {
         // Clone the current group and replace the current keys by new ones. The length is always one bigger as the current array, so it matches the key for the new group.
         newGroup.html(function (i, oldGroup) {
             return oldGroup.replace(/\[\d+\]/g, '[' + length + ']').replace(/\_\d+\_/g, '_' + length + '_');
-        }); 
+        });             
 
         // Empty inputs in our  new group
         newGroup.find('input').val('');
         newGroup.find('textarea').val('');
         newGroup.find('option').attr('selected', false); 
-        newGroup.find('.wpcf-single-media').not('.empty').remove(); // Removes the media from the cloned group   
+        newGroup.find('.wpcf-single-media').not('.empty').remove(); // Removes the media from the cloned group            
                 
         // Finally, insert the newGroup after the current group
-        group.after(newGroup);
+        group.after(newGroup);         
 
-        // Redraw the fields within the group
+        // Redraw all the fields within the group
         fields.init(newGroup);  
+
+        // Reinit old datepicker groups
+        if( datepickers.length > 0 ) {
+            datepicker.init(group);
+        }
         
         // Reinitialize old codemirror groups
         codeNodes.forEach( function(node) {
@@ -94,11 +114,8 @@ module.exports.init = function(framework) {
 
     /**
      * Remove the current group
-     * @todo Make this dry - a lot of overlap with some earlier functions
      */
     jQuery(document).on('click', '.wpcf-repeatable-remove-group', function(e) {
-
-        console.log(e);
 
         e.preventDefault();
         var groupLength = jQuery(this).closest('.wpcf-repeatable-container').find('.wpcf-repeatable-group').length,
@@ -115,14 +132,6 @@ module.exports.init = function(framework) {
 
         setTimeout( function() {
             group.remove();
-
-            // Update the numbering of items
-            groupContainer.find('.wpcf-repeatable-group').each( function(index, node) {
-                jQuery(node).html( function(n, node) {
-                    return node.replace(/\[\d+\]/g, '[' + index + ']').replace(/\_\d+\_/g, '_' + index + '_');
-                });
-            });
-
         }, 500);
 
     });    

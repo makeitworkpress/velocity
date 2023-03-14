@@ -18,7 +18,7 @@ class Dimensions implements Field {
      * @param   array $field The array with field attributes data-alpha
      * @return  void
      */     
-    public static function render( $field = [] ) {
+    public static function render( array $field = [] ): void {
         
         // Basic Variables
         $configurations = self::configurations();
@@ -68,17 +68,17 @@ class Dimensions implements Field {
      *
      * @return array $configurations The configurations
      */      
-    public static function configurations() {
+    public static function configurations(): array {
         
         $configurations = [
             'type'          => 'dimensions',
             'defaults'      => [],
             'properties'    => [
                 'sides' => [
-                    'top'       => __('Top', 'wp-custom-fields'), 
-                    'right'     => __('Right', 'wp-custom-fields'), 
-                    'bottom'    => __('Bottom', 'wp-custom-fields'), 
-                    'left'      => __('Left', 'wp-custom-fields')      
+                    'top'       => __('Top', 'wpcf'), 
+                    'right'     => __('Right', 'wpcf'), 
+                    'bottom'    => __('Bottom', 'wpcf'), 
+                    'left'      => __('Left', 'wpcf')      
                 ]
             ]
         ];

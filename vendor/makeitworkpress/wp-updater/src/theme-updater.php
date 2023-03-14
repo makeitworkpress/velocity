@@ -11,6 +11,8 @@ class Theme_Updater extends Updater {
     
     /**
      * Contains the information regarding the theme
+     * 
+     * @var object
      * @access protected
      */
     protected $theme;
@@ -20,13 +22,11 @@ class Theme_Updater extends Updater {
      *
      * @param array $params The configuration parameters.
      */
-    protected function initialize() {
+    protected function initialize(): void {
         
         $this->theme    = wp_get_theme( basename(get_template_directory()) );
         $this->slug     = sanitize_title($this->theme->stylesheet);
-        $this->version  = $this->theme->version;
-        
-        add_filter( 'site_transient_update_themes', array($this, 'checkUpdate') );
+        $this->version  = $this->theme->version;  // Current version of the theme
         
     }
     
