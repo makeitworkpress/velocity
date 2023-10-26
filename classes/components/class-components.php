@@ -45,8 +45,7 @@ abstract class Components {
     final public function __construct( $args = [] ) {    
         
         // Retrieve our class name, which is also used to load the template
-        $child              = new ReflectionClass($this);
-        $this->component    = basename( $child->getFileName() );
+        $this->component    = strtolower( (new ReflectionClass($this))->getShortName() ) . '.php';
 
         // Initialize a component with the default properties. This function should just populate $defaults in child components.
         $this->init(); 
