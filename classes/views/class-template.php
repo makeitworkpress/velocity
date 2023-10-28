@@ -28,9 +28,7 @@ abstract class Template {
     public function __construct() {
 
         // What are we looking at
-        $child            = new ReflectionClass($this);
-        $template         = str_replace('.php', '', basename($child->getFileName()) );        
-
+        $template         = strtolower( (new ReflectionClass($this))->getShortName() ) ;        
 
         /**
          * Load some data into our templates

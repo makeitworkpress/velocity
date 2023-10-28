@@ -50,8 +50,6 @@ class Title extends Components {
          */
         if( is_archive() || is_home() ) {
 
-   
-
             global $wp_query;
 
             /**
