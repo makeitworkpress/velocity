@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-config.git",
-                "reference": "e2112b2762f067ea72b538bf21e6d6821b0addf0"
+                "reference": "756df5cf631c8e16654306d3be3d6de538261072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/e2112b2762f067ea72b538bf21e6d6821b0addf0",
-                "reference": "e2112b2762f067ea72b538bf21e6d6821b0addf0",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-config/zipball/756df5cf631c8e16654306d3be3d6de538261072",
+                "reference": "756df5cf631c8e16654306d3be3d6de538261072",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 "source": "https://github.com/makeitworkpress/wp-config/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-config/issues"
             },
-            "time": "2023-10-26T12:34:16+00:00"
+            "time": "2023-11-30T10:56:13+00:00"
         },
         {
             "name": "makeitworkpress/wp-custom-fields",
@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "ddfefb60ec800973aae4072f6f68d8be00f865b4"
+                "reference": "84e9f198a1ccf2d6a967509ce4ca4d7a9d208d64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/ddfefb60ec800973aae4072f6f68d8be00f865b4",
-                "reference": "ddfefb60ec800973aae4072f6f68d8be00f865b4",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/84e9f198a1ccf2d6a967509ce4ca4d7a9d208d64",
+                "reference": "84e9f198a1ccf2d6a967509ce4ca4d7a9d208d64",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "source": "https://github.com/makeitworkpress/wp-custom-fields/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-custom-fields/issues"
             },
-            "time": "2023-02-14T15:53:13+00:00"
+            "time": "2024-03-09T13:18:06+00:00"
         },
         {
             "name": "makeitworkpress/wp-enqueue",
@@ -96,12 +96,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-enqueue.git",
-                "reference": "e1f5110c4c5a86543f001276e8749692fede6c33"
+                "reference": "426f3bebc397c93db29c4714068799b35795ea3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/e1f5110c4c5a86543f001276e8749692fede6c33",
-                "reference": "e1f5110c4c5a86543f001276e8749692fede6c33",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-enqueue/zipball/426f3bebc397c93db29c4714068799b35795ea3b",
+                "reference": "426f3bebc397c93db29c4714068799b35795ea3b",
                 "shasum": ""
             },
             "require": {
@@ -130,7 +130,7 @@
                 "source": "https://github.com/makeitworkpress/wp-enqueue/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-enqueue/issues"
             },
-            "time": "2023-10-26T12:33:39+00:00"
+            "time": "2023-11-30T10:49:24+00:00"
         },
         {
             "name": "makeitworkpress/wp-optimize",
@@ -138,12 +138,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-optimize.git",
-                "reference": "61dd173987e89c8aa89095a0e8808ec1894f8e66"
+                "reference": "23c28d3c2757bc4505b49b7de9c0316189c1c9cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/61dd173987e89c8aa89095a0e8808ec1894f8e66",
-                "reference": "61dd173987e89c8aa89095a0e8808ec1894f8e66",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-optimize/zipball/23c28d3c2757bc4505b49b7de9c0316189c1c9cc",
+                "reference": "23c28d3c2757bc4505b49b7de9c0316189c1c9cc",
                 "shasum": ""
             },
             "require": {
@@ -172,7 +172,7 @@
                 "source": "https://github.com/makeitworkpress/wp-optimize/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-optimize/issues"
             },
-            "time": "2023-10-19T12:21:03+00:00"
+            "time": "2023-11-30T10:53:34+00:00"
         },
         {
             "name": "makeitworkpress/wp-register",
@@ -222,12 +222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-updater.git",
-                "reference": "436587bd57e16f8806bf6eac7056e9eca7e9744c"
+                "reference": "b31cd18b61116bce0d6905042987342f55f1bc2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/436587bd57e16f8806bf6eac7056e9eca7e9744c",
-                "reference": "436587bd57e16f8806bf6eac7056e9eca7e9744c",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/b31cd18b61116bce0d6905042987342f55f1bc2d",
+                "reference": "b31cd18b61116bce0d6905042987342f55f1bc2d",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +256,7 @@
                 "source": "https://github.com/makeitworkpress/wp-updater/tree/master",
                 "issues": "https://github.com/makeitworkpress/wp-updater/issues"
             },
-            "time": "2023-10-19T10:05:07+00:00"
+            "time": "2023-11-30T10:51:21+00:00"
         }
     ],
     "packages-dev": [],
@@ -276,5 +276,5 @@
         "php": ">=5.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.2.0"
 }
