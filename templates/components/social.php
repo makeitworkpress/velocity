@@ -3,8 +3,6 @@
  * Displays the links to social networks
  * The variable $social is defined by the classes/components/components.php file and filled by classes/components/social.php
  */
-var_dump($social['platforms']);
-
 if( ! $social['platforms'] ) {
     return;
 } ?>
