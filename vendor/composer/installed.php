@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '53d36ee1f7ade6d2736593f261e8930f80c89275',
+        'reference' => '609a7d8dfbca765255b95dbfdff4b47c2e918e79',
         'name' => 'makeitworkpress/velocity',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '53d36ee1f7ade6d2736593f261e8930f80c89275',
+            'reference' => '609a7d8dfbca765255b95dbfdff4b47c2e918e79',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-config' => array(
@@ -38,7 +38,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '84e9f198a1ccf2d6a967509ce4ca4d7a9d208d64',
+            'reference' => '0a3bd659c664d863b603e5d679eececac20d0de2',
             'dev_requirement' => false,
         ),
         'makeitworkpress/wp-enqueue' => array(
