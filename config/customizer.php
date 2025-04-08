@@ -3,7 +3,7 @@
  * Contains the configurations for the customizer settings
  * @since 1.0.0
  *
- * @author Michiel Tramper
+ * @author Michiel
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

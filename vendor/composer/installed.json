@@ -32,7 +32,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michiel Tramper",
+                    "name": "Michiel",
                     "email": "michiel@makeitworkpress.com",
                     "homepage": "https://www.makeitworkpress.com"
                 }
@@ -52,18 +52,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-custom-fields.git",
-                "reference": "0a3bd659c664d863b603e5d679eececac20d0de2"
+                "reference": "9ca333c9c0389434130f10d1136d6a86ff621394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/0a3bd659c664d863b603e5d679eececac20d0de2",
-                "reference": "0a3bd659c664d863b603e5d679eececac20d0de2",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-custom-fields/zipball/9ca333c9c0389434130f10d1136d6a86ff621394",
+                "reference": "9ca333c9c0389434130f10d1136d6a86ff621394",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
-            "time": "2024-03-28T12:12:10+00:00",
+            "time": "2025-04-03T13:10:31+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
@@ -77,7 +77,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michiel Tramper",
+                    "name": "Michiel",
                     "email": "michiel@makeitworkpress.com",
                     "homepage": "https://www.makeitworkpress.com"
                 }
@@ -122,7 +122,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michiel Tramper",
+                    "name": "Michiel",
                     "email": "michiel@makeitworkpress.com",
                     "homepage": "https://www.makeitworkpress.com"
                 }
@@ -167,7 +167,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michiel Tramper",
+                    "name": "Michiel",
                     "email": "michiel@makeitworkpress.com",
                     "homepage": "https://www.makeitworkpress.com"
                 }
@@ -212,7 +212,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michiel Tramper",
+                    "name": "Michiel",
                     "email": "michiel@makeitworkpress.com",
                     "homepage": "https://www.makeitworkpress.com"
                 }
@@ -232,18 +232,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/makeitworkpress/wp-updater.git",
-                "reference": "b31cd18b61116bce0d6905042987342f55f1bc2d"
+                "reference": "92267b5dae7538f8893b34d1551ccfa30da0bc73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/b31cd18b61116bce0d6905042987342f55f1bc2d",
-                "reference": "b31cd18b61116bce0d6905042987342f55f1bc2d",
+                "url": "https://api.github.com/repos/makeitworkpress/wp-updater/zipball/92267b5dae7538f8893b34d1551ccfa30da0bc73",
+                "reference": "92267b5dae7538f8893b34d1551ccfa30da0bc73",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
-            "time": "2023-11-30T10:51:21+00:00",
+            "time": "2024-09-28T08:49:32+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
@@ -257,7 +257,7 @@
             ],
             "authors": [
                 {
-                    "name": "Michiel Tramper",
+                    "name": "Michiel",
                     "email": "michiel@makeitworkpress.com",
                     "homepage": "https://www.makeitworkpress.com"
                 }

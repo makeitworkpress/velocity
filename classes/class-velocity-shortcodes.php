@@ -3,7 +3,7 @@
  * This class adds custom shortcodes which can be used throughout the velocity theme
  * @since 1.0.0
  *
- * @author Michiel Tramper
+ * @author Michiel
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

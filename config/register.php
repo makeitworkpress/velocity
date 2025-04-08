@@ -3,7 +3,7 @@
  * Contains the configurations for the registration of custom posts, menus, image sizes and so fort
  * @since 1.0.0
  *
- * @author Michiel Tramper
+ * @author Michiel
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 

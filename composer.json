@@ -35,12 +35,12 @@
         "makeitworkpress/wp-register": "dev-master",
         "makeitworkpress/wp-updater": "dev-master"
     },
-    "homepage": "https://makeitworkpress/wordpress-themes/velocity/",
+    "homepage": "https://makeitwork.press/wordpress-themes/velocity/",
     "authors": [
         {
-            "name": "Michiel Tramper",
+            "name": "Michiel",
             "email": "hello@makeitworkpress.com",
-            "homepage": "https://www.makeitworkpress.com"
+            "homepage": "https://makeitworkpress.com"
 
         } 
     ]         

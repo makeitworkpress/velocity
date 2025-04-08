@@ -1,7 +1,7 @@
 {
     "name": "velocity",
     "version": "1.0.0",
-    "author": "Michiel Tramper",
+    "author": "Michiel",
     "description": "The package for the Velocity theme",
     "devDependencies": {
         "browserify": "latest",

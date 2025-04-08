@@ -2,7 +2,7 @@
 /**
  * This class boots up the necessary theme functions
  *
- * @author Michiel Tramper
+ * @author Michiel
  */
 defined( 'ABSPATH' ) or die( 'Go eat veggies!' );
 
